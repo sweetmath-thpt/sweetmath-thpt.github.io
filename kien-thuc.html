@@ -28,49 +28,6 @@
   <option value="lop11">Lớp 11</option>
   <option value="lop12">Lớp 12</option>
 </select>
-<button id="GO">VÀO HỌC NGAY!</button>
-
-<script>
-      document.getElementById('GO').addEventListener('click', function() {
-            // Lấy giá trị user chọn (vì HTML đã gán sẵn "none" nên sẽ lấy được chữ "none")
-            const aspectValue = document.getElementById('aspect').value || 'none';
-            const classValue = document.getElementById('class').value || 'none';
-
-            // Ghép thành 1 cái chìa khóa (key)
-            const lookupKey = `${aspectValue}_${classValue}`;
-
-            // "Sổ địa chỉ" chứa mọi đường link bạn muốn điều hướng tới
-            const routeMap = {
-                // ---- TRƯỜNG HỢP CHỌN CẢ 2 ----
-                "AL-CA_lop10": "../kien-thuc/daisogiaitich10.html",
-                "AL-CA_lop11": "../kien-thuc/daisogiaitich11.html",
-                "COMB_lop10": "../kien-thuc/tohop10.html",
-                "GEOM_lop12": "https://nhandeptrai110.github.io/sweetmath.github.io/kien-thuc/hinhhoc12.html",
-                
-                // Bạn nhớ khai báo bổ sung các tổ hợp ở đây (ví dụ: AL-CA_lop12, COMB_lop11,...) 
-                // Nếu chưa khai báo thì nó sẽ báo lỗi trang đang xây dựng nhé!
-
-                // ---- TRANG TỔNG: CHỈ CHỌN 1 TRONG 2 ----
-                "AL-CA_none": "../kien-thuc/daisogiaitich.html", // Chỉ chọn Đại số, không chọn lớp
-                "none_lop10": "../kien-thuc/lop10.html", // Chỉ chọn Lớp 10, không chọn môn
-                "THEO_none": "../kien-thuc/lythuyetso.html",
-
-                // ---- TRANG TỔNG QUÁT: KHÔNG CHỌN GÌ CẢ HOẶC CHỌN "TẤT CẢ" CHO CẢ 2 ----
-                "none_none": "../kien-thuc.html" // Không chọn gì thì về trang chính
-            };
-
-            // Tra cứu key trong sổ địa chỉ
-            const targetLink = routeMap[lookupKey];
-
-            if (targetLink) {
-                // Có link thì bay thẳng sang trang đó
-                window.location.href = targetLink;
-            } else {
-                // Phòng hờ tổ hợp bạn chưa làm trang thì báo lỗi
-                alert("Trang tài liệu này đang được xây dựng, bạn chọn mục khác nhé! (Đang tìm: " + lookupKey + ")");
-            }
-        });
-</script>
-  
+<button id="GO">VÀO HỌC NGAY!</button>  
 </body>
 </html>
