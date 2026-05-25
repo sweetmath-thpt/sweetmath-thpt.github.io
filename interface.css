@@ -1,0 +1,96 @@
+/* ==========================================================================
+   SWEETMATH BRAND COLORS & RESET (Dùng chung)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: #fffdf0; /* Nền vàng kem */
+    color: #4a3f35;           /* Chữ nâu đậm */
+    padding: 20px;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (Thanh điều hướng dùng chung cho mọi trang)
+   ========================================================================== */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(243, 230, 194, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ff9f43;
+    text-decoration: none;
+}
+
+.slogan {
+    font-size: 12px;
+    color: #8c7a6b;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.navbar nav ul {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: #6d5d50;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.navbar nav ul li a:hover, 
+.navbar nav ul li a.active {
+    background-color: #ffeaa7;
+    color: #d35400;
+}
+
+/* ==========================================================================
+   CONTENT AREA (Khung nội dung chuẩn của các trang)
+   ========================================================================== */
+.content-area {
+    background-color: #ffffff;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 24px;
+    border: 3px solid #ffeaa7;
+    box-shadow: 0 10px 30px rgba(243, 230, 194, 0.2);
+}
+
+.content-area h1 {
+    color: #ff9f43;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.content-area p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6d5d50;
+}
