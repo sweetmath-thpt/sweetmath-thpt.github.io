@@ -84,9 +84,14 @@ body {
 }
 
 .content-area h1 {
+   text-align: center;
     color: #ff9f43;
-    margin-bottom: 15px;
-    font-size: 24px;
+    margin-bottom: 20px;
+   margin-top: 10px;
+    font-size: 27px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 1px;
 }
 
 .content-area p {
