@@ -84,11 +84,7 @@ body {
 }
 
 h1 {
-   .content-area h1 {
-    /* 1. LỆNH CĂN GIỮA TUYỆT ĐỐI */
     text-align: center;
-
-    /* 2. ĐỊNH DẠNG CHỮ CƠ BẢN */
     color: #ff9f43;         /* Màu cam ngọt ngào đặc trưng của SweetMath */
     font-size: 26px;        /* Kích thước chữ (tăng giảm tùy ý) */
     font-weight: 700;       /* Độ in đậm (700 là đậm nhất của font Quicksand) */
