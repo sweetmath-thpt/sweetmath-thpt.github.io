@@ -84,14 +84,24 @@ body {
 }
 
 .content-area h1 {
-      text-align: center;
-      color: #ff9f43;
-      margin-bottom: 20px;
-      margin-top: 10px;
-      font-size: 27px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+   .content-area h1 {
+    /* 1. LỆNH CĂN GIỮA TUYỆT ĐỐI */
+    text-align: center;
+
+    /* 2. ĐỊNH DẠNG CHỮ CƠ BẢN */
+    color: #ff9f43;         /* Màu cam ngọt ngào đặc trưng của SweetMath */
+    font-size: 26px;        /* Kích thước chữ (tăng giảm tùy ý) */
+    font-weight: 700;       /* Độ in đậm (700 là đậm nhất của font Quicksand) */
+    
+    /* 3. KHOẢNG CÁCH THỞ */
+    margin-bottom: 20px;    /* Đẩy phần văn bản phía dưới cách xa ra 20px cho thoáng */
+    margin-top: 10px;       /* Cấp cho nó tí khoảng trống phía trên nếu cần */
+
+    /* 4. CÁC HIỆU ỨNG TRANG TRÍ (Mày có thể bật/tắt tùy gu) */
+    text-transform: uppercase; /* Lệnh này tự động biến tất cả thành CHỮ IN HOA */
+    letter-spacing: 1px;       /* Giãn khoảng cách giữa các chữ cái ra một xíu nhìn cho sang */
+     
+}
 }
 
 .content-area p {
