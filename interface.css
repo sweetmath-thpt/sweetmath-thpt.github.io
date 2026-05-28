@@ -94,3 +94,34 @@ h1 {
     color: #6d5d50;
 }
 
+
+.btn-candy-3d {
+    display: inline-block;
+    padding: 14px 28px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    background-color: #ff9f43; /* Màu cam chủ đạo */
+    border: none;
+    border-radius: 25px; /* Bo tròn góc nhìn cho mềm mại */
+    cursor: pointer;
+    
+    /* Bí thuật 3D: Tạo một lớp bóng dày, sẫm màu ở dưới đít nút */
+    box-shadow: 0 6px 0 #d35400; 
+    
+    /* Giúp hiệu ứng chuyển động mượt mà, không bị giật */
+    transition: all 0.15s ease; 
+}
+
+/* Khi di chuột vào: Nút nhích nhẹ xuống */
+.btn-candy-3d:hover {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #d35400; /* Bóng ngắn lại tí */
+}
+
+/* Khi bấm chuột vào (Click giữ): Nút lún hẳn xuống tạo cảm giác như nút thật */
+.btn-candy-3d:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #d35400; /* Mất sạch bóng vì nút đã chạm sàn */
+}
