@@ -125,3 +125,43 @@ h1 {
     transform: translateY(6px);
     box-shadow: 0 0 0 #d35400; /* Mất sạch bóng vì nút đã chạm sàn */
 }
+
+/* --- KIỂU BANNER TIÊU ĐỀ MỚI --- */
+.title-banner {
+    /* Tạo màu nền chuyển sắc từ cam sáng sang cam đậm nhìn rất mượt */
+    background: linear-gradient(135deg, #ffb03b 0%, #ff9f43 100%);
+    padding: 70px 20px 100px 20px; /* Chừa khoảng trống ở dưới để hộp nội dung đè lên */
+    text-align: center;
+    color: white;
+}
+
+.title-banner h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff !important; /* Ép chữ tiêu đề thành màu trắng cho nổi */
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng chữ nhẹ cho dễ đọc */
+}
+
+.title-banner .subtitle {
+    font-size: 16px;
+    color: #fff3cd; /* Màu vàng kem nhạt cho dòng mô tả phụ */
+    font-weight: 500;
+    margin: 0;
+}
+
+/* --- HỘP NỘI DUNG ĐÈ LÊN BACKGROUND --- */
+.content-card-area {
+    max-width: 850px; /* Giới hạn độ rộng nhìn cho sang */
+    margin: -50px auto 50px auto; /* MA THUẬT: Margin âm -50px giúp hộp nhảy lên đè lên banner */
+    background: #ffffff; /* Nền hộp màu trắng tinh khôi */
+    padding: 40px 30px;
+    border-radius: 24px; /* Bo tròn mạnh tay nhìn siêu cute hột me */
+    
+    /* Đổ bóng siêu mịn giúp cái hộp nhìn như đang nổi bồng bềnh trên trang web */
+    box-shadow: 0 15px 35px rgba(255, 159, 67, 0.1); 
+    
+    position: relative; /* Bắt buộc phải có để margin âm hoạt động chuẩn */
+    z-index: 2;
+}
