@@ -91,7 +91,7 @@ h1 {
 h2 {
     text-align: center;
     color: #e67e22;         
-    font-size: 28px;        
+    font-size: 32px;        
     font-weight: 700;       
     
     margin-bottom: 20px;    
@@ -105,7 +105,7 @@ h2 {
 h3 {
     text-align: center;
     color: #2d3436;         
-    font-size: 20px;        
+    font-size: 28px;        
     font-weight: 700;       
     
     margin-bottom: 20px;    
@@ -113,9 +113,9 @@ h3 {
 }
 
 
-.content-area p {
+p {
     text-align: justify;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.7;
     color: #6d5d50;
     margin-bottom: 20px;
