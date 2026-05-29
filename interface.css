@@ -125,37 +125,3 @@ h1 {
     transform: translateY(6px);
     box-shadow: 0 0 0 #d35400; /* Mất sạch bóng vì nút đã chạm sàn */
 }
-
-/* 1. Reset trình duyệt: Đảm bảo xóa sạch viền trắng thừa thãi ở 2 bên màn hình */
-body {
-    margin: 0;
-    padding: 0;
-}
-
-/* 2. Cấp quyền cho Navbar: Đảm bảo nó luôn luôn đè lên trên Hero Banner */
-.navbar {
-    position: relative; 
-    z-index: 100; /* Số to nhất để làm trùm, không bị banner nuốt chửng */
-}
-
-/* 3. Ma thuật phóng to Hero Banner và căn khoảng cách */
-.title-banner {
-    background: linear-gradient(135deg, #ffb03b 0%, #ff9f43 100%);
-    width: 100%; /* Chạm tuyệt đối 2 cạnh bên */
-    box-sizing: border-box;
-    
-    /* Kéo toàn bộ banner giật ngược lên trên đỉnh màn hình (chui xuống dưới navbar) */
-    /* Giả sử thanh navbar của mày cao tầm 75px. (Nếu cao hơn/thấp hơn mày tự sửa số này nha) */
-    margin-top: -75px; 
-    
-    /* CĂN KHOẢNG CÁCH CHUẨN XÁC YÊU CẦU CỦA MÀY:
-       - Padding-top = 75px (Bù phần chiều cao bị Navbar đè lên) + 60px (Khoảng cách từ đáy Navbar đến chữ).
-       - Padding-bottom = 60px (Khoảng cách từ chữ đến biên dưới banner).
-       => Chữ bị kẹp ở giữa 2 khoảng 60px, chuẩn đối xứng!
-    */
-    padding-top: calc(75px + 60px); 
-    padding-bottom: 60px; 
-    
-    text-align: center;
-    color: white;
-}
