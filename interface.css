@@ -114,8 +114,9 @@ h3 {
 
 
 .content-area p {
-    font-size: 16px;
-    line-height: 1.6;
+    text-align: justify;
+    font-size: 20px;
+    line-height: 1.7;
     color: #6d5d50;
     margin-bottom: 20px;
 }
