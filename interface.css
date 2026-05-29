@@ -125,3 +125,43 @@ h1 {
     transform: translateY(6px);
     box-shadow: 0 0 0 #d35400; /* Mất sạch bóng vì nút đã chạm sàn */
 }
+
+/* --- CSS CHO TAB & HỘP NỘI DUNG --- */
+.tab-controls { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
+.btn-candy-3d { opacity: 0.6; transition: 0.3s; } /* Mặc định hơi mờ */
+.btn-candy-3d.active-tab { opacity: 1; transform: scale(1.05); box-shadow: 0 5px 15px rgba(255,176,59,0.4); }
+
+.content-box {
+    background: #fdfbf7; border: 2px dashed #ffb03b;
+    padding: 20px; border-radius: 15px; min-height: 150px;
+}
+
+.goi-y-item { background: #fff3cd; padding: 10px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #ff9f43; animation: fadeIn 0.5s ease; }
+
+.btn-small { background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 10px;}
+.btn-small:hover { background: #2980b9; }
+.btn-bot { background: #e84393; color: white; border: none; padding: 4px 10px; border-radius: 12px; font-size: 12px; cursor: pointer; margin-left: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
+.alert-btn { background: #e67e22; }
+
+/* --- CSS CHO POP-UP CHATBOT --- */
+.modal {
+    display: none; position: fixed; z-index: 999; left: 0; top: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); /* Nền đen mờ */
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: #fff; margin: 15% auto; padding: 25px;
+    border-radius: 20px; width: 80%; max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2); position: relative;
+    border-top: 5px solid #e84393;
+}
+
+.close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-btn:hover { color: #333; }
+.bot-header { font-weight: bold; color: #e84393; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+#bot-typing-text { font-family: 'Courier New', monospace; font-size: 15px; color: #2d3436; line-height: 1.5; min-height: 60px;}
+#bot-typing-text::after { content: '|'; animation: blink 1s infinite; } /* Con trỏ nhấp nháy */
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
