@@ -42,7 +42,7 @@
 <div id="khu-vuc-goi-y" class="content-box">
     <div id="danh-sach-goi-y">
         </div>
-    <button id="btn-them-goi-y" class="btn-small" onclick="hienThemGoiY()">Tiếp tục gợi ý 🔽</button>
+    <button id="btn-them-goi-y" class="btn-small" onclick="hienThemGoiY()">Xem gợi ý đầu tiên 💡</button>
 </div>
 
 <div id="khu-vuc-loi-giai" class="content-box" style="display: none;">
@@ -103,6 +103,9 @@
             container.appendChild(divMoi);
             buocGoiYHienTai++;
             
+            // Đổi chữ nút bấm sau khi hiện gợi ý đầu tiên
+            document.getElementById('btn-them-goi-y').innerText = 'Tiếp tục gợi ý 🔽';
+            
             // Nếu đã hết gợi ý thì giấu nút "Thêm gợi ý" đi
             if (buocGoiYHienTai === danhSachCacGoiY.length) {
                 document.getElementById('btn-them-goi-y').style.display = 'none';
@@ -149,8 +152,6 @@
         clearTimeout(typingTimer); // Tắt modal là ngừng gõ luôn
     }
     
-    // Khởi tạo: Mở sẵn tab Gợi ý và hiện gợi ý đầu tiên khi load trang
-    hienThemGoiY();
 </script>
   
 </body>
