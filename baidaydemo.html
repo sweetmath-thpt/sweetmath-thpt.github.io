@@ -33,18 +33,125 @@
     </header>
 <h1>Bài toán cấp số cộng trong đề thi hsg cần thơ 2024-2025</h1>
 <p>Một đội công nhân được giao nhiệm vụ lát gạch một con đường dài 243m. Ngày thứ nhất đội lát được $x$(m) đường và kể từ ngày thứ hai, mỗi ngày, đội lát tăng thêm 2m đường so với ngày trước đó. Để kịp tiến độ công trình, kể từ ngày thứ 8 đội quyết định tăng tốc: mỗi ngày, đội sẽ lát tăng thêm 3m đường (thay vì 2m) so với ngày trước đó. Sau 12 ngày, công việc hoàn thành đúng 243m đường. Tìm số mét đường đội lát được trong ngày thứ nhất.</p>
-<div id="KhuVucNutBam">
-  <button class="btn-candy-3d">Gợi ý</button>
-  <button class="btn-candy-3d">Lời giải</button>
+
+<div class="tab-controls">
+    <button id="tab-goi-y" class="btn-candy-3d active-tab" onclick="moTab('goi-y')">💡 GỢI Ý</button>
+    <button id="tab-loi-giai" class="btn-candy-3d" onclick="moTab('loi-giai')">📝 LỜI GIẢI</button>
 </div>
 
-<div id="GoiY">
-  <p>Gợi ý</p>
+<div id="khu-vuc-goi-y" class="content-box">
+    <div id="danh-sach-goi-y">
+        </div>
+    <button id="btn-them-goi-y" class="btn-small" onclick="hienThemGoiY()">Tiếp tục gợi ý 🔽</button>
 </div>
 
-<div id="LoiGiai">
-  <p>Lời giải</p>
+<div id="khu-vuc-loi-giai" class="content-box" style="display: none;">
+    <p><strong>Bước 1:</strong> Gọi x là số mét đường ngày đầu. 7 ngày đầu lát được: 7x + 42. 
+        <button class="btn-bot" data-bot="Vì mỗi ngày tăng 2m, đây là cấp số cộng: S = 7x + 2(1+2+...+6) = 7x + 42 đó bạn nhé!">Giải thích</button>
+    </p>
+    
+    <p><strong>Bước 2:</strong> 5 ngày sau lát được: 5x + 105. 
+        <button class="btn-bot" data-bot="Sang ngày 8 tăng tốc thêm 3m, ta tính tương tự tổng chặng sau. Cứ bình tĩnh tính cẩn thận là ra nè!">Vì sao?</button>
+    </p>
+    
+    <p><strong>Bước 3:</strong> Giải phương trình ta được x = 8 (m).</p>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="btn-nhan-xet" class="btn-small alert-btn" onclick="hienNhanXet()">Xem Nhận Xét Bài Toán 👁️</button>
+    </div>
+    
+    <div id="khu-vuc-nhan-xet" class="goc-phan-bien" style="display: none;">
+        <h4>💡 Góc nhìn phản biện cùng SweetMath</h4>
+        <p>12 ngày mà ngày đầu lết được có 8 mét? Đội công nhân này hơi bị rùa bò rồi nha! Thực tế không ai làm việc với năng suất kiểu này cả.</p>
+    </div>
 </div>
 
+<div id="chatbot-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="dongModal()">&times;</span>
+        <div class="bot-header">🤖 SweetMath Bot giải đáp:</div>
+        <div id="bot-typing-text"></div>
+    </div>
+</div>
+
+<script>
+    // --- 1. LOGIC CHUYỂN TAB GỢI Ý & LỜI GIẢI ---
+    function moTab(tabName) {
+        document.getElementById('khu-vuc-goi-y').style.display = (tabName === 'goi-y') ? 'block' : 'none';
+        document.getElementById('khu-vuc-loi-giai').style.display = (tabName === 'loi-giai') ? 'block' : 'none';
+        
+        // Đổi màu nút Tab đang active
+        document.getElementById('tab-goi-y').classList.toggle('active-tab', tabName === 'goi-y');
+        document.getElementById('tab-loi-giai').classList.toggle('active-tab', tabName === 'loi-giai');
+    }
+
+    // --- 2. LOGIC HIỆN TỪNG BƯỚC GỢI Ý ---
+    const danhSachCacGoiY = [
+        "Gợi ý 1: Đặt ẩn x là số mét đường lát được trong ngày đầu tiên.",
+        "Gợi ý 2: Phân tích 7 ngày đầu. Vì mỗi ngày tăng 2m, hãy dùng kiến thức cấp số cộng để tính tổng.",
+        "Gợi ý 3: Tính số mét làm được ở ngày thứ 8 (lưu ý lúc này tăng 3m so với ngày 7).",
+        "Gợi ý 4: Cộng tổng 7 ngày đầu và 5 ngày sau, cho bằng 243 rồi giải phương trình tìm x nhé!"
+    ];
+    let buocGoiYHienTai = 0;
+
+    function hienThemGoiY() {
+        if (buocGoiYHienTai < danhSachCacGoiY.length) {
+            let container = document.getElementById('danh-sach-goi-y');
+            let divMoi = document.createElement('div');
+            divMoi.className = 'goi-y-item';
+            divMoi.innerText = danhSachCacGoiY[buocGoiYHienTai];
+            container.appendChild(divMoi);
+            buocGoiYHienTai++;
+            
+            // Nếu đã hết gợi ý thì giấu nút "Thêm gợi ý" đi
+            if (buocGoiYHienTai === danhSachCacGoiY.length) {
+                document.getElementById('btn-them-goi-y').style.display = 'none';
+            }
+        }
+    }
+
+    // --- 3. LOGIC HIỆN NHẬN XÉT ---
+    function hienNhanXet() {
+        document.getElementById('khu-vuc-nhan-xet').style.display = 'block';
+        document.getElementById('btn-nhan-xet').style.display = 'none'; // Bấm xong thì giấu nút đi
+    }
+
+    // --- 4. LOGIC CHATBOT BẮN CHỮ (TYPEWRITER) ---
+    let typingTimer;
+    
+    // Gắn sự kiện cho tất cả các nút có class 'btn-bot'
+    document.querySelectorAll('.btn-bot').forEach(button => {
+        button.addEventListener('click', function() {
+            let cauTraLoi = this.getAttribute('data-bot');
+            chayHieuUngGoChu(cauTraLoi);
+        });
+    });
+
+    function chayHieuUngGoChu(text) {
+        document.getElementById('chatbot-modal').style.display = 'block';
+        let botTextDiv = document.getElementById('bot-typing-text');
+        botTextDiv.innerHTML = ''; // Xóa chữ cũ
+        clearTimeout(typingTimer); // Dừng việc gõ chữ cũ nếu đang gõ dở
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                botTextDiv.innerHTML += text.charAt(i);
+                i++;
+                typingTimer = setTimeout(typeWriter, 30); // Tốc độ gõ: 30 mili-giây/chữ
+            }
+        }
+        typeWriter();
+    }
+
+    function dongModal() {
+        document.getElementById('chatbot-modal').style.display = 'none';
+        clearTimeout(typingTimer); // Tắt modal là ngừng gõ luôn
+    }
+    
+    // Khởi tạo: Mở sẵn tab Gợi ý và hiện gợi ý đầu tiên khi load trang
+    hienThemGoiY();
+</script>
+  
 </body>
 </html>
