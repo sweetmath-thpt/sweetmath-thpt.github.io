@@ -122,45 +122,48 @@ h3 {
 }
 
 
-.btn-candy-3d {
-    display: inline-block;
-    padding: 14px 28px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 16px;
+/* --- HÀNG NÚT ĐIỀU HƯỚNG/DANH MỤC (CANH GIỮA HOÀN HẢO) --- */
+.tab-controls { 
+    display: flex; 
+    gap: 12px; 
+    justify-content: center; /* Canh giữa nguyên một hàng nút theo chiều ngang */
+    align-items: center;     /* Canh giữa các nút theo chiều dọc */
+    flex-wrap: wrap;         /* Tự động xuống dòng mượt mà nếu màn hình điện thoại bị chật */
+    margin: 25px auto; 
+    width: 100%;
+    max-width: 800px;        /* Giới hạn độ rộng hàng nút cho đẹp */
+    padding: 0 15px;
+}
+
+/* --- TRẠNG THÁI NÚT KHI CHƯA BẤM (HẾT MỜ, CHỮ RÕ NÉT) --- */
+.btn-candy-3d { 
+    opacity: 1 !important;   /* Tiêu diệt hoàn toàn độ mờ cũ, chữ rõ 100% */
+    background-color: #f1f2f6; /* Thay vì làm mờ, ta dùng nền màu xám nhạt cho nút chưa chọn */
+    color: #57606f;          /* Chữ màu xám đậm rõ nét */
+    border: 2px solid #ced6e0;
+    padding: 10px 20px;
+    font-size: 15px;
     font-weight: 700;
-    color: white;
-    background-color: #ff9f43; /* Màu cam chủ đạo */
-    border: none;
-    border-radius: 25px; /* Bo tròn góc nhìn cho mềm mại */
+    border-radius: 25px;
     cursor: pointer;
-    
-    /* Bí thuật 3D: Tạo một lớp bóng dày, sẫm màu ở dưới đít nút */
-    box-shadow: 0 6px 0 #d35400; 
-    
-    /* Giúp hiệu ứng chuyển động mượt mà, không bị giật */
-    transition: all 0.15s ease; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 0 #ced6e0; /* Tạo hiệu ứng nổi 3D nhẹ */
 }
 
-/* Khi di chuột vào: Nút nhích nhẹ xuống */
+/* Hiệu ứng khi học sinh rê chuột qua nút chưa bấm */
 .btn-candy-3d:hover {
-    transform: translateY(2px);
-    box-shadow: 0 4px 0 #d35400; /* Bóng ngắn lại tí */
+    background-color: #e4e7eb;
+    transform: translateY(-2px); /* Nhấc nhẹ nút lên */
+    box-shadow: 0 6px 0 #ced6e0;
 }
 
-/* Khi bấm chuột vào (Click giữ): Nút lún hẳn xuống tạo cảm giác như nút thật */
-.btn-candy-3d:active {
-    transform: translateY(6px);
-    box-shadow: 0 0 0 #d35400; /* Mất sạch bóng vì nút đã chạm sàn */
-}
-
-/* --- CSS CHO TAB & HỘP NỘI DUNG --- */
-.tab-controls { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
-.btn-candy-3d { opacity: 0.6; transition: 0.3s; } /* Mặc định hơi mờ */
-.btn-candy-3d.active-tab { opacity: 1; transform: scale(1.05); box-shadow: 0 5px 15px rgba(255,176,59,0.4); }
-
-.content-box {
-    background: #fdfbf7; border: 2px dashed #ffb03b;
-    padding: 20px; border-radius: 15px; min-height: 150px;
+/* --- TRẠNG THÁI NÚT KHI ĐÃ ĐƯỢC BẤM (ACTIVE) --- */
+.btn-candy-3d.active-tab { 
+    background-color: #ffb03b; /* Đổi sang màu cam thương hiệu SweetMath */
+    color: #ffffff;            /* Chữ trắng nổi bật */
+    border-color: #e67e22;
+    box-shadow: 0 4px 0 #e67e22;
+    transform: translateY(2px); /* Lún xuống tạo cảm giác đã bấm */
 }
 
 .goi-y-item { background: #fff3cd; padding: 10px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #ff9f43; animation: fadeIn 0.5s ease; }
