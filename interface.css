@@ -112,6 +112,14 @@ h3 {
     margin-top: 20px;        
 }
 
+h4 {
+    text-align: left;
+    font-size: 24px;
+    line-height: 1.7;
+    color: #6d5d50;
+    margin-bottom: 20px;
+}
+
 
 p {
     text-align: justify;
@@ -189,7 +197,7 @@ p {
 
 .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .close-btn:hover { color: #333; }
-.bot-header { font-weight: bold; color: #e84393; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+.bot-header { font-weight: bold; color: #e84393; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 24px; }
 #bot-typing-text { font-family: 'Quicksand', monospace; font-size: 24px; color: #2d3436; line-height: 1.5; min-height: 60px;}
 #bot-typing-text::after { content: '|'; animation: blink 1s infinite; } /* Con trỏ nhấp nháy */
 
