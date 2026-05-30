@@ -190,7 +190,7 @@ p {
 .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .close-btn:hover { color: #333; }
 .bot-header { font-weight: bold; color: #e84393; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-#bot-typing-text { font-family: 'Courier New', monospace; font-size: 24px; color: #2d3436; line-height: 1.5; min-height: 60px;}
+#bot-typing-text { font-family: 'Quicksand', monospace; font-size: 24px; color: #2d3436; line-height: 1.5; min-height: 60px;}
 #bot-typing-text::after { content: '|'; animation: blink 1s infinite; } /* Con trỏ nhấp nháy */
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
