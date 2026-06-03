@@ -203,3 +203,95 @@ p {
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+/* --- HỆ THỐNG CHÂN TRANG (FOOTER STYLE) --- */
+.sweet-footer {
+    background-color: #2d3436; /* Màu đen than tinh tế, làm nền cực tốt */
+    color: #f1f2f6;            /* Màu chữ xám trắng nhẹ, dịu mắt */
+    padding: 50px 0 20px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 60px;          /* Đẩy footer cách xa nội dung phía trên cho thoáng */
+    border-top: 4px solid #e67e22; /* Tạo một đường chỉ màu Cam Cháy ở trên cùng làm điểm nhấn */
+}
+
+.footer-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;           /* Tự động xuống dòng trên điện thoại */
+    gap: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;          /* Đảm bảo lên điện thoại các cột tự xếp chồng hàng dọc */
+}
+
+/* Style cho các tiêu đề trong Footer */
+.footer-logo {
+    color: #ffb03b !important; /* Tên thương hiệu màu vàng ngọt bần bật */
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    font-weight: 700;
+}
+
+/* Tạo dấu gạch chân nhỏ dưới tiêu đề cột */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 35px;
+    height: 3px;
+    background-color: #e67e22;
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #ced6e0;
+}
+
+/* Style cho danh mục links */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #ced6e0;
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi rê chuột vào link ở footer */
+.footer-col ul li a:hover {
+    color: #ffb03b;            /* Đổi sang màu vàng khi hover */
+    padding-left: 6px;         /* Nhích nhẹ sang phải nhìn rất mượt */
+}
+
+/* Dòng bản quyền cuối cùng */
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #485460; /* Đường kẻ ngang mờ chia cách */
+    font-size: 13px;
+    color: #a4b0be;
+}
