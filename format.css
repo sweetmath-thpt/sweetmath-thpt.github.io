@@ -18,3 +18,12 @@
     list-style: none;
     gap: 25px;
 }
+@media (max-width: 768px) {
+    .slogan {display: none;}
+    .navbar {flex-direction: column;
+    gap: 15px;
+    text-align: center;}
+    .navbar ul {gap: 12px;
+    padding: 0;
+flex-wrap: wrap;}
+}
