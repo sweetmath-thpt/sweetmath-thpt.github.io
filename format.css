@@ -1,56 +1,201 @@
-/* THÂN */
-body
-{font-family: 'Quicksand', sans-serif;}
+/* ==========================================================================
+   1. ĐỊNH NGHĨA BIẾN MÀU (TONE TÍM PASTEL NGỌT NGÀO)
+   ========================================================================== */
+:root {
+    --bg-global: #F6F0FA;       /* Màu nền toàn trang: Tím sữa siêu nhạt, dịu mắt */
+    --primary-purple: #A78BFA;  /* Tím Lavender chủ đạo (cho Header, Button chính) */
+    --primary-hover: #8B5CF6;   /* Tím đậm hơn chút khi rê chuột vào */
+    --secondary-pink: #FBCFE8;  /* Hồng phấn pastel ngọt ngào (cho thẻ, điểm nhấn) */
+    --accent-candy: #FDA4AF;    /* Hồng kẹo dâu (cho nút bấm Cute, các thông báo) */
+    --text-main: #4C3A51;       /* Màu chữ: Mận chín đậm (tránh dùng màu đen tuyền nhìn sẽ bị thô) */
+    --text-muted: #9E8AA5;      /* Màu chữ phụ: Tím xám nhạt */
+    --white: #FFFFFF;
+    --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15); /* Đổ bóng mịn màu tím */
+}
+
+/* ==========================================================================
+   2. RESET CSS & CẤU TRÚC CHỐNG HỞ FOOTER
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Bắt buộc để footer tính chiều cao chuẩn */
+    font-family: 'Quicksand', 'Segoe UI', sans-serif; /* Font chữ tròn trịa đáng yêu */
+    background-color: var(--bg-global);
+    color: var(--text-main);
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Sắp xếp layout theo chiều dọc */
+}
+
+/* Thẻ bao bọc toàn bộ nội dung (trừ footer) */
+.content-wrapper {
+    flex: 1; /* Tự động giãn để đẩy footer xuống đáy màn hình kể cả khi ít nội dung */
+    padding: 30px 5%;
+}
+
+/* ==========================================================================
+   3. THANH ĐIỀU HƯỚNG (NAVBAR)
+   ========================================================================== */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Đẩy logo và menu ra 2 đầu */
     align-items: center;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
+    padding: 15px 5%;
+    background-color: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-/* LOGO BÊN GÓC TRÁI */
+
+.brand-box {
+    display: flex;
+    flex-direction: column;
+}
+
 .logo {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
+    color: var(--primary-purple);
 }
-/* PHẦN CHỮ BÊN DƯỚI LOGO */
+
 .slogan {
     font-size: 12px;
-    color: #a9a9a9;
+    color: var(--text-muted);
+    margin-top: 2px;
 }
-/* MENU ĐIỀU HƯỚNG */
+
 .navbar ul {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 30px;
+    align-items: center;
 }
-@media (max-width: 768px) {
-    .slogan {display: none;}
-    .navbar {flex-direction: column;
-    gap: 15px;
-    text-align: center;}
-    .navbar ul {gap: 12px;
-    padding: 0;
-flex-wrap: wrap;}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: color 0.3s;
 }
-/* NÚT BẤM */
+
+.navbar ul li a:hover {
+    color: var(--primary-purple); /* Đổi màu khi hover */
+}
+
+/* ==========================================================================
+   4. THÀNH PHẦN GIAO DIỆN (CARDS, INPUTS, TABLES) - ĐỂ BẠN LÀM TÍNH NĂNG
+   ========================================================================== */
+
+/* Thẻ chứa nội dung tính năng (Ví dụ: Khung chứa bài tập, khung kết quả...) */
+.card-cute {
+    background-color: var(--white);
+    border-radius: 16px; /* Bo góc tròn xinh xắn */
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Tiêu đề các mục */
+h1, h2, h3 {
+    color: var(--text-main);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Ô nhập liệu (Dành cho các tính năng cần Input) */
+input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #E5DEEB;
+    border-radius: 10px;
+    background-color: #FAFAFD;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-purple);
+    background-color: var(--white);
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.2);
+}
+
+/* Nút bấm cute kẹo ngọt */
 .btn-cute {
-border: none;
-background-color: #05dbf2;
-color: white;
-border-radius: 9px;
-font-weight: bold;
-cursor: pointer;
+    border: none;
+    background-color: var(--accent-candy);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 50px; /* Nút thon tròn kẹo dẻo */
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(253, 164, 175, 0.4);
+    transition: transform 0.2s, background-color 0.3s;
 }
-/* CHÂN TRANG */
+
+.btn-cute:hover {
+    background-color: #F43F5E; /* Đậm đà hơn khi rê chuột */
+    transform: translateY(-2px); /* Nút nảy nhẹ lên nhìn rất thích mắt */
+}
+
+.btn-cute:active {
+    transform: translateY(0);
+}
+
+/* Nút phụ (Màu tím nhạt) */
+.btn-secondary {
+    background-color: var(--primary-purple);
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   5. CHÂN TRANG (FOOTER) ĐỤNG TUYỆT ĐỐI VIỀN MÀN HÌNH
+   ========================================================================== */
 footer {
-background-color: #8a69a2;
-color: white;
-padding: 0;
-text-align: center;
-margin: 0;
-box-sizing: border-box;
-width: 100%;
-overflow: hidden;
+    background-color: var(--primary-purple);
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Đảm bảo luôn nằm dưới cùng */
+    box-shadow: 0 -4px 15px rgba(167, 139, 250, 0.1);
+}
+
+footer p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE (TỰ ĐỘNG ĐẸP TRÊN ĐIỆN THOẠI)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .slogan { display: none; }
+    .navbar { 
+        flex-direction: column;
+        gap: 15px;
+        text-align: center; 
+    }
+    .navbar ul { 
+        gap: 15px;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .content-wrapper {
+        padding: 15px 3%;
+    }
 }
