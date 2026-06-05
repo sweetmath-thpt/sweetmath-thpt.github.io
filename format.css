@@ -201,3 +201,25 @@ footer p {
         padding: 15px 3%;
     }
 }
+
+.container {display: flex;
+gap: 20px;}
+
+.baithi {width: 75%;}
+
+.palette {width: 25%;}
+
+.palette ul {display: grid;
+grid-template-columns: repeat(4,1fr);
+list-style: none;
+gap: 10px;
+text-align: center;
+background-color: var(--bg-global);}
+
+.palette ul li {
+    background-color: #ffffff; /* Hoặc màu nào tùy bạn để làm nổi bật ô câu hỏi */
+    padding: 10px;             /* Tạo độ dày, giúp ô số to ra như nút bấm */
+    border-radius: 5px;        /* Bo tròn nhẹ các góc cho thân thiện */
+    cursor: pointer;           /* Biến con trỏ chuột thành hình bàn tay khi rê vào */
+    border: 1px solid #ddd;    /* Tạo viền mỏng xung quanh ô */
+}
