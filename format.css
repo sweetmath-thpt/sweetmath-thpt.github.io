@@ -28,7 +28,7 @@ html, body {
     background-color: var(--bg-global);
     color: var(--text-main);
     scroll-behavior: smooth;
-    font-size: 24px;
+    font-size: 20px;
     text-align: justify;
 }
 
