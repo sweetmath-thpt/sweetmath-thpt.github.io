@@ -37,3 +37,9 @@ border-radius: 9px;
 font-weight: bold;
 cursor: pointer;
 }
+.footer {
+background-color: #043f8c;
+color: white;
+padding: 6px;
+text-align: center;
+}
