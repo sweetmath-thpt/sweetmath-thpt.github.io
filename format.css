@@ -1,3 +1,4 @@
+/* THÂN */
 body
 {font-family: 'Quicksand', sans-serif;}
 .navbar {
@@ -7,14 +8,17 @@ body
     padding: 15px 5%;
     color: #ffffff;
 }
+/* LOGO BÊN GÓC TRÁI */
 .logo {
     font-size: 16px;
     font-weight: bold;
 }
+/* PHẦN CHỮ BÊN DƯỚI LOGO */
 .slogan {
     font-size: 12px;
     color: #a9a9a9;
 }
+/* MENU ĐIỀU HƯỚNG */
 .navbar ul {
     display: flex;
     list-style: none;
@@ -29,6 +33,7 @@ body
     padding: 0;
 flex-wrap: wrap;}
 }
+/* NÚT BẤM */
 .btn-cute {
 border: none;
 background-color: #05dbf2;
