@@ -37,10 +37,12 @@ border-radius: 9px;
 font-weight: bold;
 cursor: pointer;
 }
+/* CHÂN TRANG */
 footer {
-background-color: #043f8c;
+background-color: #8a69a2;
 color: white;
-padding: 6px;
+padding: 0;
 text-align: center;
 margin: 0;
+box-sizing: border-box;
 }
