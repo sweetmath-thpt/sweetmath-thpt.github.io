@@ -29,3 +29,11 @@ body
     padding: 0;
 flex-wrap: wrap;}
 }
+.btn-cute {
+border: none;
+background-color: #05dbf2;
+color: white;
+border-radius: 9px;
+font-weight: bold;
+cursor: pointer;
+}
