@@ -251,16 +251,13 @@ border-radius: 5px;}
 
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("hq720.jpg");
-
-  /* Set a specific height */
-  height: 50%;
-
-  /* Position and center the image to scale nicely on all screens */
+  height: 350px; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
+
 
 /* Place text in the middle of the image */
 .hero-text {
