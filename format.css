@@ -158,6 +158,7 @@ input:focus, textarea:focus, select:focus {
 .btn-secondary {
     background-color: var(--primary-purple);
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
+    aspect-ratio: 1;
 }
 .btn-secondary:hover {
     background-color: var(--primary-hover);
