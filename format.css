@@ -225,6 +225,15 @@ background-color: var(--bg-global);}
     border: 1px solid #ddd;    /* Tạo viền mỏng xung quanh ô */
 }
 
+.palette ul li a {
+    display: block; /* Hoặc inline-block */
+    width: 100%;
+    height: 100%;
+    color: inherit; /* Để nó tự ăn theo màu chữ của nút cha */
+    text-decoration: none; /* Bỏ cái gạch chân đáng ghét mặc định của thẻ a */
+}
+
+
 .popup-overlay {position: fixed;
 top: 0; left: 0; width: 100%; height: 100%;
 z-index: 9999;
