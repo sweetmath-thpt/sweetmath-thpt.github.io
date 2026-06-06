@@ -14,7 +14,7 @@
 }
 
 /* ==========================================================================
-   2. RESET CSS & CẤU TRÚC CHỐNG HỞ FOOTER
+   2. RESET CSS & CẤU TRÚC CHỐNG HỞ FOOTER (ĐÃ SỬA)
    ========================================================================== */
 * {
     margin: 0;
@@ -22,9 +22,15 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%; /* Bắt buộc để footer tính chiều cao chuẩn */
-    font-family: 'Quicksand', 'Segoe UI', sans-serif; /* Font chữ tròn trịa đáng yêu */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh; /* Đổi từ height thành min-height để trang cuộn được, không lo đè chữ */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Quicksand', 'Segoe UI', sans-serif;
     background-color: var(--bg-global);
     color: var(--text-main);
     scroll-behavior: smooth;
@@ -32,10 +38,6 @@ html, body {
     text-align: justify;
 }
 
-body {
-    display: flex;
-    flex-direction: column; /* Sắp xếp layout theo chiều dọc */
-}
 
 /* Thẻ bao bọc toàn bộ nội dung (trừ footer) */
 .content-wrapper {
