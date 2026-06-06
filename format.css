@@ -224,3 +224,16 @@ background-color: var(--bg-global);}
     cursor: pointer;           /* Biến con trỏ chuột thành hình bàn tay khi rê vào */
     border: 1px solid #ddd;    /* Tạo viền mỏng xung quanh ô */
 }
+
+.popup-overlay {position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 9999;
+background-color: rgba(0,0,0,0.5);
+display: none;
+justify-content: center;
+align-items: center;}
+
+.popup-content {background-color: var(--bg-global);
+padding: 30px;
+border-radius: 5px;}
+.popup-overlay.open { display: flex; }
