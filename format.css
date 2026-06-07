@@ -251,7 +251,7 @@ border-radius: 5px;}
 
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Bia.png");
-  height: 50vh; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
+  height: 65vh; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
