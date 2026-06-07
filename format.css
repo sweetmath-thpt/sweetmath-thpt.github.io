@@ -250,7 +250,7 @@ border-radius: 5px;}
 .popup-overlay.open { display: flex; }
 
 .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Anhbia.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Bia.png");
   height: 350px; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
   background-position: center;
   background-repeat: no-repeat;
