@@ -141,7 +141,7 @@ input:focus, textarea:focus, select:focus {
     padding: 12px 25px;
     border-radius: 50px; /* Nút thon tròn kẹo dẻo */
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(253, 164, 175, 0.4);
     transition: transform 0.2s, background-color 0.3s;
