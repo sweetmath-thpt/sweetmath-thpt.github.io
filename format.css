@@ -251,7 +251,7 @@ border-radius: 5px;}
 
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Anhbiatoanhoc.png");
-  height: 350px; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
+  height: 375px; /* Đổi từ 50% thành 350px (hoặc 50vh) để cố định khung banner */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -273,4 +273,4 @@ border-radius: 5px;}
 .hero-text h1 {margin-bottom: 35px;
                line-height: 1.4;}
 
-h1 {color: var(--white); font-size: 40px;}
+h1 {color: var(--white); font-size: 44px;}
