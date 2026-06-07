@@ -267,6 +267,10 @@ border-radius: 5px;}
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+   width: 90%;
 }
+
+.hero-text h1 {margin-bottom: 35px;
+               line-height: 1.4;}
 
 h1 {color: var(--white); font-size: 40px;}
