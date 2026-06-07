@@ -107,7 +107,7 @@ body {
 }
 
 /* Tiêu đề các mục */
-h1, h2, h3 {
+h2, h3 {
     color: var(--text-main);
     margin-bottom: 15px;
     font-weight: 700;
@@ -269,4 +269,4 @@ border-radius: 5px;}
   color: white;
 }
 
-h1 {color: var(--white);}
+h1 {color: var(--white); font-size: 40px;}
