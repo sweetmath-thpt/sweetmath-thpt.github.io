@@ -135,6 +135,9 @@ input:focus, textarea:focus, select:focus {
 
 /* Nút bấm cute kẹo ngọt */
 .btn-cute {
+    text-decoration: none;  /* KHẮC PHỤC 1: Xóa hoàn toàn gạch chân đáng ghét */
+    font-family: inherit;    /* KHẮC PHỤC 2: Ép nút dùng font Quicksand của toàn trang */
+    display: inline-block;
     border: none;
     background-color: var(--accent-candy);
     color: var(--white);
@@ -158,6 +161,9 @@ input:focus, textarea:focus, select:focus {
 
 /* Nút phụ (Màu tím nhạt) */
 .btn-secondary {
+    text-decoration: none;  /* KHẮC PHỤC 1: Xóa gạch chân */
+    font-family: inherit;    /* KHẮC PHỤC 2: Nhận font hệ thống */
+    display: inline-block;
     background-color: var(--primary-purple);
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
     aspect-ratio: 1;
@@ -274,3 +280,7 @@ border-radius: 5px;}
                line-height: 1.4;}
 
 h1 {color: var(--white); font-size: 44px;}
+
+button {
+    font-family: inherit;
+}
