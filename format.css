@@ -284,3 +284,4 @@ h1 {color: var(--white); font-size: 44px;}
 button {
     font-family: inherit;
 }
+.hero text h6 {color: var(--white); font-size: 20px; line-height: 1.4;}
