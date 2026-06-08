@@ -217,7 +217,7 @@ footer p {
 
     .hero-text h6 {
         font-size: 15px;      /* Giảm từ 24px xuống 15px */
-        text-align: center;   /* ĐỔI THÀNH CENTER: Trên mobile để justify chữ sẽ bị dãn ra trông rất thô */
+        text-align: justify;   /* ĐỔI THÀNH CENTER: Trên mobile để justify chữ sẽ bị dãn ra trông rất thô */
         line-height: 1.5;
     }
 }
