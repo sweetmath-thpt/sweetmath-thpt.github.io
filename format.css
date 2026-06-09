@@ -493,7 +493,8 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
    NÚT "CÂU 1" BẤM ĐƯỢC (TÍCH HỢP ĐÁNH DẤU)
    ========================================================= */
 .btn-mark {
-    background-color: var(--accent-candy); /* Dùng màu tím chủ đạo cho chuyên nghiệp */
+    background-color: #E11D48; 
+border: none;
     color: var(--white);
     padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
     border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
@@ -510,6 +511,7 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
 /* Hiệu ứng nảy nhẹ lên khi học sinh rê chuột vào */
 .btn-mark:hover {
     background-color: var(--primary-hover);
+border: none;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4);
 }
@@ -518,4 +520,5 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
 .btn-mark.is-marked {
     background-color: #E11D48;
     box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
+borser: none;
 }
