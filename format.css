@@ -133,32 +133,38 @@ input:focus, textarea:focus, select:focus {
     box-shadow: 0 0 8px rgba(167, 139, 250, 0.2);
 }
 
-/* Nút bấm cute kẹo ngọt */
+/* ==========================================================================
+   NÚT BẤM CUTE KẸO NGỌT (ĐÃ LÀM ĐẬM MÀU & THÊM HIỆU ỨNG NẢY)
+   ========================================================================== */
+
 .btn-cute {
-    text-decoration: none;  /* KHẮC PHỤC 1: Xóa hoàn toàn gạch chân đáng ghét */
-    font-family: inherit;    /* KHẮC PHỤC 2: Ép nút dùng font Quicksand của toàn trang */
+    text-decoration: none;  /* Xóa gạch chân mặc định của thẻ a */
+    font-family: inherit;   /* Dùng chung font Quicksand của toàn trang */
     display: inline-block;
     border: none;
-    background-color: var(--accent-candy);
+    background-color: #E11D48; /* Màu Đỏ dâu tây đậm, nổi bật cực tốt trên nền nhạt */
     color: var(--white);
-    padding: 12px 25px;
-    border-radius: 50px; /* Nút thon tròn kẹo dẻo */
+    padding: 12px 30px;
+    border-radius: 50px; /* Bo tròn hoàn toàn hai đầu (hình viên thuốc) */
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(253, 164, 175, 0.4);
-    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); /* Đổ bóng tiệp với màu nền của nút */
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; /* Làm mượt các hiệu ứng */
 }
 
+/* Hiệu ứng khi rê chuột vào nút */
 .btn-cute:hover {
-    background-color: #F43F5E; /* Đậm đà hơn khi rê chuột */
-    transform: translateY(-2px); /* Nút nảy nhẹ lên nhìn rất thích mắt */
+    background-color: #BE123C; /* Chuyển sang màu đỏ sậm hơn */
+    transform: translateY(-3px); /* Nút nảy nhẹ lên trên 3px */
+    box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5); /* Bóng đổ to và rõ hơn khi nút nảy lên */
 }
 
+/* Hiệu ứng khi nhấn giữ chuột (Click) */
 .btn-cute:active {
-    transform: translateY(0);
+    transform: translateY(0); /* Nút lún trở lại vị trí ban đầu tạo cảm giác chân thực */
+    box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); /* Bóng thu nhỏ lại khi bị ấn xuống */
 }
-
 /* Nút phụ (Màu tím nhạt) */
 .btn-secondary {
     text-decoration: none;  /* KHẮC PHỤC 1: Xóa gạch chân */
