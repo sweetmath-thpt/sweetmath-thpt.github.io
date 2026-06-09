@@ -498,11 +498,12 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
     border: 1px solid var(--primary-purple); /* Viền tím */
     padding: 2px 10px;                       /* Làm nút nhỏ gọn lại */
     border-radius: 12px;                     /* Bo góc nhẹ */
-    font-size: 14px;                         /* Chữ nhỏ hơn đề bài một chút */
+    font-size: 20px;                   
     cursor: pointer;
-    margin-left: 10px;                       /* Cách chữ "Châu Âu?" ra 1 chút */
+    margin-left: 10px; 
     font-family: inherit;
     transition: all 0.2s;
+    margin-left: auto;
 }
 
 /* Hiệu ứng khi rê chuột vào nút Đánh dấu */
