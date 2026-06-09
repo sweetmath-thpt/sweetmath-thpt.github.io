@@ -495,10 +495,9 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
 .btn-mark {
     background-color: var(--primary-purple); /* Dùng màu tím chủ đạo cho chuyên nghiệp */
     color: var(--white);
-    border: none;
     padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
     border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
-    font-size: 16px;                         
+    font-size: 20px;                         
     cursor: pointer;
     margin-right: 12px;                      /* Cách đoạn văn bản câu hỏi ra một khoảng */
     font-family: inherit;
