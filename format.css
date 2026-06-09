@@ -226,6 +226,18 @@ footer p {
         text-align: justify;   /* ĐỔI THÀNH CENTER: Trên mobile để justify chữ sẽ bị dãn ra trông rất thô */
         line-height: 1.5;
     }
+   /* Tự động đẩy ảnh lên trên, chữ xuống dưới khi ở điện thoại */
+    .exam-card {
+        flex-direction: column; 
+        text-align: center;
+        gap: 15px;
+    }
+
+    .exam-img {
+        flex: 0 0 auto;
+        width: 100px;  /* Thu nhỏ logo lại một chút trên mobile */
+        height: 100px;
+    }
 }
 
 .container {display: flex;
@@ -315,4 +327,85 @@ h2 {color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 2
     padding: 15px 0;         /* Tạo một chút không gian trên dưới cho thoáng */
     flex-wrap: wrap;         /* Nếu có nhiều nút, tự động xuống dòng khi chật */
     gap: 15px;               /* Khoảng cách nếu bạn có 2-3 nút đứng cạnh nhau */
+}
+
+/* ==========================================================================
+   GIAO DIỆN THẺ ĐỀ THI BẤM ĐƯỢC (EXAM CARD)
+   ========================================================================== */
+
+/* Thẻ bao bọc bên ngoài (Flexbox dọc) */
+.exam-card {
+    display: flex;             /* Đặt ảnh và chữ nằm ngang nhau */
+    align-items: center;       /* Căn giữa theo chiều dọc */
+    gap: 20px;                 /* Khoảng cách giữa ảnh và cụm chữ */
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow); /* Dùng lại bóng đổ mượt mà của bạn */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    text-decoration: none;     /* Bỏ gạch chân mặc định của thẻ link */
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Hiệu ứng nảy và rực sáng viền khi rê chuột vào */
+.exam-card:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 12px 28px rgba(167, 139, 250, 0.25); 
+    border-color: var(--primary-purple); 
+}
+
+/* KHU VỰC 1: Khung chứa ảnh bên trái */
+.exam-img {
+    flex: 0 0 120px;           /* Chiều rộng cố định 120px, không bị bóp méo */
+    height: 120px;             /* Chiều cao bằng chiều rộng để thành hình vuông */
+    background-color: #FAFAFD; /* Màu lót nhạt đề phòng ảnh bị lỗi tải */
+    border-radius: 12px;
+    border: 1px solid #E5DEEB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;          /* Gọt bỏ phần ảnh lòi ra ngoài góc bo */
+}
+
+.exam-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;       /* Giúp logo hiển thị trọn vẹn, không bị cắt xén */
+    padding: 5px;              /* Lùi ảnh vào một chút cho thoáng */
+}
+
+/* KHU VỰC 2: Khung chứa chữ bên phải */
+.exam-info {
+    display: flex;
+    flex-direction: column;    /* Xếp các dòng chữ chồng lên nhau từ trên xuống */
+    justify-content: center;
+    gap: 8px;                  /* Khoảng cách giữa tiêu đề và các dòng thông tin */
+    flex: 1;                   /* Ép khung chữ chiếm toàn bộ diện tích còn trống */
+}
+
+/* Định dạng tiêu đề đề thi */
+.exam-info .exam-title {
+    margin: 0;                 /* Ghi đè margin mặc định gây hở */
+    color: var(--text-main);
+    font-size: 20px;
+    line-height: 1.4;
+    transition: color 0.3s;
+}
+
+/* Đổi màu tiêu đề thành tím chủ đạo khi rê chuột vào thẻ */
+.exam-card:hover .exam-title {
+    color: var(--primary-hover);
+}
+
+/* Định dạng chữ phụ (Người đăng, Ngày đăng) */
+.exam-info .exam-meta {
+    margin: 0;
+    color: var(--text-muted);  /* Màu xám tím dịu mắt */
+    font-size: 15px;
+}
+
+.exam-info .exam-meta strong {
+    color: var(--text-main);   /* Làm chữ 'Người đăng:' đậm và rõ hơn */
+    font-weight: 600;
 }
