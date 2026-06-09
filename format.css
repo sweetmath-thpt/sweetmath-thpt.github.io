@@ -493,7 +493,7 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
    NÚT "CÂU 1" BẤM ĐƯỢC (TÍCH HỢP ĐÁNH DẤU)
    ========================================================= */
 .btn-mark {
-    background-color: var(--primary-purple); /* Dùng màu tím chủ đạo cho chuyên nghiệp */
+    background-color: var(--accent-candy); /* Dùng màu tím chủ đạo cho chuyên nghiệp */
     color: var(--white);
     padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
     border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
