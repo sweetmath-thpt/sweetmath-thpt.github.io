@@ -442,13 +442,15 @@ h2 {color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 2
     font-weight: bold;       /* In đậm */
     color: var(--text-main); /* Dùng màu chữ chính */
     margin-bottom: 5px;      /* Cách cái đồng hồ ra một xíu */
-    font-size: 18px;
+    font-size: 20px;
+    text-align: center;
 }
 
 /* 3. Phóng to, in đậm và tô màu cho Đồng hồ */
 #countdown {
     display: block;          /* Xuống dòng đứng độc lập */
-    font-size: 40px;         /* Phóng cực to */
+    font-size: 48px;         /* Phóng cực to */
+    justify-content: center;
     font-weight: 900;        /* In đậm hết cỡ (dày dặn) */
     color: #E11D48;          /* Tô màu đỏ dâu tây (hoặc đổi mã màu tùy bạn thích) */
     line-height: 1;          /* Thu gọn chiều cao dòng để không bị hở thừa thãi */
