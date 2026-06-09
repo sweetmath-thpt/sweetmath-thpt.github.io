@@ -450,7 +450,7 @@ h2 {color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 2
 #countdown {
     display: block;          /* Xuống dòng đứng độc lập */
     font-size: 48px;         /* Phóng cực to */
-    justify-content: center;
+    text-align: center;
     font-weight: 900;        /* In đậm hết cỡ (dày dặn) */
     color: #E11D48;          /* Tô màu đỏ dâu tây (hoặc đổi mã màu tùy bạn thích) */
     line-height: 1;          /* Thu gọn chiều cao dòng để không bị hở thừa thãi */
