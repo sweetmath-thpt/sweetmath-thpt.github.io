@@ -459,3 +459,54 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
     line-height: 1;          /* Thu gọn chiều cao dòng để không bị hở thừa thãi */
     text-shadow: 2px 2px 5px rgba(225, 29, 72, 0.2); /* Thêm tí hiệu ứng đổ bóng cho ngầu */
 }
+
+.is-marked {text-decoration: none;  /* Xóa gạch chân mặc định của thẻ a */
+    font-family: inherit;   /* Dùng chung font Quicksand của toàn trang */
+    display: inline-block;
+    border: none;
+    background-color: var(--primary-purple); /* Màu Đỏ dâu tây đậm, nổi bật cực tốt trên nền nhạt */
+    color: var(--white);
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); /* Đổ bóng tiệp với màu nền của nút */
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; /* Làm mượt các hiệu ứng */}
+
+/* =========================================================
+   1. MÀU SẮC CHO Ô VUÔNG TRONG PALETTE KHI BỊ ĐÁNH DẤU
+   ========================================================= */
+.palette ul li.is-marked {
+    background-color: #E11D48 !important; /* Dùng đỏ dâu tây để ô vuông nổi bần bật */
+    color: var(--white) !important;
+    border-color: #E11D48 !important;
+    box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);
+    /* Chỉ đổi màu, không đổi padding hay bo góc để giữ form hình vuông */
+}
+
+/* Đảm bảo số bên trong ô vuông cũng đổi màu trắng */
+.palette ul li.is-marked a {
+    color: var(--white) !important; 
+}
+
+
+/* =========================================================
+   2. NÚT "ĐÁNH DẤU" NHỎ XINH NẰM CẠNH CÂU HỎI
+   ========================================================= */
+.btn-mark {
+    background-color: var(--secondary-pink); /* Nền hồng phấn */
+    color: var(--text-main);
+    border: 1px solid var(--primary-purple); /* Viền tím */
+    padding: 2px 10px;                       /* Làm nút nhỏ gọn lại */
+    border-radius: 12px;                     /* Bo góc nhẹ */
+    font-size: 14px;                         /* Chữ nhỏ hơn đề bài một chút */
+    cursor: pointer;
+    margin-left: 10px;                       /* Cách chữ "Châu Âu?" ra 1 chút */
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+/* Hiệu ứng khi rê chuột vào nút Đánh dấu */
+.btn-mark:hover {
+    background-color: var(--primary-purple);
+    color: var(--white);
+}
