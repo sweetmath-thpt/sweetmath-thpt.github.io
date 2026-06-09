@@ -495,7 +495,6 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
 .btn-mark {
     background-color: var(--secondary-pink); /* Nền hồng phấn */
     color: var(--text-main);
-    border: 1px solid var(--primary-purple); /* Viền tím */
     padding: 2px 10px;                       /* Làm nút nhỏ gọn lại */
     border-radius: 12px;                     /* Bo góc nhẹ */
     font-size: 20px;                   
