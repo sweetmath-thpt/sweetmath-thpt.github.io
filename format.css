@@ -270,6 +270,27 @@ background-color: var(--bg-global);}
     text-decoration: none; /* Bỏ cái gạch chân đáng ghét mặc định của thẻ a */
 }
 
+/* Ép các ô vuông căn giữa nội dung bên trong */
+.palette ul li.btn-secondary {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    font-weight: bold;       /* In đậm số/chữ */
+    padding: 0;              /* Bỏ padding thừa để số không bị đẩy lệch */
+    /* Giữ nguyên các thuộc tính màu nền, viền, bo góc cũ của bạn... */
+}
+
+/* Đối với những ô có chứa thẻ link <a> (Ví dụ câu 1) */
+.palette ul li.btn-secondary a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;       /* Đảm bảo thẻ a cũng in đậm */
+    text-decoration: none;
+    color: inherit;
+}
 
 .popup-overlay {position: fixed;
 top: 0; left: 0; width: 100%; height: 100%;
@@ -408,4 +429,28 @@ h2 {color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 2
 .exam-info .exam-meta strong {
     color: var(--text-main);   /* Làm chữ 'Người đăng:' đậm và rõ hơn */
     font-weight: 600;
+}
+
+/* Chỉnh sửa toàn bộ khu vực đồng hồ */
+.timer.box {
+    margin-bottom: 25px; /* Tạo khoảng cách với phần chữ "Câu hỏi" bên dưới */
+}
+
+/* 2. In đậm chữ "Thời gian còn lại" và ép xuống dòng */
+.timer.box span:first-child {
+    display: block;          /* Ép dòng chữ này thành 1 khối để đẩy đồng hồ xuống dưới */
+    font-weight: bold;       /* In đậm */
+    color: var(--text-main); /* Dùng màu chữ chính */
+    margin-bottom: 5px;      /* Cách cái đồng hồ ra một xíu */
+    font-size: 18px;
+}
+
+/* 3. Phóng to, in đậm và tô màu cho Đồng hồ */
+#countdown {
+    display: block;          /* Xuống dòng đứng độc lập */
+    font-size: 40px;         /* Phóng cực to */
+    font-weight: 900;        /* In đậm hết cỡ (dày dặn) */
+    color: #E11D48;          /* Tô màu đỏ dâu tây (hoặc đổi mã màu tùy bạn thích) */
+    line-height: 1;          /* Thu gọn chiều cao dòng để không bị hở thừa thãi */
+    text-shadow: 2px 2px 5px rgba(225, 29, 72, 0.2); /* Thêm tí hiệu ứng đổ bóng cho ngầu */
 }
