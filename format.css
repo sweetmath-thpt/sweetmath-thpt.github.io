@@ -523,33 +523,78 @@ border: none;
 borser: none;
 }
 
-input[type="radio"] {display: none;}
-
-.dapan {background-color: var(--text-main); 
-border: none;
-    color: var(--primary-purple);
-    padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
-    border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
-    font-size: 20px;                         
-    cursor: pointer;
-    margin-right: 12px;                      /* Cách đoạn văn bản câu hỏi ra một khoảng */
-    font-family: inherit;
-    display: block;
-    vertical-align: middle;
-    box-shadow: 0 2px 5px rgba(167, 139, 250, 0.3);
-    transition: all 0.2s;
-    aspect-ratio: 1;}
-
-.dapan:hover {background-color: var(--primary-hover);
-border: none;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4);
+/* =========================================================
+   1. ẨN DẤU CHẤM TRÒN MẶC ĐỊNH CỦA THẺ RADIO
+   ========================================================= */
+input[type="radio"] {
+    display: none;
 }
 
+/* =========================================================
+   2. THẺ LABEL BỌC NGOÀI (Sắp xếp bố cục)
+   ========================================================= */
+.dapan {
+    display: flex;
+    align-items: center;     /* Căn giữa chữ và nút theo chiều dọc */
+    cursor: pointer;
+    margin-bottom: 12px;     /* Khoảng cách giữa các dòng đáp án */
+    font-family: inherit;
+    font-size: 18px;         /* Kích thước chữ phát biểu (Tháp Eiffel...) */
+    color: var(--text-main); /* Màu chữ đề bài mặc định của bạn */
+    transition: all 0.2s;
+}
+
+/* =========================================================
+   3. PHÙ PHÉP THẺ SPAN THÀNH CÁI NÚT BẤM (Cho A, B, C, D)
+   ========================================================= */
+.nut-chucai {
+    background-color: transparent;           /* Nền trong suốt khi chưa chọn */
+    color: var(--primary-purple);            /* Chữ màu tím */
+    border: 2px solid var(--primary-purple); /* Viền tím sắc nét */
+    border-radius: 8px;                      /* Bo góc nhẹ */
+    font-weight: bold;
+    margin-right: 15px;                      /* Đẩy chữ phát biểu ra xa 1 chút */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;                 /* Căn chữ A,B,C ra chính giữa nút */
+    transition: all 0.2s;
+    
+    /* Ép thành hình vuông chuẩn cho 1 ký tự */
+    width: 38px;
+    height: 38px;
+}
+
+/* Hiệu ứng nảy nhẹ và đổi màu khi học sinh rê chuột vào ĐÁP ÁN */
+.dapan:hover .nut-chucai {
+    background-color: var(--primary-purple);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
+}
+
+/* =========================================================
+   4. PHÉP THUẬT ĐỔI MÀU ĐỎ DÂU TÂY KHI ĐƯỢC CHỌN (CHECKED)
+   ========================================================= */
+.dapan:has(input:checked) .nut-chucai {
+    background-color: #E11D48;               /* Tô nền đỏ dâu tây */
+    color: white;                            /* Chữ trắng */
+    border-color: #E11D48;                   /* Viền cũng đổi sang đỏ luôn */
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+    transform: scale(1.05);                  /* Phóng to lên xíu xiu cho đã mắt */
+}
+
+/* Tùy chọn: Tô màu đỏ hoặc in đậm luôn cái chữ phát biểu bên ngoài khi được chọn */
 .dapan:has(input:checked) {
-    background-color: #E11D48;
+    font-weight: bold;
+    color: #E11D48;
+}
 
-    box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
-
-border: none;
+/* =========================================================
+   5. CLASS BỔ TRỢ: PHÁ LỜI NGUYỀN HÌNH VUÔNG CHO NÚT ĐÚNG/SAI
+   ========================================================= */
+.nut-chu-dai {
+    width: auto;          /* Hủy cái width: 38px ở trên đi */
+    height: auto;         /* Hủy height luôn */
+    padding: 8px 24px;    /* Nới rộng kích thước 2 bên bằng padding */
+    letter-spacing: 1px;  /* Cho các chữ cái cách xa nhau ra 1 xíu cho đẹp */
 }
