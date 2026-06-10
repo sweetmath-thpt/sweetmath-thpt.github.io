@@ -117,3 +117,96 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+// =========================================================================
+    // 5. TỰ ĐỘNG CHẤM ĐIỂM DỰA VÀO TÊN FILE & LƯU KẾT QUẢ VÀO LOCALSTORAGE
+    // =========================================================================
+    const btnXacNhanNop = document.querySelector('#overlay-nopbai .btn-confirm');
+
+    if (btnXacNhanNop) {
+        btnXacNhanNop.addEventListener('click', function(event) {
+            event.preventDefault(); // Giữ lại một nhịp để xử lý điểm trước khi nhảy trang
+
+            // Dựa trên file HTML cậu gửi, câu 1 đúng là Tháp Tokyo (D), câu 2 đúng là Sai (S), câu 3 đúng là 2
+            const nganHangDapAn = {
+                'lambai.html': {
+                    'tenDe': 'Bài thi thử thiết kế Demo',
+                    'dapAn': { 'q1': 'D', 'q2': 'S', 'q3': '2' }
+                },
+                'de-01.html': {
+                    'tenDe': 'Đề thi chính thức số 01',
+                    'dapAn': { 'q1': 'A', 'q2': 'D', 'q3': '15' }
+                },
+                'de-02.html': {
+                    'tenDe': 'Đề thi chính thức số 02',
+                    'dapAn': { 'q1': 'B', 'q2': 'S', 'q3': '100' }
+                }
+                // Sau này làm thêm đề nào, cậu chỉ việc copy thêm dòng tên file tương ứng vào đây!
+            };
+
+            // Tự động bóc tách tên file HTML hiện tại trên thanh địa chỉ (ví dụ: lambai.html)
+            const tenFileHienTai = window.location.pathname.split('/').pop() || 'lambai.html';
+
+            // Kiểm tra xem đề này đã được khai báo đáp án trong ngân hàng chưa
+            if (!nganHangDapAn[tenFileHienTai]) {
+                alert("Hệ thống chưa cập nhật đáp án cho file đề thi này!");
+                return;
+            }
+
+            const thongTinDeThi = nganHangDapAn[tenFileHienTai];
+            const boDapAnDung = thongTinDeThi.dapAn;
+
+            let soCauDung = 0;
+            const tongSoCau = Object.keys(boDapAnDung).length;
+
+            // Vòng lặp tự động dò tìm tất cả các câu hỏi có trong bộ đáp án
+            for (let questionName in boDapAnDung) {
+                const dapAnDung = boDapAnDung[questionName];
+
+                // Tìm các ô nhập liệu tương ứng trên giao diện
+                const userRadio = document.querySelector(`input[name="${questionName}"]:checked`);
+                const userText = document.querySelector(`input[name="${questionName}"][type="text"]`);
+
+                // Chấm điểm trắc nghiệm (Radio)
+                if (userRadio && userRadio.value === dapAnDung) {
+                    soCauDung++;
+                }
+                // Chấm điểm câu trả lời ngắn (Text) - xóa khoảng trống dư thừa khi học sinh gõ
+                else if (userText && userText.value.trim() === dapAnDung) {
+                    soCauDung++;
+                }
+            }
+
+            // Tính điểm theo hệ số 10 và làm tròn hợp lý
+            let diemSo = ((soCauDung / tongSoCau) * 10).toFixed(2);
+            diemSo = parseFloat(diemSo);
+
+            // Cất kết quả vào bộ nhớ ẩn của trình duyệt để mang sang trang kết quả
+            localStorage.setItem('diemHocSinh', diemSo);
+            localStorage.setItem('soCauDung', soCauDung);
+            localStorage.setItem('tongSoCau', tongSoCau);
+            localStorage.setItem('tenDeThi', thongTinDeThi.tenDe);
+
+            // Hoàn tất chấm điểm, chuyển sang trang kết quả công khai
+            window.location.href = this.getAttribute('href');
+        });
+    }
+
+    // =========================================================================
+    // 6. ĐỌC DỮ LIỆU TỪ BỘ NHỚ VÀ ĐỔ RA TRANG KẾT QUẢ (ketqua.html)
+    // =========================================================================
+    const diemHienThi = document.getElementById('diem-so');
+    const soCauHienThi = document.getElementById('so-cau-dung');
+    const tenDeHienThi = document.getElementById('ten-de-thi');
+
+    if (diemHienThi && soCauHienThi) {
+        // Mở bộ nhớ trình duyệt lấy thông tin ra, nếu không có dữ liệu cũ thì mặc định hiển thị 0
+        const diem = localStorage.getItem('diemHocSinh') || 0;
+        const dung = localStorage.getItem('soCauDung') || 0;
+        const tong = localStorage.getItem('tongSoCau') || 0;
+        const tenDe = localStorage.getItem('tenDeThi') || 'KẾT QUẢ BÀI THI';
+
+        // Ép dữ liệu vào các thẻ HTML tương ứng
+        tenDeHienThi.textContent = tenDe;
+        diemHienThi.textContent = diem;
+        soCauHienThi.textContent = dung + " / " + tong + " Câu";
+    }
