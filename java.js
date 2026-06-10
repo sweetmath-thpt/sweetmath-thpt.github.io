@@ -1,118 +1,123 @@
-// === ĐỒNG HỒ ĐẾM NGƯỢC ===
-let totalSeconds=90*60
-const countdownElement=document.getElementById('countdown')
-
-const timerInterval=setInterval(() => {
-    let minutes=Math.floor(totalSeconds/60);
-    let seconds=totalSeconds%60;
-
-    minutes=minutes<10 ? '0'+minutes:minutes;
-    seconds=seconds<10 ? '0'+seconds:seconds;
-
-    countdownElement.textContent=`${minutes}:${seconds}`;
-
-    if (totalSeconds <= 0) {
-        clearInterval(timerInterval);
-        alert("Đã hết 90 phút làm bài! Hệ thống sẽ tự động nộp bài của bạn.");
-        window.location.href = "ketqua.html"; 
-    }
-    totalSeconds--;
-}, 1000);
-
-// ==========================================
-// PHẦN 1: KHAI BÁO BIẾN (TÓM CÁC PHẦN TỬ)
-// ==========================================
-
-// 1. Nhóm phần tử của Nộp Bài
-const nutNopBai = document.getElementById('trigger-nopbai');
-const popupNopBai = document.getElementById('overlay-nopbai');
-const nutDongNopBai = popupNopBai.querySelector('.btn-close'); // Tìm nút Đóng nằm bên trong popup này
-
-// 2. Nhóm phần tử của Thoát Ra
-const nutThoat = document.getElementById('trigger-thoat');
-const popupThoat = document.getElementById('overlay-thoat');
-const nutDongThoat = popupThoat.querySelector('.btn-close');
-
-
-// ==========================================
-// PHẦN 2: GẮN SỰ KIỆN (BẬT/TẮT CÔNG TẮC)
-// ==========================================
-
-// --- XỬ LÝ CHỨC NĂNG NỘP BÀI ---
-
-// Mở popup Nộp Bài
-nutNopBai.addEventListener('click', function(event) {
-    event.preventDefault(); // Ngăn trình duyệt tự động cuộn lên đầu trang
-    popupNopBai.classList.add('open'); // Gắn chìa khóa .open để hiện popup
-});
-
-// Đóng popup Nộp Bài
-nutDongNopBai.addEventListener('click', function() {
-    popupNopBai.classList.remove('open'); // Rút chìa khóa .open để ẩn popup đi
-});
-
-
-// --- XỬ LÝ CHỨC NĂNG THOÁT RA ---
-
-// Mở popup Thoát Ra
-nutThoat.addEventListener('click', function(event) {
-    event.preventDefault();
-    popupThoat.classList.add('open');
-});
-
-// Đóng popup Thoát Ra
-nutDongThoat.addEventListener('click', function() {
-    popupThoat.classList.remove('open');
-});
-
-
-const markcute = document.querySelectorAll(".btn-mark");
-
-markcute.forEach(function(nut) {
-    nut.addEventListener('click', function() {
-        let idOVuong = nut.getAttribute('data-target');
-        let oVuong = document.getElementById(idOVuong);
-        oVuong.classList.toggle('is-marked');
-        nut.classList.toggle('is-marked');
-        
-    });
-});
-
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. LẤY PHẦN TỬ
-    const các_nút_mark = document.querySelectorAll('.btn-mark');
-    const các_ô_đáp_án = document.querySelectorAll('input[data-target]');
 
-    // 2. XỬ LÝ NÚT XEM LẠI (MARK)
-    các_nút_mark.forEach(nút => {
-        nút.addEventListener('click', function() {
-            const tên_id_palette = this.getAttribute('data-target');
-            const ô_palette = document.getElementById(tên_id_palette);
+    // ==========================================
+    // 1. ĐỒNG HỒ ĐẾM NGƯỢC (90 PHÚT)
+    // ==========================================
+    let totalSeconds = 90 * 60;
+    const countdownElement = document.getElementById('countdown');
+
+    if (countdownElement) {
+        const timerInterval = setInterval(() => {
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countdownElement.textContent = `${minutes}:${seconds}`;
+
+            if (totalSeconds <= 0) {
+                clearInterval(timerInterval);
+                alert("Đã hết 90 phút làm bài! Hệ thống sẽ tự động nộp bài của bạn.");
+                window.location.href = "ketqua.html"; 
+            }
+            totalSeconds--;
+        }, 1000);
+    }
+
+
+    // ==========================================
+    // 2. KHAI BÁO BIẾN CÁC PHẦN TỬ GIAO DIỆN
+    // ==========================================
+    // Nhóm Nộp Bài
+    const nutNopBai = document.getElementById('trigger-nopbai');
+    const popupNopBai = document.getElementById('overlay-nopbai');
+    const nutDongNopBai = popupNopBai ? popupNopBai.querySelector('.btn-close') : null;
+
+    // Nhóm Thoát Ra
+    const nutThoat = document.getElementById('trigger-thoat');
+    const popupThoat = document.getElementById('overlay-thoat');
+    const nutDongThoat = popupThoat ? popupThoat.querySelector('.btn-close') : null;
+
+    // Nhóm Đề bài & Palette (Tính năng cốt lõi)
+    const markButtons = document.querySelectorAll('.btn-mark');
+    const answerInputs = document.querySelectorAll('input[data-target]');
+
+
+    // ==========================================
+    // 3. XỬ LÝ SỰ KIỆN POPUP (BẬT/TẮT)
+    // ==========================================
+    // --- Popup Nộp Bài ---
+    if (nutNopBai && popupNopBai) {
+        nutNopBai.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            popupNopBai.classList.add('open'); 
+        });
+    }
+    if (nutDongNopBai && popupNopBai) {
+        nutDongNopBai.addEventListener('click', function() {
+            popupNopBai.classList.remove('open'); 
+        });
+    }
+
+    // --- Popup Thoát Ra ---
+    if (nutThoat && popupThoat) {
+        nutThoat.addEventListener('click', function(event) {
+            event.preventDefault();
+            popupThoat.classList.add('open');
+        });
+    }
+    if (nutDongThoat && popupThoat) {
+        nutDongThoat.addEventListener('click', function() {
+            popupThoat.classList.remove('open');
+        });
+    }
+
+
+    // ==========================================
+    // 4. XỬ LÝ TÍNH NĂNG ĐỒNG BỘ ĐỀ THI & PALETTE
+    // ==========================================
+    
+    // --- Click nút ĐÁNH DẤU (MARK ĐỎ) ---
+    markButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Chống reload trang hoặc nhảy trang vô cớ
             
-            if (ô_palette) {
-                this.classList.toggle('is-marked');
-                ô_palette.classList.toggle('is-marked');
+            // Nút câu hỏi luôn đổi màu trước
+            this.classList.toggle('is-marked');
+            
+            // Tìm ô vuông tương ứng bên Palette để đổi màu theo
+            const targetId = this.getAttribute('data-target');
+            const paletteElement = document.getElementById(targetId);
+            
+            if (paletteElement) {
+                paletteElement.classList.toggle('is-marked');
+            } else {
+                console.warn(`Không tìm thấy ô số Palette có id="${targetId}"`);
             }
         });
     });
 
-    // 3. XỬ LÝ KHI CHỌN ĐÁP ÁN (ANSWERED)
-    các_ô_đáp_án.forEach(input => {
+    // --- Khi học sinh CHỌN ĐÁP ÁN (ANSWERED TÍM) ---
+    answerInputs.forEach(input => {
         input.addEventListener('input', function() {
-            const tên_id_palette = this.getAttribute('data-target');
-            const ô_palette = document.getElementById(tên_id_palette);
+            const targetId = this.getAttribute('data-target');
+            const paletteElement = document.getElementById(targetId);
             
-            if (ô_palette) {
+            if (paletteElement) {
                 if (this.type === 'radio') {
-                    ô_palette.classList.add('is-answered');
+                    // Nếu là trắc nghiệm single-choice, cứ click là tính đã làm
+                    paletteElement.classList.add('is-answered');
                 } else {
+                    // Nếu là ô điền số/chữ, phải nhập nội dung mới tính đã làm
                     if (this.value.trim() !== "") {
-                        ô_palette.classList.add('is-answered');
+                        paletteElement.classList.add('is-answered');
                     } else {
-                        ô_palette.classList.remove('is-answered');
+                        paletteElement.classList.remove('is-answered');
                     }
                 }
             }
         });
     });
+
 });
