@@ -602,3 +602,13 @@ input[type="radio"] {
     margin-top: 25px; /* Chỉnh số này to nhỏ tùy ý thích giãn cách của bạn */
    margin-bottom: 25px;
 }
+/* Ép các nhóm có class nhom-ngang nằm trên một hàng */
+.nhom-ngang {
+    display: flex;
+    flex-wrap: wrap; /* Tự động rớt dòng nếu màn hình điện thoại quá nhỏ */
+    gap: 30px;       /* Thay đổi số này để dãn hai nút ra xa hoặc gần nhau tùy ý */
+}
+
+.nhom-ngang .dapan {
+    margin-bottom: 25px; 
+}
