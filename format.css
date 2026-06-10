@@ -579,7 +579,6 @@ input[type="radio"] {
     background-color: var(--primary-hover);               /* Tô nền đỏ dâu tây */
     color: white;                            /* Chữ trắng */
     border-color: var(--primary-hover);                   /* Viền cũng đổi sang đỏ luôn */
-    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
     transform: scale(1.05);                  /* Phóng to lên xíu xiu cho đã mắt */
 }
 
