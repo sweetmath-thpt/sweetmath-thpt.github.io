@@ -645,3 +645,97 @@ input[type="radio"] {
 .nhom-ngang .dapan {
     margin-bottom: 0; 
 }
+
+/* =========================================================
+   GIAO DIỆN Ô TRẢ LỜI NGẮN CHUẨN BỘ GD-ĐT
+   ========================================================= */
+
+/* Khung bao bọc toàn bộ khu vực trả lời */
+.short-answer-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    max-width: 550px; /* Chống bung quá rộng gây thô */
+    background: rgba(255, 255, 255, 0.6);
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px dashed var(--text-muted, #a78bfa); /* Đồng bộ theo tone màu của bạn */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* Nhãn chữ "Đáp án:" bên trái */
+.answer-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main, #333);
+    white-space: nowrap;
+}
+
+/* Khung chứa ô input và dòng ghi chú */
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+/* Ô input nhập liệu siêu cấp thân thiện */
+.input-short-answer {
+    width: 100%;
+    font-size: 24px; /* Chữ to, rõ ràng, dễ kiểm tra */
+    font-weight: 800;
+    color: var(--primary-hover, #6d28d9); /* Màu tím đậm khi gõ */
+    text-align: center; /* Căn giữa tuyệt đối giống đề thi thật */
+    padding: 8px 16px;
+    border: 2px solid #e5deeb !important;
+    border-radius: 12px !important;
+    background-color: var(--white, #fff) !important;
+    box-shadow: inset 0 2px 4px rgba(167, 139, 250, 0.05);
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    letter-spacing: 2px; /* Tạo khoảng cách giữa các ký tự cho dễ đọc */
+}
+
+/* Hiệu ứng focus khi học sinh nhấp chuột vào */
+.input-short-answer:focus {
+    border-color: var(--primary-purple, #a78bfa) !important;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.25) !important;
+    transform: scale(1.01); /* Nảy nhẹ */
+}
+
+/* Gợi ý mờ (Placeholder) */
+.input-short-answer::placeholder {
+    font-size: 16px;
+    font-weight: 500;
+    color: #cbd5e1;
+    font-style: italic;
+    letter-spacing: 0px; /* Trả lại spacing bình thường cho placeholder */
+}
+
+/* Dòng chú thích nhỏ của Bộ GD-ĐT phía dưới */
+.moe-note {
+    font-size: 12px;
+    color: var(--text-muted, #64748b);
+    margin-top: 6px;
+    font-style: italic;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Responsive mượt mà trên Điện thoại */
+@media (max-width: 480px) {
+    .short-answer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    .answer-label {
+        font-size: 16px;
+    }
+    .input-short-answer {
+        font-size: 20px;
+    }
+}
