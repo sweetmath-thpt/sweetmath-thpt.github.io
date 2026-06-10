@@ -64,3 +64,16 @@ nutThoat.addEventListener('click', function(event) {
 nutDongThoat.addEventListener('click', function() {
     popupThoat.classList.remove('open');
 });
+
+
+const markcute = document.querySelectorAll(".btn-mark");
+
+markcute.forEach(function(nut) {
+    nut.addEventListener('click', function() {
+        let idOVuong = nut.getAttribute('data-target');
+        let oVuong = document.getElementById(idOVuong);
+        oVuong.classList.toggle('is-marked');
+        nut.classList.toggle('is-marked');
+        
+    });
+});
