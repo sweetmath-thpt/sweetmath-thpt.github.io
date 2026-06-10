@@ -522,3 +522,34 @@ border: none;
     box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
 borser: none;
 }
+
+input[type="radio"] {display: none;}
+
+.dapan {background-color: var(--text-main); 
+border: none;
+    color: var(--primary-purple);
+    padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
+    border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
+    font-size: 20px;                         
+    cursor: pointer;
+    margin-right: 12px;                      /* Cách đoạn văn bản câu hỏi ra một khoảng */
+    font-family: inherit;
+    display: block;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px rgba(167, 139, 250, 0.3);
+    transition: all 0.2s;
+    aspect-ratio: 1;}
+
+.dapan:hover {background-color: var(--primary-hover);
+border: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4);
+}
+
+.dapan:has(input:checked) {
+    background-color: #E11D48;
+
+    box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
+
+border: none;
+}
