@@ -600,4 +600,5 @@ input[type="radio"] {
 
 .cau-hoi-group {
     margin-top: 25px; /* Chỉnh số này to nhỏ tùy ý thích giãn cách của bạn */
+   margin-bottom: 25px;
 }
