@@ -539,7 +539,7 @@ input[type="radio"] {
     cursor: pointer;
     margin-bottom: 12px;     /* Khoảng cách giữa các dòng đáp án */
     font-family: inherit;
-    font-size: 18px;         /* Kích thước chữ phát biểu (Tháp Eiffel...) */
+    font-size: 20px;         /* Kích thước chữ phát biểu (Tháp Eiffel...) */
     color: var(--text-main); /* Màu chữ đề bài mặc định của bạn */
     transition: all 0.2s;
 }
@@ -549,8 +549,8 @@ input[type="radio"] {
    ========================================================= */
 .nut-chucai {
     background-color: transparent;           /* Nền trong suốt khi chưa chọn */
-    color: var(--primary-purple);            /* Chữ màu tím */
-    border: 2px solid var(--primary-purple); /* Viền tím sắc nét */
+    color: var(--accent-candy);            /* Chữ màu tím */
+    border: 2px solid var(--accent-candy); /* Viền tím sắc nét */
     border-radius: 8px;                      /* Bo góc nhẹ */
     font-weight: bold;
     margin-right: 15px;                      /* Đẩy chữ phát biểu ra xa 1 chút */
@@ -566,7 +566,7 @@ input[type="radio"] {
 
 /* Hiệu ứng nảy nhẹ và đổi màu khi học sinh rê chuột vào ĐÁP ÁN */
 .dapan:hover .nut-chucai {
-    background-color: var(--primary-purple);
+    background-color: var(--accent-candy);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
@@ -576,7 +576,7 @@ input[type="radio"] {
    4. PHÉP THUẬT ĐỔI MÀU ĐỎ DÂU TÂY KHI ĐƯỢC CHỌN (CHECKED)
    ========================================================= */
 .dapan:has(input:checked) .nut-chucai {
-    background-color: #E11D48;               /* Tô nền đỏ dâu tây */
+    background-color: var(--primary-hover);               /* Tô nền đỏ dâu tây */
     color: white;                            /* Chữ trắng */
     border-color: #E11D48;                   /* Viền cũng đổi sang đỏ luôn */
     box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
@@ -586,7 +586,7 @@ input[type="radio"] {
 /* Tùy chọn: Tô màu đỏ hoặc in đậm luôn cái chữ phát biểu bên ngoài khi được chọn */
 .dapan:has(input:checked) {
     font-weight: bold;
-    color: #E11D48;
+    color: var(--primary-hover);
 }
 
 /* =========================================================
