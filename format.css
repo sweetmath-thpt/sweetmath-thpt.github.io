@@ -240,12 +240,34 @@ footer p {
     }
 }
 
-.container {display: flex;
-gap: 20px;}
+/* ==========================================================================
+   CẤU TRÚC CHIA ĐÔI MÀN HÌNH & CUỘN ĐỘC LẬP
+   ========================================================================== */
+.container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* BẮT BUỘC: Để các cột không bị kéo dài bằng nhau, sticky mới chạy được */
+}
 
-.baithi {width: 75%;}
+.baithi {
+    width: 75%;
+    /* Bên đề thi cứ để cuộn tự nhiên theo toàn trang */
+}
 
-.palette {width: 25%;}
+.palette {
+    width: 25%;
+    position: sticky;        /* Biến thành phần tử "dính" */
+    top: 20px;               /* Khi cuộn xuống, cách mép trên màn hình 20px */
+    
+    /* Giới hạn chiều cao tối đa của Palette bằng đúng chiều cao màn hình hiển thị */
+    max-height: calc(100vh - 40px); 
+    
+    /* Nếu Palette quá dài (VD: có 100 câu), nó sẽ tự cuộn độc lập bên trong khung này */
+    overflow-y: auto;        
+    
+    /* Thêm một chút thuộc tính để giao diện mượt mà hơn */
+    padding-right: 5px;      /* Tránh thanh cuộn đè vào nội dung */
+}
 
 .palette ul {display: grid;
 grid-template-columns: repeat(4,1fr);
