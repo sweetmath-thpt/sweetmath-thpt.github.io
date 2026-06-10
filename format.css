@@ -176,20 +176,27 @@ input:focus, textarea:focus, select:focus {
     box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); /* Bóng thu nhỏ lại khi bị ấn xuống */
 }
 
-/* Nút phụ màu tím (Dùng cho bảng số câu hỏi) */
+/* Trạng thái MẶC ĐỊNH của ô câu hỏi: Nền trắng, viền tím nhạt, chữ mận chín */
 .btn-secondary {
     text-decoration: none;  
     font-family: inherit;    
     display: inline-block;
-    background-color: var(--primary-purple);
-    color: var(--white) !important; /* FIX CHÍ MẠNG 3: Ép chữ số thành màu trắng thay vì màu mận tối thui */
-    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
+    background-color: var(--white); /* Đổi thành nền trắng */
+    color: var(--text-main) !important; /* Chữ màu mận chín tối để dễ nhìn */
+    border: 2px solid #E5DEEB; /* Thêm cái viền mỏng cho đẹp */
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.1);
     aspect-ratio: 1;
+    transition: all 0.2s;
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--secondary-pink); /* Rê chuột vào thì ra màu hồng phấn */
 }
+
+.palette ul li.btn-secondary a {
+    color: var(--text-main) !important; /* Đảm bảo thẻ a bên trong cũng mang màu chữ tối */
+}
+
 
 /* ==========================================================================
    5. CHÂN TRANG (FOOTER) ĐỤNG TUYỆT ĐỐI VIỀN MÀN HÌNH
@@ -416,6 +423,7 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 /* =========================================================
    CÁC TRẠNG THÁI BẢNG PALETTE DÀNH CHO JAVASCRIPT
    ========================================================= */
+/* 1. Trạng thái ĐÃ TRẢ LỜI: Nền tím, chữ trắng */
 .palette ul li.is-answered {
     background-color: var(--primary-purple) !important;
     color: var(--white) !important;
@@ -427,6 +435,8 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
     color: var(--white) !important;
 }
 
+/* 2. Trạng thái ĐÁNH DẤU: Nền đỏ, chữ trắng 
+   (Nhờ có !important đặt dưới cùng, nó sẽ luôn giữ màu đỏ kể cả khi câu đó đã làm bài) */
 .palette ul li.is-marked {
     background-color: #E11D48 !important; 
     color: var(--white) !important;
@@ -437,6 +447,8 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 .palette ul li.is-marked a {
     color: var(--white) !important; 
 }
+
+
 
 /* =========================================================
    NÚT "CÂU X" BẤM ĐƯỢC TRÊN ĐỀ THI
