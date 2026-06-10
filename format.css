@@ -473,17 +473,30 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
     transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; /* Làm mượt các hiệu ứng */}
 
 /* =========================================================
-   1. MÀU SẮC CHO Ô VUÔNG TRONG PALETTE KHI BỊ ĐÁNH DẤU
+   CÁC TRẠNG THÁI BẢNG PALETTE DÀNH CHO JAVASCRIPT
    ========================================================= */
-.palette ul li.is-marked {
-    background-color: #E11D48 !important; /* Dùng đỏ dâu tây để ô vuông nổi bần bật */
-    color: var(--white) !important;
-    border-color: #E11D48 !important;
-    box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);
-    /* Chỉ đổi màu, không đổi padding hay bo góc để giữ form hình vuông */
+
+/* 1. TRẠNG THÁI ĐÃ LÀM BÀI (is-answered) - Đổi sang màu tím */
+.palette ul li.is-answered {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    border-color: var(--primary-purple);
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4);
 }
 
-/* Đảm bảo số bên trong ô vuông cũng đổi màu trắng */
+.palette ul li.is-answered a {
+    color: var(--white);
+}
+
+/* 2. TRẠNG THÁI ĐÁNH DẤU XEM LẠI (is-marked) - Đỏ dâu tây */
+/* Dùng !important để đảm bảo màu Đỏ luôn đè lên màu Tím nếu câu đó đã làm */
+.palette ul li.is-marked {
+    background-color: #E11D48 !important; 
+    color: var(--white) !important;
+    border-color: #E11D48 !important;
+    box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important;
+}
+
 .palette ul li.is-marked a {
     color: var(--white) !important; 
 }
@@ -494,13 +507,13 @@ h4 {color: var(--text-main); font-size: 36px; text-align: center; margin-bottom:
    ========================================================= */
 .btn-mark {
     background-color: #E11D48; 
-border: none;
+    border: none;
     color: var(--white);
-    padding: 4px 12px;                       /* Canh lề vừa phải để tạo hình khối */
-    border-radius: 6px;                      /* Bo góc vuông vức hơn một chút */
-    font-size: 20px;                         
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 20px;
     cursor: pointer;
-    margin-right: 12px;                      /* Cách đoạn văn bản câu hỏi ra một khoảng */
+    margin-right: 12px;
     font-family: inherit;
     display: inline-block;
     vertical-align: middle;
@@ -508,21 +521,19 @@ border: none;
     transition: all 0.2s;
 }
 
-/* Hiệu ứng nảy nhẹ lên khi học sinh rê chuột vào */
 .btn-mark:hover {
     background-color: var(--primary-hover);
-border: none;
+    border: none;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4);
 }
 
-/* Khi câu hỏi được đánh dấu, chính cái nút này cũng sẽ đổi sang màu đỏ */
+/* Nút CÂU X tự đổi sang nền đậm hơn khi đang trong trạng thái đánh dấu đỏ */
 .btn-mark.is-marked {
-    background-color: #E11D48;
+    background-color: #BE123C; /* Đỏ đậm hơn một chút để phân biệt */
     box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3);
-borser: none;
+    border: none; /* Đã sửa lỗi gõ nhầm borser thành border */
 }
-
 /* =========================================================
    1. ẨN DẤU CHẤM TRÒN MẶC ĐỊNH CỦA THẺ RADIO
    ========================================================= */
