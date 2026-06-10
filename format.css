@@ -27,7 +27,7 @@ html {
 }
 
 body {
-    min-height: 100vh; /* Giúp trang cuộn mượt mà, không lo đè chữ */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     font-family: 'Quicksand', 'Segoe UI', sans-serif;
@@ -38,8 +38,6 @@ body {
     text-align: justify;
 }
 
-/* FIX CHÍ MẠNG 1: Thêm flex: 1 vào container vì đây là con trực tiếp của body,
-   giúp đẩy Footer xuống sát đáy màn hình chuẩn 100% kể cả khi bài thi ngắn */
 .container {
     display: flex;
     gap: 24px;
@@ -50,7 +48,6 @@ body {
     margin: 30px auto;
 }
 
-/* Giữ nguyên cho các khu vực đệm nội dung khác nếu có */
 .content-wrapper {
     padding: 10px;
 }
@@ -60,15 +57,13 @@ body {
    ========================================================================== */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Đẩy logo và menu ra 2 đầu */
+    justify-content: space-between; 
     align-items: center;
     padding: 15px 5%;
     background-color: var(--white);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* FIX CHÍ MẠNG 2: Đồng bộ cả class cũ .brand-box lẫn .logo-area của trang làm bài
-   để tất cả các trang đều nhận thuộc tính flex hàng dọc gọn gàng */
 .brand-box, .logo-area {
     display: flex;
     flex-direction: column;
@@ -102,7 +97,7 @@ body {
 }
 
 .navbar ul li a:hover {
-    color: var(--primary-purple); /* Đổi màu khi hover */
+    color: var(--primary-purple);
 }
 
 /* ==========================================================================
@@ -110,21 +105,19 @@ body {
    ========================================================================== */
 .card-cute {
     background-color: var(--white);
-    border-radius: 16px; /* Bo góc tròn xinh xắn */
+    border-radius: 16px; 
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: var(--card-shadow);
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* Tiêu đề các mục */
 h2, h3 {
     color: var(--text-main);
     margin-bottom: 15px;
     font-weight: 700;
 }
 
-/* Ô nhập liệu toàn cục */
 input[type="text"], input[type="number"], textarea, select {
     width: 100%;
     padding: 12px 15px;
@@ -145,61 +138,54 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ==========================================================================
-   NÚT BẤM CUTE KẸO NGỌT (GIỮ NGUYÊN HIỆU ỨNG NẢY TỰ HÀO CỦA CẬU)
+   NÚT BẤM CUTE KẸO NGỌT 
    ========================================================================== */
 .btn-cute {
-    text-decoration: none;  /* Xóa gạch chân mặc định của thẻ a */
-    font-family: inherit;   /* Dùng chung font Quicksand của toàn trang */
+    text-decoration: none;  
+    font-family: inherit;   
     display: inline-block;
     border: none;
-    background-color: #E11D48; /* Màu Đỏ dâu tây đậm, nổi bật cực tốt trên nền nhạt */
+    background-color: #E11D48; 
     color: var(--white);
     padding: 12px 30px;
-    border-radius: 50px; /* Bo tròn hoàn toàn hai đầu */
+    border-radius: 50px; 
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); /* Đổ bóng tiệp màu nền nút */
-    transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; /* Làm mượt các hiệu ứng */
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); 
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; 
 }
 
-/* Hiệu ứng khi rê chuột vào nút */
 .btn-cute:hover {
-    background-color: #BE123C; /* Chuyển sang màu đỏ sậm hơn */
-    transform: translateY(-3px); /* Nút nảy nhẹ lên trên 3px */
-    box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5); /* Bóng đổ to và rõ hơn khi nút nảy lên */
+    background-color: #BE123C; 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5); 
 }
 
-/* Hiệu ứng khi nhấn giữ chuột (Click) */
 .btn-cute:active {
-    transform: translateY(0); /* Nút lún trở lại vị trí ban đầu tạo cảm giác chân thực */
-    box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); /* Bóng thu nhỏ lại khi bị ấn xuống */
+    transform: translateY(0); 
+    box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); 
 }
 
-/* Trạng thái MẶC ĐỊNH của ô câu hỏi: Nền trắng, viền tím nhạt, chữ mận chín */
+/* Trạng thái MẶC ĐỊNH của ô câu hỏi bên bảng Palette: Nền trắng, viền tím nhạt */
 .btn-secondary {
     text-decoration: none;  
     font-family: inherit;    
     display: inline-block;
-    background-color: var(--white); /* Đổi thành nền trắng */
-    color: var(--text-main) !important; /* Chữ màu mận chín tối để dễ nhìn */
-    border: 2px solid #E5DEEB; /* Thêm cái viền mỏng cho đẹp */
+    background-color: var(--white) !important; 
+    color: var(--text-main) !important; /* Chữ tối rõ ràng */
+    border: 2px solid #E5DEEB !important; 
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.1);
     aspect-ratio: 1;
     transition: all 0.2s;
 }
 
 .btn-secondary:hover {
-    background-color: var(--secondary-pink); /* Rê chuột vào thì ra màu hồng phấn */
+    background-color: var(--secondary-pink) !important; 
 }
-
-.palette ul li.btn-secondary a {
-    color: var(--text-main) !important; /* Đảm bảo thẻ a bên trong cũng mang màu chữ tối */
-}
-
 
 /* ==========================================================================
-   5. CHÂN TRANG (FOOTER) ĐỤNG TUYỆT ĐỐI VIỀN MÀN HÌNH
+   5. CHÂN TRANG (FOOTER)
    ========================================================================== */
 footer {
     background-color: var(--primary-purple);
@@ -207,7 +193,7 @@ footer {
     padding: 20px 0;
     text-align: center;
     width: 100%;
-    margin-top: auto; /* Đảm bảo luôn nằm dưới cùng */
+    margin-top: auto; 
     box-shadow: 0 -4px 15px rgba(167, 139, 250, 0.1);
 }
 
@@ -217,20 +203,20 @@ footer p {
 }
 
 /* ==========================================================================
-   CẤU TRÚC CHIA ĐÔI MÀN HÌNH KHÔNG LO BỊ VỠ KHUNG (FIX LAYOUT PERCENTAGE)
+   CẤU TRÚC CHIA ĐÔI MÀN HÌNH KHÔNG LO BỊ VỠ KHUNG 
    ========================================================================== */
 .baithi {
-    flex: 3; /* Thay vì dùng width 75% cứng nhắc, dùng flex-proportions để tự khớp với Gap */
+    flex: 3; 
     min-width: 0;
 }
 
 .palette {
-    flex: 1; /* Thay vì dùng width 25% cứng nhắc, chiếm phần còn lại hoàn hảo */
-    position: sticky;        /* Biến thành phần tử "dính" */
-    top: 20px;               /* Khi cuộn xuống, cách mép trên màn hình 20px */
-    max-height: calc(100vh - 40px); /* Giới hạn chiều cao tối đa bằng màn hình */
-    overflow-y: auto;        /* Tự cuộn độc lập bên trong nếu danh sách câu quá dài */
-    padding-right: 5px;      /* Tránh thanh cuộn đè vào nội dung */
+    flex: 1; 
+    position: sticky;        
+    top: 20px;               
+    max-height: calc(100vh - 40px); 
+    overflow-y: auto;        
+    padding-right: 5px;      
 }
 
 .palette ul {
@@ -243,22 +229,23 @@ footer p {
 }
 
 .palette ul li {
-    background-color: #ffffff; 
-    padding: 10px;             
-    border-radius: 5px;        
+    padding: 0;             
+    border-radius: 12px;        
     cursor: pointer;           
-    border: 1px solid #ddd;    
 }
 
+/* Định dạng thẻ a bao phủ toàn ô và thừa hưởng màu linh hoạt */
 .palette ul li a {
-    display: block; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
-    color: inherit; 
+    color: inherit !important; /* Kế thừa chuẩn màu chữ từ trạng thái của li */
     text-decoration: none; 
+    font-weight: bold;       
 }
 
-/* Ép các ô vuông căn giữa nội dung bên trong */
 .palette ul li.btn-secondary {
     display: flex;
     justify-content: center; 
@@ -267,20 +254,8 @@ footer p {
     padding: 0;              
 }
 
-/* Đối với những ô có chứa thẻ link <a> */
-.palette ul li.btn-secondary a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-weight: bold;       
-    text-decoration: none;
-    color: var(--white) !important;
-}
-
 /* ==========================================================================
-   CÁC PHẦN DÀNH CHO TRANG CHỦ / BANNER (GIỮ NGUYÊN HOÀN TOÀN)
+   CÁC PHẦN DÀNH CHO TRANG CHỦ / BANNER 
    ========================================================================== */
 .hero-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Anhbiatoanhoc.png");
@@ -313,7 +288,6 @@ h5 { color: var(--text-main); font-size: 20px; margin-top: 25px; margin-bottom: 
 h2 { color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 25px; text-align: center; }
 h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom: 25px; }
 
-/* CLASS TIỆN ÍCH CĂN GIỮA NÚT */
 .box-can-giua {
     display: flex;
     justify-content: center; 
@@ -421,9 +395,9 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 }
 
 /* =========================================================
-   CÁC TRẠNG THÁI BẢNG PALETTE DÀNH CHO JAVASCRIPT
+   CÁC TRẠNG THÁI BẢNG PALETTE (Đã đồng bộ thừa hưởng màu chữ)
    ========================================================= */
-/* 1. Trạng thái ĐÃ TRẢ LỜI: Nền tím, chữ trắng */
+/* 1. Trạng thái ĐÃ TRẢ LỜI: Nền tím, chữ trắng tinh */
 .palette ul li.is-answered {
     background-color: var(--primary-purple) !important;
     color: var(--white) !important;
@@ -431,24 +405,14 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4) !important;
 }
 
-.palette ul li.is-answered a {
-    color: var(--white) !important;
-}
-
-/* 2. Trạng thái ĐÁNH DẤU: Nền đỏ, chữ trắng 
-   (Nhờ có !important đặt dưới cùng, nó sẽ luôn giữ màu đỏ kể cả khi câu đó đã làm bài) */
+/* 2. Trạng thái ĐÁNH DẤU: Nền đỏ, chữ trắng tinh 
+   (Có !important đặt dưới cùng để luôn đè màu tím của Đã trả lời) */
 .palette ul li.is-marked {
     background-color: #E11D48 !important; 
     color: var(--white) !important;
     border-color: #E11D48 !important;
     box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important;
 }
-
-.palette ul li.is-marked a {
-    color: var(--white) !important; 
-}
-
-
 
 /* =========================================================
    NÚT "CÂU X" BẤM ĐƯỢC TRÊN ĐỀ THI
@@ -500,9 +464,6 @@ input[type="radio"] {
     transition: all 0.2s;
 }
 
-/* FIX CHÍ MẠNG 4: Thay màu chữ cái chưa chọn từ Hồng dâu nhạt (--accent-candy) 
-   sang màu Tím Lavender (--primary-purple). Độ tương phản siêu cao cực rõ chữ, 
-   mà vẫn đồng bộ tone màu pastel cực xinh! */
 .nut-chucai {
     background-color: transparent;           
     color: var(--primary-purple);            
@@ -630,7 +591,7 @@ input[type="radio"] {
 }
 
 /* =========================================================
-   POPUP OVERLAY & CONTENT (TỐI ƯU CHO SẠCH SẼ, CUTE)
+   POPUP OVERLAY & CONTENT 
    ========================================================= */
 .popup-overlay {
     position: fixed;
@@ -643,9 +604,9 @@ input[type="radio"] {
 }
 
 .popup-content {
-    background-color: var(--white); /* Đổi sang màu trắng tinh khôi để popup nổi bật, trang trọng */
+    background-color: var(--white); 
     padding: 30px;
-    border-radius: 16px; /* Bo tròn mượt mà đồng bộ card-cute */
+    border-radius: 16px; 
     box-shadow: 0 15px 40px rgba(76, 58, 81, 0.25);
     max-width: 480px;
     width: 90%;
@@ -655,7 +616,7 @@ input[type="radio"] {
 .popup-overlay.open { display: flex; }
 
 /* ==========================================================================
-   6. RESPONSIVE CHUẨN (ĐÃ FIX TRIỆT ĐỂ LỖI ĐÓNG NGOẶC CŨ)
+   6. RESPONSIVE CHUẨN
    ========================================================================== */
 @media (max-width: 768px) {
     .slogan { display: none; }
@@ -681,7 +642,7 @@ input[type="radio"] {
 
     .hero-text h6 {
         font-size: 15px;      
-        text-align: center; /* Để center trên mobile cho đẹp mắt, không bị kéo dãn thô */
+        text-align: center; 
         line-height: 1.5;
     }
 
@@ -697,8 +658,6 @@ input[type="radio"] {
         height: 100px;
     }
 
-    /* FIX CHÍ MẠNG 5: Khi chạy trên mobile, ép layout chuyển thành hàng dọc 
-       để bảng câu hỏi nhảy xuống dưới đề thi, không lo bóp méo vỡ khung */
     .container {
         flex-direction: column;
         width: 95%;
@@ -726,6 +685,5 @@ input[type="radio"] {
     .input-short-answer {
         font-size: 20px;
     }
-}
-/* ĐÃ XÓA DẤU ĐÓNG NGOẶC LỖI THỪA Ở ĐÂY - CSS BÂY GIỜ ĐÃ HỢP LỆ VÀ KHÔNG LỖI */
-   
+   }
+    
