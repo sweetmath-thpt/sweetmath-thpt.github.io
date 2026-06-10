@@ -79,25 +79,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==========================================
     
     // --- Click nút ĐÁNH DẤU (MARK ĐỎ) ---
+    // --- Click nút ĐÁNH DẤU (MARK ĐỎ) ---
     markButtons.forEach(button => {
         button.addEventListener('click', function(event) {
-            event.preventDefault(); // Chống reload trang hoặc nhảy trang vô cớ
+            event.preventDefault(); 
             
-            // Nút câu hỏi luôn đổi màu trước
-            this.classList.toggle('is-marked');
+            // DÙNG event.currentTarget để luôn luôn lấy đúng nút bấm, bất kể học sinh click vào chữ đậm <b> hay viền nút
+            const chinhXacNutBam = event.currentTarget;
             
-            // Tìm ô vuông tương ứng bên Palette để đổi màu theo
-            const targetId = this.getAttribute('data-target');
+            // Bật/tắt trạng thái mark trên chính nút bấm
+            chinhXacNutBam.classList.toggle('is-marked');
+            
+            // Bật/tắt trạng thái mark trên ô số tương ứng ở Palette
+            const targetId = chinhXacNutBam.getAttribute('data-target');
             const paletteElement = document.getElementById(targetId);
             
             if (paletteElement) {
                 paletteElement.classList.toggle('is-marked');
-            } else {
-                console.warn(`Không tìm thấy ô số Palette có id="${targetId}"`);
             }
         });
     });
-
     // --- Khi học sinh CHỌN ĐÁP ÁN (ANSWERED TÍM) ---
     answerInputs.forEach(input => {
         input.addEventListener('input', function() {
