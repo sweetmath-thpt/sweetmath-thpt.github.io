@@ -598,3 +598,7 @@ input[type="radio"] {
     padding: 8px 24px;    /* Nới rộng kích thước 2 bên bằng padding */
     letter-spacing: 1px;  /* Cho các chữ cái cách xa nhau ra 1 xíu cho đẹp */
 }
+
+.cau-hoi-group {
+    margin-top: 25px; /* Chỉnh số này to nhỏ tùy ý thích giãn cách của bạn */
+}
