@@ -77,3 +77,42 @@ markcute.forEach(function(nut) {
         
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // 1. LẤY PHẦN TỬ
+    const các_nút_mark = document.querySelectorAll('.btn-mark');
+    const các_ô_đáp_án = document.querySelectorAll('input[data-target]');
+
+    // 2. XỬ LÝ NÚT XEM LẠI (MARK)
+    các_nút_mark.forEach(nút => {
+        nút.addEventListener('click', function() {
+            const tên_id_palette = this.getAttribute('data-target');
+            const ô_palette = document.getElementById(tên_id_palette);
+            
+            if (ô_palette) {
+                this.classList.toggle('is-marked');
+                ô_palette.classList.toggle('is-marked');
+            }
+        });
+    });
+
+    // 3. XỬ LÝ KHI CHỌN ĐÁP ÁN (ANSWERED)
+    các_ô_đáp_án.forEach(input => {
+        input.addEventListener('input', function() {
+            const tên_id_palette = this.getAttribute('data-target');
+            const ô_palette = document.getElementById(tên_id_palette);
+            
+            if (ô_palette) {
+                if (this.type === 'radio') {
+                    ô_palette.classList.add('is-answered');
+                } else {
+                    if (this.value.trim() !== "") {
+                        ô_palette.classList.add('is-answered');
+                    } else {
+                        ô_palette.classList.remove('is-answered');
+                    }
+                }
+            }
+        });
+    });
+});
