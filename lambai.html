@@ -67,8 +67,13 @@
         <button type="button" class="btn-mark" data-target="nav-cau-3"><b>CÂU 3</b></button>
         Điền đáp án phép tính sau: 1+1=?
     </p>
-    <label>Điền đáp án</label>
-    <input type="number" name="q3" placeholder="Nhập đáp án của bạn" data-target="nav-cau-3">
+    <div class="short-answer-container">
+    <span class="answer-label">Đáp án:</span>
+    <div class="input-wrapper">
+        <input type="text" class="input-short-answer moe-format" placeholder="0,00" maxlength="4" data-target="nav-cau-3">
+        <span class="moe-note">Tối đa 4 ký tự (chữ số, "-", ",")</span>
+    </div>
+</div>
 </form>
         </div></div>
 
