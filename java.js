@@ -124,9 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btnXacNhanNop) {
         btnXacNhanNop.addEventListener('click', function(event) {
-            event.preventDefault(); // Giữ lại một nhịp để xử lý điểm trước khi nhảy trang
+            event.preventDefault(); 
 
-            // Dựa trên file HTML cậu gửi, câu 1 đúng là Tháp Tokyo (D), câu 2 đúng là Sai (S), câu 3 đúng là 2
             const nganHangDapAn = {
                 'lambai.html': {
                     'tenDe': 'Bài thi thử thiết kế Demo',
@@ -140,13 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     'tenDe': 'Đề thi chính thức số 02',
                     'dapAn': { 'q1': 'B', 'q2': 'S', 'q3': '100' }
                 }
-                // Sau này làm thêm đề nào, cậu chỉ việc copy thêm dòng tên file tương ứng vào đây!
             };
 
-            // Tự động bóc tách tên file HTML hiện tại trên thanh địa chỉ (ví dụ: lambai.html)
             const tenFileHienTai = window.location.pathname.split('/').pop() || 'lambai.html';
 
-            // Kiểm tra xem đề này đã được khai báo đáp án trong ngân hàng chưa
             if (!nganHangDapAn[tenFileHienTai]) {
                 alert("Hệ thống chưa cập nhật đáp án cho file đề thi này!");
                 return;
@@ -157,40 +153,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let soCauDung = 0;
             const tongSoCau = Object.keys(boDapAnDung).length;
+            
+            // 🌟 [MỚI] TẠO "CUỐN SỔ" ĐỂ LƯU CHI TIẾT BÀI LÀM
+            let chiTietBaiLam = {}; 
 
-            // Vòng lặp tự động dò tìm tất cả các câu hỏi có trong bộ đáp án
+            // Vòng lặp chấm điểm và ghi chép
             for (let questionName in boDapAnDung) {
                 const dapAnDung = boDapAnDung[questionName];
-
-                // Tìm các ô nhập liệu tương ứng trên giao diện
                 const userRadio = document.querySelector(`input[name="${questionName}"]:checked`);
                 const userText = document.querySelector(`input[name="${questionName}"][type="text"]`);
 
-                // Chấm điểm trắc nghiệm (Radio)
-                if (userRadio && userRadio.value === dapAnDung) {
-                    soCauDung++;
+                // 🌟 [MỚI] Biến tạm để nhớ học sinh chọn gì và có đúng không
+                let luaChonCuaHocSinh = "Chưa làm"; 
+                let laCauDung = false;
+
+                // Kiểm tra câu trắc nghiệm
+                if (userRadio) {
+                    luaChonCuaHocSinh = userRadio.value;
+                    if (userRadio.value === dapAnDung) {
+                        soCauDung++;
+                        laCauDung = true;
+                    }
+                } 
+                // Kiểm tra câu điền từ
+                else if (userText && userText.value.trim() !== "") {
+                    luaChonCuaHocSinh = userText.value.trim();
+                    if (luaChonCuaHocSinh === dapAnDung) {
+                        soCauDung++;
+                        laCauDung = true;
+                    }
                 }
-                // Chấm điểm câu trả lời ngắn (Text) - xóa khoảng trống dư thừa khi học sinh gõ
-                else if (userText && userText.value.trim() === dapAnDung) {
-                    soCauDung++;
-                }
+
+                // 🌟 [MỚI] Ghi chép lại vào sổ
+                chiTietBaiLam[questionName] = {
+                    chon: luaChonCuaHocSinh, // Học sinh chọn gì
+                    dung: dapAnDung,         // Đáp án của hệ thống
+                    ketQua: laCauDung        // Đúng (true) hay Sai (false)
+                };
             }
 
-            // Tính điểm theo hệ số 10 và làm tròn hợp lý
             let diemSo = ((soCauDung / tongSoCau) * 10).toFixed(2);
             diemSo = parseFloat(diemSo);
 
-            // Cất kết quả vào bộ nhớ ẩn của trình duyệt để mang sang trang kết quả
             localStorage.setItem('diemHocSinh', diemSo);
             localStorage.setItem('soCauDung', soCauDung);
             localStorage.setItem('tongSoCau', tongSoCau);
             localStorage.setItem('tenDeThi', thongTinDeThi.tenDe);
+            
+            // 🌟 [MỚI] ĐÓNG GÓI CUỐN SỔ (ÉP KIỂU JSON) VÀ CẤT VÀO BỘ NHỚ
+            localStorage.setItem('chiTietBaiLam', JSON.stringify(chiTietBaiLam));
 
-            // Hoàn tất chấm điểm, chuyển sang trang kết quả công khai
             window.location.href = this.getAttribute('href');
         });
     }
-
     // =========================================================================
     // 6. ĐỌC DỮ LIỆU TỪ BỘ NHỚ VÀ ĐỔ RA TRANG KẾT QUẢ (ketqua.html)
     // =========================================================================
