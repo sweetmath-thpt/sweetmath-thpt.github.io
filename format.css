@@ -320,3 +320,36 @@ input[type="radio"] { display: none; }
 @media (min-width: 601px) {
     html body #btn-mobile-palette { display: none !important; }
 }
+
+/* =========================================================
+   FIX LỖI MÀU CHỮ VÀ MÀU BẢNG (ĐỂ DƯỚI CÙNG FILE)
+   ========================================================= */
+
+/* 1. Ép màu chữ trắng tinh cho 2 nút Nộp Bài, Thoát Ra */
+html body .palette .btn-cute, 
+html body #palette .btn-cute {
+    color: var(--white) !important;
+}
+
+/* 2. Ép chắc nịch màu Tím và chữ Trắng cho ô ĐÃ LÀM */
+html body .palette ul li.is-answered,
+html body .palette ul li.btn-secondary.is-answered {
+    background-color: var(--primary-purple) !important;
+    border-color: var(--primary-purple) !important;
+    color: var(--white) !important;
+}
+html body .palette ul li.is-answered a {
+    color: var(--white) !important;
+}
+
+/* 3. Ép chắc nịch màu Đỏ và chữ Trắng cho ô ĐÁNH DẤU */
+html body .palette ul li.is-marked,
+html body .palette ul li.btn-secondary.is-marked {
+    background-color: #E11D48 !important;
+    border-color: #E11D48 !important;
+    color: var(--white) !important;
+}
+html body .palette ul li.is-marked a {
+    color: var(--white) !important;
+}
+
