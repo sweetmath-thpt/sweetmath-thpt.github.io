@@ -267,13 +267,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <span style="float: right; color: ${mauSac}; font-size: 20px; font-weight: bold;">${iconKetQua}</span>
                     </h3>
                     
-                    <div style="display: flex; gap: 20px; margin-bottom: 15px; font-size: 16px; color: var(--text-main);">
+                    <div style="display: flex; gap: 20px; margin-bottom: 15px; font-size: 20px; color: var(--text-main);">
                         <p>Bạn chọn: <strong style="color: ${mauSac}; font-size: 20px;">${dataCauHoi.chon}</strong></p>
                         <p>Đáp án đúng: <strong style="color: #10B981; font-size: 20px;">${dataCauHoi.dung}</strong></p>
                     </div>
 
                     <div style="background: var(--bg-global); padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary-purple);">
-                        <h5 style="color: var(--primary-hover); margin-top: 0; margin-bottom: 5px; font-size: 24px;">Giải thích chi tiết:</h5>
+                        <h5 style="color: var(--primary-hover); margin-top: 0; margin-bottom: 5px; font-size: 20px;">Giải thích chi tiết:</h5>
                         <p style="color: var(--text-main); line-height: 1.6; font-size: 20px; margin-bottom: 0;">${loiGiai}</p>
                     </div>
                 `;
