@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetMath - Giải phẫu bài toán mẫu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css"> 
+    
+    <style>
+        /* CSS bổ sung riêng cho trang giải bài, hoàn toàn không ảnh hưởng file cũ */
+        .box-giaibai {
+            background: var(--white, #FFFFFF);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow, 0 8px 24px rgba(167, 139, 250, 0.15));
+            border: 2px solid #E5DEEB;
+        }
+
+        .label-badge {
+            display: inline-block;
+            background-color: var(--secondary-pink, #FBCFE8);
+            color: var(--text-main, #4C3A51);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        /* Thẻ chứa Tab điều hướng */
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #E5DEEB;
+            padding-bottom: 10px;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-muted, #9E8AA5);
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-hover, #8B5CF6);
+            background-color: #F3EEF7;
+        }
+
+        .tab-button.active {
+            color: var(--white, #FFFFFF);
+            background-color: var(--primary-purple, #A78BFA);
+        }
+
+        /* Ẩn hiện nội dung các Tab */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Thiết kế các bước giải và nút Giải phẫu */
+        .step-item {
+            position: relative;
+            background: #FAF8FC;
+            border-left: 4px solid var(--primary-purple, #A78BFA);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-explain {
+            background-color: var(--accent-candy, #FDA4AF);
+            color: var(--text-main, #4C3A51);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-explain:hover {
+            transform: scale(1.05);
+            background-color: #F43F5E;
+            color: white;
+        }
+
+        /* Khối hiển thị Flow Thinking độc quyền của cậu */
+        .flow-thinking-box {
+            display: none;
+            margin-top: 12px;
+            background-color: #FFF1F2; /* Nền hồng cam nhạt để cảnh báo tư duy */
+            border: 1px dashed var(--accent-candy, #FDA4AF);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            color: var(--text-main, #4C3A51);
+            line-height: 1.5;
+        }
+
+        .flow-thinking-box.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <a href="index.html" class="logo">SweetMath</a>
+            <span class="slogan">Phòng phẫu thuật tư duy bài toán</span>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 800px; margin: 30px auto; display: block;">
+        
+        <div class="box-giaibai">
+            <span class="label-badge">ĐỀ BÀI TRỌNG TÂM</span>
+            <p style="font-size: 17px; font-weight: 600; color: var(--text-main, #4C3A51);">
+                Tìm số nghiệm thực của phương trình: <br>
+                <code style="background: #F3EEF7; padding: 2px 8px; border-radius: 5px; font-size: 18px;">log₂ (x - 1)² = 2</code>
+            </p>
+        </div>
+
+        <div class="box-giaibai" style="border-left: 5px solid var(--accent-candy, #FDA4AF);">
+            <span class="label-badge" style="background-color: var(--accent-candy, #FDA4AF);">PHÂN TÍCH MẤU CHỐT BÀI TOÁN</span>
+            <p style="font-size: 15px; line-height: 1.6;">
+                🎯 <b>Cái bẫy chết người:</b> Học sinh thường có thói quen hạ bậc số mũ 2 xuống trước biểu thức logarit thành <code style="color: #BE123C;">2.log₂(x - 1)</code>. 
+                Làm như vậy sẽ vô tình ép điều kiện là <code style="color: #BE123C;">x - 1 > 0</code>, dẫn tới việc **lọc mất** một nghiệm âm của bài toán! 
+                Đề bài thi tốt nghiệp THPT dạng điền số rất hay bẫy lỗi này.
+            </p>
+        </div>
+
+        <div class="tab-container">
+            <button type="button" class="tab-button active" onclick="switchTab(event, 'tab-goiy')">💡 Gợi ý tư duy</button>
+            <button type="button" class="tab-button" onclick="switchTab(event, 'tab-loigiaichitiet')">📝 Lời giải phẫu thuật</button>
+        </div>
+
+        <div id="tab-goiy" class="tab-content active">
+            <div class="box-giaibai">
+                <h4 style="margin-bottom: 10px; color: var(--primary-hover, #6D28D9);">Các bước mở khóa bài toán:</h4>
+                <ul style="padding-left: 20px; line-height: 1.8;">
+                    <li><b>Bước 1:</b> Tìm điều kiện để biểu thức bên trong logarit có nghĩa. Lưu ý là cả cụm bình phương lớn hơn 0 nhé.</li>
+                    <li><b>Bước 2:</b> Phá logarit theo định nghĩa cơ bản nhất: <code style="font-weight: 700;">logₐ B = c ➜ B = aᶜ</code> để giữ nguyên cấu trúc bình phương, tránh bị mất nghiệm.</li>
+                    <li><b>Bước 3:</b> Giải phương trình bậc 2 tìm x và đối chiếu điều kiện ban đầu.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tab-loigiaichitiet" class="tab-content">
+            <div class="box-giaibai">
+                
+                <div class="step-item">
+                    <div class="step-header">
+                        <div><b>Bước 1: Điều kiện xác định (ĐKXD)</b><br>Biểu thức <code style="font-weight: bold;">(x - 1)² > 0</code> ➜ <code style="font-weight: bold;">x ≠ 1</code>.</div>
+                        <button type="button" class="btn-explain" onclick="toggleExplain(this)">🔍 Tại sao x ≠ 1?</button>
+                    </div>
+                    <div class="flow-thinking-box">
+                        🧠 <b>Flow Thinking:</b> Một số bình phương thì luôn không âm (≥ 0). Để nó lớn hơn hẳn 0 (> 0) thì chúng ta chỉ cần loại bỏ trường hợp nó bằng 0 là được. Do đó chỉ cần <code style="font-weight: bold;">x - 1 ≠ 0 ➜ x ≠ 1</code>. Cậu đừng nhầm thành <code style="color:red">x > 1</code> nha!
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div><b>Bước 2: Phá bỏ Logarit</b><br>Theo định nghĩa: <code style="font-weight: bold;">(x - 1)² = 2² ➜ (x - 1)² = 4</code>.</div>
+                        <button type="button" class="btn-explain" onclick="toggleExplain(this)">🔍 Sao không hạ mũ 2?</button>
+                    </div>
+                    <div class="flow-thinking-box">
+                        🧠 <b>Flow Thinking:</b> Nếu cậu hạ mũ 2 xuống trước, cậu phải biến đổi thành <code style="font-weight: bold;">2.log₂|x - 1| = 2</code> (phải có dấu trị tuyệt đối). Để an toàn nhất và đỡ quên trị tuyệt đối, tớ khuyên cậu cứ đội mũ cơ số lên thẳng luôn thành <code style="font-weight: bold;">2² = 4</code> cho lành, máy tính chấm không bắt bẻ được!
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div><b>Bước 3: Giải tìm nghiệm thực và Kết luận</b><br>
+                            ➜ Trường hợp 1: <code style="font-weight: bold;">x - 1 = 2 ➜ x = 3</code> (Thỏa mãn ĐKXD)<br>
+                            ➜ Trường hợp 2: <code style="font-weight: bold;">x - 1 = -2 ➜ x = -1</code> (Thỏa mãn ĐKXD)<br>
+                            Vậy số nghiệm thực của phương trình là: <b style="color: #BE123C;">2</b>.
+                        </div>
+                        <button type="button" class="btn-explain" onclick="toggleExplain(this)">🔍 Cảnh báo điền đáp án</button>
+                    </div>
+                    <div class="flow-thinking-box">
+                        🧠 <b>Flow Thinking:</b> Đề bài hỏi <b>"Số nghiệm thực"</b> chứ không hỏi giá trị của nghiệm. Vậy kết quả cuối cùng nhập vào ô trống trắc nghiệm ngắn phải điền số <b>2</b>. Bạn nào làm sót nghiệm <code style="font-weight: bold;">x = -1</code> sẽ điền sai thành 1 đó! Nhớ check kỹ nha!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="lambai.html" class="btn-cute" style="background-color: var(--primary-purple, #A78BFA); color: white; padding: 12px 25px; text-decoration: none; border-radius: 12px; font-weight: 700;">⬅ Quay lại luyện đề</a>
+        </div>
+    </div>
+
+    <script>
+        // Hàm xử lý chuyển đổi qua lại giữa Tab Gợi ý và Tab Lời giải
+        function switchTab(event, tabId) {
+            // Ẩn toàn bộ nội dung các tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Gỡ class active khỏi tất cả các nút tab
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Hiển thị tab được chọn và kích hoạt nút tương ứng
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Hàm xử lý ẩn hiện hộp tư duy Flow Thinking khi nhấn nút giải thích
+        function toggleExplain(button) {
+            // Tìm hộp giải thích nằm ngay dưới nút được bấm
+            const stepItem = button.closest('.step-item');
+            const explainBox = stepItem.querySelector('.flow-thinking-box');
+            
+            // Toggle class 'show' để ẩn/hiện mượt mà
+            explainBox.classList.toggle('show');
+
+            // Đổi chữ trên nút để tăng trải nghiệm người dùng
+            if (explainBox.classList.contains('show')) {
+                button.textContent = "❌ Đóng phẫu thuật";
+                button.style.backgroundColor = "#9E8AA5";
+                button.style.color = "white";
+            } else {
+                button.textContent = button.getAttribute('data-origin-text') || "🔍 Xem giải phẫu";
+                if(button.textContent.includes("Tại sao")) button.textContent = "🔍 Tại sao x ≠ 1?";
+                if(button.textContent.includes("hạ mũ")) button.textContent = "🔍 Sao không hạ mũ 2?";
+                if(button.textContent.includes("điền đáp án")) button.textContent = "🔍 Cảnh báo điền đáp án";
+                button.style.backgroundColor = "var(--accent-candy, #FDA4AF)";
+                button.style.color = "var(--text-main, #4C3A51)";
+            }
+        }
+    </script>
+</body>
+</html>
