@@ -225,3 +225,70 @@ document.addEventListener("DOMContentLoaded", function () {
         diemHienThi.textContent = diem;
         soCauHienThi.textContent = dung + " / " + tong + " Câu";
     }
+// =========================================================================
+    // 7. XỬ LÝ TRANG XEM LẠI BÀI LÀM (Chỉ chạy trên trang xemlaibailam.html)
+    // =========================================================================
+    const khungXemLai = document.getElementById('khung-xem-lai');
+
+    if (khungXemLai) {
+        // A. KHO GIẢI THÍCH CHO MỌI ĐỀ THI
+        const khoGiaiThich = {
+            'lambai.html': {
+                'q1': 'Tháp Tokyo nằm ở Nhật Bản (châu Á), trong khi Tháp Eiffel, Pisa, Big Ben đều nằm ở châu Âu.',
+                'q2': 'Georg Cantor là nhà toán học người Đức, nổi tiếng với lý thuyết tập hợp. Do đó phát biểu này là SAI.',
+                'q3': 'Vì 1 + 1 = 2 (Phép cộng cơ bản).'
+            },
+            'de-01.html': {
+                'q1': 'Giải thích của đề 1 câu 1...',
+                'q2': 'Giải thích của đề 1 câu 2...'
+            }
+        };
+
+        // B. LẤY DỮ LIỆU TỪ BỘ NHỚ RA
+        const chiTietBaiLam = JSON.parse(localStorage.getItem('chiTietBaiLam'));
+        const tenFileDeThi = localStorage.getItem('tenFileDeThi'); // Lấy tên file (vd: lambai.html)
+        const tenDeThi = localStorage.getItem('tenDeThi'); // Lấy tên hiển thị (vd: Bài thi thử Demo)
+
+        // Hiển thị tên đề
+        const xlTenDe = document.getElementById('xl-ten-de');
+        if (xlTenDe) xlTenDe.textContent = tenDeThi;
+
+        // C. TỰ ĐỘNG IN RA MÀN HÌNH
+        if (chiTietBaiLam && khoGiaiThich[tenFileDeThi]) {
+            const boGiaiThichHienTai = khoGiaiThich[tenFileDeThi];
+
+            for (let cauId in chiTietBaiLam) {
+                let dataCauHoi = chiTietBaiLam[cauId];
+                let loiGiai = boGiaiThichHienTai[cauId] || "Chưa có lời giải cho câu này.";
+                
+                // Định dạng hiển thị thẻ câu hỏi
+                let theCauHoi = document.createElement('div');
+                theCauHoi.style.cssText = "background: var(--white); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: var(--card-shadow); text-align: left;";
+
+                // Đổi màu Đỏ/Xanh dựa vào kết quả làm bài
+                let mauSac = dataCauHoi.ketQua ? "#10B981" : "#E11D48"; // Xanh lá nếu đúng, Đỏ nếu sai
+                let iconKetQua = dataCauHoi.ketQua ? "✅ ĐÚNG" : "❌ SAI";
+
+                theCauHoi.innerHTML = `
+                    <h3 style="color: var(--text-main); margin-bottom: 15px; text-transform: uppercase;">
+                        Câu ${cauId.replace('q', '')} 
+                        <span style="float: right; color: ${mauSac}; font-size: 16px;">${iconKetQua}</span>
+                    </h3>
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 15px; font-size: 16px; color: var(--text-main);">
+                        <p>Bạn chọn: <strong style="color: ${mauSac}; font-size: 18px;">${dataCauHoi.chon}</strong></p>
+                        <p>Đáp án đúng: <strong style="color: #10B981; font-size: 18px;">${dataCauHoi.dung}</strong></p>
+                    </div>
+
+                    <div style="background: var(--bg-global); padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary-purple);">
+                        <h5 style="color: var(--primary-hover); margin-bottom: 5px;">Giải thích chi tiết:</h5>
+                        <p style="color: var(--text-main); line-height: 1.6;">${loiGiai}</p>
+                    </div>
+                `;
+
+                khungXemLai.appendChild(theCauHoi);
+            }
+        } else {
+            khungXemLai.innerHTML = "<p>Không tìm thấy dữ liệu bài làm. Vui lòng thi lại!</p>";
+        }
+    }
