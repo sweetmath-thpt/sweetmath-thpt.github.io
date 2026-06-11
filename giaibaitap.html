@@ -6,21 +6,22 @@
     <title>Giải phẫu Bài toán - SweetMath</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="format.css">
+    
     <script>
-    window.MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']], // Công thức nằm trên cùng một dòng
-            displayMath: [['$$', '$$'], ['\\[', '\\]']] // Công thức xuống dòng, căn giữa
-        },
-        svg: {
-            fontCache: 'global'
-        }
-    };
-</script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']], // Công thức trên cùng một dòng
+                displayMath: [['$$', '$$'], ['\\[', '\\]']] // Công thức xuống dòng, căn giữa
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
     <style>
         /* CSS viết thêm riêng cho trang giải thích để không làm ảnh hưởng các file cũ */
         .anatomy-container {
@@ -91,16 +92,14 @@
             box-shadow: var(--card-shadow);
             margin-bottom: 30px;
             color: var(--text-main);
-            /* Mặc định ẩn hoàn toàn lúc đầu theo đúng ý cậu */
-            display: none; 
+            display: none; /* Mặc định ẩn lúc đầu */
             animation: fadeIn 0.3s ease;
         }
 
-        /* Thiết kế từng bước giải phẫu bài toán */
+        /* Thiết kế từng bước giải phẫu bài toán (Ứng dụng Flexbox chống dính) */
         .step-item {
             border-bottom: 1px dashed #e5deeb;
             padding: 20px 0;
-            position: relative; /* Tạo gốc tọa độ để cố định nút giải thích ở góc phải */
         }
         
         .step-item:last-child {
@@ -110,29 +109,28 @@
         .step-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: flex-start; /* Căn lề hàng chữ và nút từ trên đỉnh */
+            gap: 20px; /* Bức tường tàng hình cách ly 20px, tuyệt đối không bị dính chữ */
         }
 
         .step-text {
             font-size: 20px;
             line-height: 1.6;
-            flex: 1;
-            padding-right: 150px; /* Chừa khoảng trống thông minh bên phải để chữ không bao giờ đè lên nút */
+            flex: 1; /* Tự động co giãn chiếm trọn không gian trống */
         }
 
-        /* Nút giải thích nhỏ nhắn, định vị ôm sát góc trên bên phải từng bước giải */
+        /* Nút giải thích viên kẹo xinh xắn bên phải */
         .btn-explain {
-            position: absolute;
-            top: 20px;
-            right: 0;
+            flex-shrink: 0; /* Phong ấn: Cấm nút bị bóp méo hoặc co lại khi chữ quá dài */
+            margin-top: 4px; /* Đẩy nhẹ nút xuống chút cho thẳng hàng với dòng chữ đầu tiên */
             background-color: var(--secondary-pink);
             color: var(--text-main);
             border: none;
             padding: 6px 14px;
-            border-radius: 20px; /* Bo tròn kiểu viên kẹo siêu cute */
+            border-radius: 20px; /* Bo tròn kiểu viên kẹo */
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 16px; /* Thu nhỏ lại 1 chút để làm nút bổ trợ tinh tế, sắc nét */
+            font-size: 14px; /* Thu gọn vừa vặn, tinh tế */
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
@@ -151,10 +149,10 @@
             border-radius: 10px;
             padding: 12px 15px;
             margin-top: 15px;
-            font-size: 20px;
+            font-size: 18px;
             color: #6B5277;
             border-left: 3px dashed var(--primary-purple);
-            display: none; /* Ban đầu ẩn, bấm nút mới hiện */
+            display: none; /* Bấm nút mới hiện */
             animation: slideDown 0.25s ease;
         }
 
@@ -170,14 +168,13 @@
 
         /* Tối ưu hiển thị mượt mà trên điện thoại di động */
         @media (max-width: 600px) {
-            .step-text {
-                padding-right: 0; /* Trả lại không gian cho chữ trên mobile */
-                margin-bottom: 45px; /* Đẩy khoảng cách xuống để nhường chỗ cho nút */
+            .step-row {
+                flex-direction: column; /* Chuyển thành hàng dọc để không bị chật chội trên mobile */
+                align-items: flex-end; /* Đẩy nút bấm hẳn về phía bên phải cho gọn */
+                gap: 12px;
             }
-            .btn-explain {
-                top: auto;
-                bottom: 10px; /* Chuyển nút xuống góc dưới bên phải khi màn hình quá hẹp */
-                right: 0;
+            .step-text {
+                width: 100%;
             }
         }
     </style>
@@ -212,11 +209,12 @@
         <div id="panel-goiy" class="tab-panel">
             <h4 style="color: var(--primary-hover); margin-bottom: 10px;">💡 Gợi ý chiến thuật cho cậu:</h4>
             <div class="content-wrapper">
-            <ul>
-                <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Tính $y' = -3x^2 + 3$. Giờ tìm nghiệm của $y'=0$ đi nào.</li>
-                <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Nhớ lọc nha! Nghiệm nào nằm ngoài đoạn $[0; 2]$ là phải loại ngay kẻo dính bẫy.</li>
-                <li><strong>Bước 3:</strong> Tính các giá trị $y(0)$, $y(2)$ và $y(\text{nghiệm})$. Ai lớn nhất chính là đáp án cần điền vào ô trả lời ngắn!</li>
-            </ul></div>
+                <ul>
+                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Tính $y' = -3x^2 + 3$. Giờ tìm nghiệm của $y'=0$ đi nào.</li>
+                    <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Nhớ lọc nha! Nghiệm nào nằm ngoài đoạn $[0; 2]$ là phải loại ngay kẻo dính bẫy.</li>
+                    <li><strong>Bước 3:</strong> Tính các giá trị $y(0)$, $y(2)$ và $y(\text{nghiệm})$. Ai lớn nhất chính là đáp án cần điền vào ô trả lời ngắn!</li>
+                </ul>
+            </div>
         </div>
 
         <div id="panel-loigiaichitiet" class="tab-panel">
@@ -252,13 +250,14 @@
                 </div>
             </div>
 
-            <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 10px; border-radius: 8px;">
+            <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 15px; border-radius: 12px;">
                 <p>➔ So sánh các giá trị trên, ta thấy giá trị lớn nhất là <strong>1</strong> (đạt được khi $x = 1$).</p>
-                <p style="margin-top: 5px; color: var(--accent-candy); font-size: 20px;"><strong>Đáp số điền ô trả lời ngắn: 1</strong></p>
+                <p style="margin-top: 8px; color: var(--accent-candy); font-size: 20px;"><strong>*Đáp số điền ô trả lời ngắn: 1</strong></p>
             </div>
 
         </div>
     </div>
+
     <footer>
         <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
         <p>Bản quyền © 2026 SweetMath.</p>
