@@ -99,7 +99,8 @@
         /* Thiết kế từng bước giải phẫu bài toán */
         .step-item {
             border-bottom: 1px dashed #e5deeb;
-            padding: 15px 0;
+            padding: 20px 0;
+            position: relative; /* Tạo gốc tọa độ để cố định nút giải thích ở góc phải */
         }
         
         .step-item:last-child {
@@ -109,34 +110,39 @@
         .step-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+            align-items: flex-start;
         }
 
         .step-text {
             font-size: 20px;
             line-height: 1.6;
             flex: 1;
+            padding-right: 150px; /* Chừa khoảng trống thông minh bên phải để chữ không bao giờ đè lên nút */
         }
 
-        /* Nút giải thích nhỏ nhắn, cute bên cạnh bước giải */
+        /* Nút giải thích nhỏ nhắn, định vị ôm sát góc trên bên phải từng bước giải */
         .btn-explain {
+            position: absolute;
+            top: 20px;
+            right: 0;
             background-color: var(--secondary-pink);
             color: var(--text-main);
             border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 20px; /* Bo tròn kiểu viên kẹo siêu cute */
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 16px; /* Thu nhỏ lại 1 chút để làm nút bổ trợ tinh tế, sắc nét */
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(167, 139, 250, 0.1);
         }
 
         .btn-explain:hover {
             background-color: var(--accent-candy);
-            transform: scale(1.05);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(167, 139, 250, 0.2);
         }
 
         /* Hộp chứa Flow Thinking ẩn bên dưới bước giải */
@@ -144,7 +150,7 @@
             background-color: #FAF5FF;
             border-radius: 10px;
             padding: 12px 15px;
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 20px;
             color: #6B5277;
             border-left: 3px dashed var(--primary-purple);
@@ -160,6 +166,19 @@
         @keyframes slideDown {
             from { opacity: 0; max-height: 0; }
             to { opacity: 1; max-height: 200px; }
+        }
+
+        /* Tối ưu hiển thị mượt mà trên điện thoại di động */
+        @media (max-width: 600px) {
+            .step-text {
+                padding-right: 0; /* Trả lại không gian cho chữ trên mobile */
+                margin-bottom: 45px; /* Đẩy khoảng cách xuống để nhường chỗ cho nút */
+            }
+            .btn-explain {
+                top: auto;
+                bottom: 10px; /* Chuyển nút xuống góc dưới bên phải khi màn hình quá hẹp */
+                right: 0;
+            }
         }
     </style>
 </head>
@@ -192,11 +211,12 @@
 
         <div id="panel-goiy" class="tab-panel">
             <h4 style="color: var(--primary-hover); margin-bottom: 10px;">💡 Gợi ý chiến thuật cho cậu:</h4>
+            <div class="content-wrapper">
             <ul>
                 <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Tính $y' = -3x^2 + 3$. Giờ tìm nghiệm của $y'=0$ đi nào.</li>
                 <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Nhớ lọc nha! Nghiệm nào nằm ngoài đoạn $[0; 2]$ là phải loại ngay kẻo dính bẫy.</li>
                 <li><strong>Bước 3:</strong> Tính các giá trị $y(0)$, $y(2)$ và $y(\text{nghiệm})$. Ai lớn nhất chính là đáp án cần điền vào ô trả lời ngắn!</li>
-            </ul>
+            </ul></div>
         </div>
 
         <div id="panel-loigiaichitiet" class="tab-panel">
@@ -234,7 +254,7 @@
 
             <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 10px; border-radius: 8px;">
                 <p>➔ So sánh các giá trị trên, ta thấy giá trị lớn nhất là <strong>1</strong> (đạt được khi $x = 1$).</p>
-                <p style="margin-top: 5px; color: var(--accent-candy); font-size: 20px;"><strong>*Đáp số điền ô trả lời ngắn: 1</strong></p>
+                <p style="margin-top: 5px; color: var(--accent-candy); font-size: 20px;"><strong>Đáp số điền ô trả lời ngắn: 1</strong></p>
             </div>
 
         </div>
@@ -254,16 +274,13 @@
                 const targetId = this.getAttribute('data-target');
                 const targetPanel = document.getElementById(targetId);
 
-                // Nếu tab đang bấm đã mở sẵn -> Bấm lại lần nữa sẽ ĐÓNG NÓ LẠI hoàn toàn
                 if (this.classList.contains('is-active')) {
                     this.classList.remove('is-active');
                     targetPanel.style.display = 'none';
                 } else {
-                    // Đóng toàn bộ các tab khác trước khi mở tab mới
                     tabButtons.forEach(btn => btn.classList.remove('is-active'));
                     tabPanels.forEach(panel => panel.style.display = 'none');
 
-                    // Kích hoạt tab hiện tại
                     this.classList.add('is-active');
                     targetPanel.style.display = 'block';
                 }
@@ -272,7 +289,6 @@
 
         // --- LOGIC ĐÓNG/MỞ NÚT GIẢI THÍCH TRONG BƯỚC GIẢI ---
         function toggleExplanation(button) {
-            // Tìm hộp giải thích nằm ngay dưới hàng của nút hiện tại
             const stepItem = button.closest('.step-item');
             const explanationBox = stepItem.querySelector('.flow-thinking-box');
 
@@ -281,7 +297,7 @@
                 button.style.backgroundColor = 'var(--secondary-pink)';
             } else {
                 explanationBox.style.display = 'block';
-                button.style.backgroundColor = 'var(--accent-candy)'; // Đổi màu để báo hiệu đang xem
+                button.style.backgroundColor = 'var(--accent-candy)'; 
             }
         }
     </script>
