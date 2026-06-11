@@ -1,3 +1,4 @@
+// Đảm bảo toàn bộ HTML đã tải xong thì Javascript mới được phép chạy
 document.addEventListener("DOMContentLoaded", function () {
 
     // ==========================================
@@ -116,12 +117,62 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
-// =========================================================================
+
+    // ==========================================
+    // 5. HIỆU ỨNG "BẢNG TRƯỢT TIKTOK" (MOBILE)
+    // ==========================================
+    const btnMobile = document.getElementById('btn-mobile-palette');
+    const paletteBox = document.querySelector('.palette');
+
+    if (btnMobile && paletteBox) {
+        
+        // Bấm nút để đóng/mở bảng
+        btnMobile.addEventListener('click', function(event) {
+            event.stopPropagation();
+            paletteBox.classList.toggle('show-mobile');
+            
+            if (paletteBox.classList.contains('show-mobile')) {
+                btnMobile.innerHTML = '❌ Đóng bảng';
+                btnMobile.style.backgroundColor = 'var(--accent-candy, #FF9A9E)'; 
+            } else {
+                btnMobile.innerHTML = '📋 Bảng câu hỏi';
+                btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)'; 
+            }
+        });
+
+        // Bấm chọn câu hỏi trong bảng -> Tự đóng bảng xuống
+        paletteBox.addEventListener('click', function(event) {
+            const clickedElement = event.target;
+            const isQuestionButton = clickedElement.tagName.toLowerCase() === 'a' || 
+                                     clickedElement.tagName.toLowerCase() === 'button' ||
+                                     clickedElement.classList.contains('shiba-o-vuong');
+
+            if (isQuestionButton) {
+                paletteBox.classList.remove('show-mobile');
+                btnMobile.innerHTML = '📋 Bảng câu hỏi';
+                btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)';
+            }
+        });
+
+        // Chạm ra ngoài vùng trắng để tự động đóng bảng
+        document.addEventListener('click', function(event) {
+            const isPaletteOpen = paletteBox.classList.contains('show-mobile');
+            const isClickInsidePalette = paletteBox.contains(event.target);
+            const isClickOnButton = event.target === btnMobile;
+
+            if (isPaletteOpen && !isClickInsidePalette && !isClickOnButton) {
+                paletteBox.classList.remove('show-mobile');
+                btnMobile.innerHTML = '📋 Bảng câu hỏi';
+                btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)';
+            }
+        });
+    }
+
+    // =========================================================================
     // KHỐI CODE THỐNG NHẤT: CHẤM ĐIỂM - ĐỔ KẾT QUẢ - XEM LẠI BÀI LÀM
     // =========================================================================
 
-    // --- PHẦN 5: TỰ ĐỘNG CHẤM ĐIỂM & ĐÓNG GÓI DỮ LIỆU ---
+    // --- PHẦN 6: TỰ ĐỘNG CHẤM ĐIỂM & ĐÓNG GÓI DỮ LIỆU ---
     const btnXacNhanNop = document.querySelector('#overlay-nopbai .btn-confirm');
 
     if (btnXacNhanNop) {
@@ -193,12 +244,12 @@ document.addEventListener("DOMContentLoaded", function () {
             let diemSo = ((soCauDung / tongSoCau) * 10).toFixed(2);
             diemSo = parseFloat(diemSo);
 
-            // Lưu toàn bộ vào ngăn kéo LocalStorage (Có đầy đủ thẻ tên file)
+            // Lưu toàn bộ vào ngăn kéo LocalStorage
             localStorage.setItem('diemHocSinh', diemSo);
             localStorage.setItem('soCauDung', soCauDung);
             localStorage.setItem('tongSoCau', tongSoCau);
             localStorage.setItem('tenDeThi', thongTinDeThi.tenDe);
-            localStorage.setItem('tenFileDeThi', tenFileHienTai); // Dòng quan trọng đã được gài chặt!
+            localStorage.setItem('tenFileDeThi', tenFileHienTai); 
             localStorage.setItem('chiTietBaiLam', JSON.stringify(chiTietBaiLam));
 
             // Chuyển sang trang kết quả công khai
@@ -206,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // --- PHẦN 6: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
+    // --- PHẦN 7: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
     const diemHienThi = document.getElementById('diem-so');
     const soCauHienThi = document.getElementById('so-cau-dung');
     const tenDeHienThi = document.getElementById('ten-de-thi');
@@ -222,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
         soCauHienThi.textContent = dung + " / " + tong + " Câu";
     }
 
-    // --- PHẦN 7: TỰ ĐỘNG DỰNG GIAO DIỆN TRANG XEM LẠI BÀI LÀM (xemlaibailam.html) ---
+    // --- PHẦN 8: TỰ ĐỘNG DỰNG GIAO DIỆN TRANG XEM LẠI BÀI LÀM (xemlaibailam.html) ---
     const khungXemLai = document.getElementById('khung-xem-lai');
 
     if (khungXemLai) {
@@ -240,7 +291,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         const chiTietBaiLam = JSON.parse(localStorage.getItem('chiTietBaiLam'));
-        // Cơ chế phòng hờ: Nếu không thấy tên file cũ, mặc định lấy dữ liệu của 'lambai.html'
         const tenFileDeThi = localStorage.getItem('tenFileDeThi') || 'lambai.html'; 
         const tenDeThi = localStorage.getItem('tenDeThi') || 'Bài thi thử thiết kế Demo';
 
@@ -283,3 +333,5 @@ document.addEventListener("DOMContentLoaded", function () {
             khungXemLai.innerHTML = "<div style='text-align: center; padding: 40px; color: var(--text-muted);'>Không tìm thấy dữ liệu bài làm hợp lệ trong bộ nhớ. Vui lòng quay lại làm bài từ đầu!</div>";
         }
     }
+
+});
