@@ -65,11 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     markButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault(); 
-            
-            // Bật/tắt trạng thái đỏ trên chính nút Đánh dấu ở đề bài
             this.classList.toggle('is-marked');
-            
-            // Bật/tắt trạng thái đỏ trên ô số tương ứng ở bảng Palette
             const targetId = this.getAttribute('data-target');
             const paletteElement = document.getElementById(targetId);
             
@@ -79,11 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // --- Khi học sinh CHỌN ĐÁP ÁN (RADIO HOẶC ĐIỀN TỪ) ---
+    // --- Khi học sinh CHỌN ĐÁP ÁN ---
     answerInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            
-            // Xử lý bộ lọc cho ô trả lời ngắn chuẩn Bộ GD-ĐT
+        // Dùng 'change' để hỗ trợ cảm ứng mượt hơn trên điện thoại
+        input.addEventListener('change', function() {
             if (this.classList.contains('moe-format')) {
                 let val = this.value;
                 val = val.replace(/\./g, ',');
@@ -100,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.value = val;
             }
 
-            // Đồng bộ trạng thái "Đã làm bài" (is-answered)
             const targetId = this.getAttribute('data-target');
             const paletteElement = document.getElementById(targetId);
             
@@ -116,16 +110,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         });
+
+        // Hỗ trợ gõ trực tiếp cho ô văn bản ngắn
+        if (input.type === 'text') {
+            input.addEventListener('input', function() {
+                const targetId = this.getAttribute('data-target');
+                const paletteElement = document.getElementById(targetId);
+                if (paletteElement) {
+                    if (this.value.trim() !== "") {
+                        paletteElement.classList.add('is-answered');
+                    } else {
+                        paletteElement.classList.remove('is-answered');
+                    }
+                }
+            });
+        }
     });
 
     // =========================================================================
     // 5. TÍNH NĂNG "BẢNG TRƯỢT TIKTOK" ĐỘC QUYỀN CHO MOBILE
     // =========================================================================
     const btnMobile = document.getElementById('btn-mobile-palette');
-    const paletteBox = document.getElementById('palette') || document.querySelector('.palette');
+    const paletteBox = document.getElementById('palette');
 
     if (btnMobile && paletteBox) {
-        
         // Kịch bản A: Bấm nút nổi để đóng/mở bảng
         btnMobile.addEventListener('click', function(event) {
             event.stopPropagation(); 
@@ -142,7 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Kịch bản B: Bấm chọn câu hỏi bên trong bảng -> Tự đóng bảng xuống
         paletteBox.addEventListener('click', function(event) {
-            const mucDuocChon = event.target.closest('a') || event.target.closest('button') || event.target.closest('.shiba-o-vuong');
+            // Tìm bao quát cả thẻ li, thẻ a, hoặc class shiba
+            const mucDuocChon = event.target.closest('li') || event.target.closest('a') || event.target.closest('button');
 
             if (mucDuocChon) {
                 paletteBox.classList.remove('show-mobile');
@@ -151,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Kịch bản C: Chạm ngón tay ra vùng trống bên ngoài bảng đề thi để tự thu bảng xuống
+        // Kịch bản C: Chạm ngón tay ra vùng trống bên ngoài bảng để thu bảng xuống
         document.addEventListener('click', function(event) {
             if (paletteBox.classList.contains('show-mobile')) {
                 const clickTrongBang = paletteBox.contains(event.target);
@@ -246,14 +255,13 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('tenFileDeThi', tenFileHienTai); 
             localStorage.setItem('chiTietBaiLam', JSON.stringify(chiTietBaiLam));
 
-            // Tự động chuyển trang một cách an toàn
             window.location.href = this.getAttribute('href') || "ketqua.html";
         });
     }
 
     // --- PHẦN 7: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
     const diemHienThi = document.getElementById('diem-so');
-    const soCauHienThi = document.getElementById('so-cau-dung'); // Tớ đã tháo cái ngoặc kép vô duyên ở đây rồi!
+    const soCauHienThi = document.getElementById('so-cau-dung'); 
     const tenDeHienThi = document.getElementById('ten-de-thi');
 
     if (diemHienThi && soCauHienThi) {
