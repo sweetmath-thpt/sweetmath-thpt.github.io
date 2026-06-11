@@ -690,8 +690,44 @@ input[type="radio"] {
 /* ==========================================================================
    8. CẬP NHẬT CHUẨN HÓA: BẢNG TRƯỢT TIKTOK ĐỘC QUYỀN MOBILE (FIX BUGS)
    ========================================================================== */
+ 
+/* ==========================================================================
+   6. RESPONSIVE & BẢNG TRƯỢT TIKTOK ĐỘC QUYỀN (MOBILE & TABLET)
+   ========================================================================== */
+
+/* --- TABLET (Dưới 768px) --- */
+@media (max-width: 768px) {
+    /* Sửa lỗi chữ đè tag hồng: Hủy justify, trả về căn trái tự nhiên trên mobile */
+    body { text-align: left !important; }
+    
+    .slogan { display: none; }
+    
+    .navbar { 
+        flex-direction: column;
+        gap: 15px;
+        text-align: center; 
+    }
+    .navbar ul { 
+        gap: 15px;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .content-wrapper { padding: 15px 3%; }
+    
+    .hero-text h1 { font-size: 26px; margin-bottom: 12px; }
+    .hero-text h6 { font-size: 15px; text-align: center; line-height: 1.5; }
+    
+    .exam-card { flex-direction: column; text-align: center; gap: 15px; }
+    .exam-img { flex: 0 0 auto; width: 100px; height: 100px; }
+    
+    .container { flex-direction: column; width: 95%; padding: 0 10px; margin: 15px auto; }
+    .baithi { width: 100% !important; flex: none; }
+}
+
+/* --- MOBILE & BẢNG TRƯỢT TIKTOK (Dưới 600px) --- */
 @media (max-width: 600px) {
-    /* Nút nổi bật để mở bảng chọn trên Mobile */
+    /* 1. Nút nổi bật để mở bảng chọn trên Mobile */
     html body #btn-mobile-palette {
         display: block !important;
         position: fixed !important;
@@ -709,22 +745,22 @@ input[type="radio"] {
         cursor: pointer !important;
     }
 
-    /* Đưa bảng chọn về đúng đáy và ẩn đi bằng Transform gia tốc phần cứng */
+    /* 2. Đưa bảng chọn về đúng đáy và ẩn đi bằng Transform gia tốc phần cứng */
     html body .palette, html body #palette {
         position: fixed !important;
-        top: auto !important;        /* Triệt tiêu hoàn toàn top: 20px của PC để tránh bị kéo lên đỉnh */
-        bottom: 0 !important;        /* Đóng đinh cố định ở đáy màn hình */
+        top: auto !important;        
+        bottom: 0 !important;        
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
-        height: 60vh !important;     /* Chiếm đúng 60% chiều cao màn hình */
+        height: 60vh !important;     
         background-color: var(--white) !important; 
         z-index: 9999 !important;
-        border-radius: 24px 24px 0 0 !important; /* Bo góc trên xinh xắn */
+        border-radius: 24px 24px 0 0 !important; 
         padding: 20px !important;
         box-sizing: border-box !important;
         
-        /* CƠ CHẾ SIÊU MƯỢT: Giấu bảng bằng cách đẩy tụt xuống dưới 100% chiều cao */
+        /* Giấu bảng bằng cách đẩy tụt xuống dưới 100% chiều cao */
         transform: translateY(100%) !important;
         transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         
@@ -735,25 +771,61 @@ input[type="radio"] {
         max-height: none !important;
     }
 
-    /* KHI JS KÍCH HOẠT: Bảng trượt vút từ dưới lên chuẩn chỉ */
+    /* 3. KHI JS KÍCH HOẠT: Bảng trượt vút từ dưới lên chuẩn chỉ */
     html body .palette.show-mobile, html body #palette.show-mobile {
         transform: translateY(0) !important;
     }
 
-    /* Chữ tối rõ ràng trên nền trắng */
+    /* 4. Căn chỉnh lại lưới câu hỏi (Grid) cho ngay ngắn trên màn hình nhỏ */
+    html body .palette ul {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important; /* 5 cột đều tăm tắp */
+        gap: 10px !important;
+        padding: 10px 0 !important;
+    }
+    
+    html body .palette ul li {
+        width: 100% !important;
+        aspect-ratio: 1 !important; /* Ép thành hình vuông */
+        height: auto !important;
+        margin: 0 !important;
+    }
+
+    html body .palette ul li a {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 5. Chữ tối rõ ràng trên nền trắng */
     html body .palette *, html body #palette * {
         color: var(--text-main) !important; 
     }
     
     /* Ép giữ màu trắng tinh cho chữ/số khi ở trạng thái Đã trả lời hoặc Đánh dấu */
     html body .palette ul li.is-answered, 
-    html body .palette ul li.is-answered a {
-        color: var(--white) !important;
-    }
+    html body .palette ul li.is-answered a,
     html body .palette ul li.is-marked,
     html body .palette ul li.is-marked a {
         color: var(--white) !important;
     }
 }
 
-/* Ẩn nút
+/* --- ĐIỆN THOẠI NHỎ (Dưới 480px) --- */
+@media (max-width: 480px) {
+    .short-answer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    .answer-label { font-size: 16px; }
+    .input-short-answer { font-size: 20px; width: 100%; }
+}
+
+/* --- ẨN NÚT MOBILE TRÊN MÁY TÍNH --- */
+@media (min-width: 601px) {
+    html body #btn-mobile-palette { display: none !important; }
+}
