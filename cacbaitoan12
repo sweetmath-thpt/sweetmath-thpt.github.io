@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các bài toán lớp 12</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-area">
+            <a href="index.html" class="logo">SweetMath</a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>  
+                <li><a href="kienthuc.html">Kiến thức</a></li> 
+                <li><a href="cacbaitoan.html">Các bài toán</a></li>
+                <li><a href="thithu.html">Thi thử</a></li>
+                <li><a href="tailieu.html">Tài liệu</a></li>
+            </ul>
+        </nav>
+    </header>
+<div class="hero-image">
+<div class="hero-text">
+<h1>CÁC BÀI TOÁN LỚP 12</h1>
+</div></div>
+<div class="content-wrapper">
+    <a href="giaibaitap.html" class="exam-card">
+    
+    <div class="exam-img">
+        <img src="ChuyenKHTN.png" alt="Logo trường">
+    </div>
+
+    <div class="exam-info">
+        <h3 class="exam-title">Bài giải thử nghiệm</h3>
+        <p class="exam-meta"><strong>Ngày đăng:</strong> 11/6/2026</p>
+    </div>
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
+</body>
+</html>
