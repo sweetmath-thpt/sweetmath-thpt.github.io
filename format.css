@@ -672,7 +672,19 @@ input[type="radio"] {
     }
 }
 
-@media (max-width: 480px) {
+/* ---------------------------------------------------
+   TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE RESPONSIVE)
+--------------------------------------------------- */
+
+/* Ẩn nút bấm mở bảng câu hỏi trên giao diện Máy tính (Mặc định) */
+#btn-mobile-palette {
+    display: none;
+}
+
+/* Kích hoạt khi màn hình nhỏ hơn 600px (Điện thoại) */
+@media (max-width: 600px) {
+    
+    /* 1. Tinh chỉnh phần Trả lời ngắn (Code của cậu đã được tối ưu thêm) */
     .short-answer-container {
         flex-direction: column;
         align-items: flex-start;
@@ -684,6 +696,67 @@ input[type="radio"] {
     }
     .input-short-answer {
         font-size: 20px;
+        width: 100%; /* Ép ô nhập liệu kéo dài tràn khung để học sinh dễ chạm vào */
+        box-sizing: border-box; /* Ngăn ô nhập liệu phình to làm vỡ khung */
     }
-   }
+
+    /* 2. Cấu hình lại toàn bộ Layout thi */
+    .container {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
     
+    .baithi {
+        width: 100% !important;
+        margin-bottom: 80px; /* Chừa một khoảng trống ở đáy để dòng chữ cuối cùng không bị cái nút nổi che mất */
+    }
+
+    /* 3. BIẾN HÌNH BẢNG CÂU HỎI THÀNH BOX TRƯỢT (Bảng TikTok) */
+    .palette {
+        position: fixed;
+        bottom: -100%; /* Mặc định giấu tít dưới đáy màn hình, ngoài tầm nhìn */
+        left: 0;
+        width: 100% !important;
+        height: 55vh; /* Chiếm khoảng hơn nửa màn hình một chút */
+        background-color: var(--white);
+        z-index: 9999; /* Quyền lực tối cao: Luôn nổi lên trên cùng */
+        border-radius: 24px 24px 0 0; /* Bo tròn 2 góc trên đỉnh cực đẹp */
+        box-shadow: 0 -10px 30px rgba(167, 139, 250, 0.3); /* Đổ bóng hắt ngược lên trên */
+        padding: 20px;
+        box-sizing: border-box;
+        transition: bottom 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hiệu ứng trượt mượt mà y hệt app xịn */
+        overflow-y: auto; /* Tự động xuất hiện thanh cuộn bên trong nếu có quá nhiều câu hỏi */
+    }
+
+    /* Lệnh hiện bảng khi được JS kích hoạt */
+    .palette.show-mobile {
+        bottom: 0;
+    }
+
+    /* 4. Thiết kế Nút bấm nổi (Floating Button) ở góc phải màn hình */
+    #btn-mobile-palette {
+        display: block !important; /* Hiện nút trên điện thoại */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000; /* Nổi cao hơn cả bảng trượt */
+        background-color: var(--primary-purple); 
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 30px; /* Bo tròn dáng viên kẹo */
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        border: none;
+        box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); /* Đổ bóng lấp lánh */
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    /* Hiệu ứng lún xuống nhẹ khi học sinh chạm vào nút */
+    #btn-mobile-palette:active {
+        transform: scale(0.95); 
+    }
+}
