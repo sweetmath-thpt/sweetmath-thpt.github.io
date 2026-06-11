@@ -118,13 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 // =========================================================================
-    // 5. TỰ ĐỘNG CHẤM ĐIỂM DỰA VÀO TÊN FILE & LƯU KẾT QUẢ VÀO LOCALSTORAGE
+    // KHỐI CODE THỐNG NHẤT: CHẤM ĐIỂM - ĐỔ KẾT QUẢ - XEM LẠI BÀI LÀM
     // =========================================================================
+
+    // --- PHẦN 5: TỰ ĐỘNG CHẤM ĐIỂM & ĐÓNG GÓI DỮ LIỆU ---
     const btnXacNhanNop = document.querySelector('#overlay-nopbai .btn-confirm');
 
     if (btnXacNhanNop) {
         btnXacNhanNop.addEventListener('click', function(event) {
-            event.preventDefault(); 
+            event.preventDefault(); // Giữ lại một nhịp để xử lý dữ liệu
 
             const nganHangDapAn = {
                 'lambai.html': {
@@ -141,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             };
 
+            // Lấy tên file HTML hiện tại (ví dụ: lambai.html)
             const tenFileHienTai = window.location.pathname.split('/').pop() || 'lambai.html';
 
             if (!nganHangDapAn[tenFileHienTai]) {
@@ -153,21 +156,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let soCauDung = 0;
             const tongSoCau = Object.keys(boDapAnDung).length;
-            
-            // 🌟 [MỚI] TẠO "CUỐN SỔ" ĐỂ LƯU CHI TIẾT BÀI LÀM
             let chiTietBaiLam = {}; 
 
-            // Vòng lặp chấm điểm và ghi chép
+            // Vòng lặp quét đáp án học sinh chọn
             for (let questionName in boDapAnDung) {
                 const dapAnDung = boDapAnDung[questionName];
                 const userRadio = document.querySelector(`input[name="${questionName}"]:checked`);
                 const userText = document.querySelector(`input[name="${questionName}"][type="text"]`);
 
-                // 🌟 [MỚI] Biến tạm để nhớ học sinh chọn gì và có đúng không
                 let luaChonCuaHocSinh = "Chưa làm"; 
                 let laCauDung = false;
 
-                // Kiểm tra câu trắc nghiệm
                 if (userRadio) {
                     luaChonCuaHocSinh = userRadio.value;
                     if (userRadio.value === dapAnDung) {
@@ -175,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         laCauDung = true;
                     }
                 } 
-                // Kiểm tra câu điền từ
                 else if (userText && userText.value.trim() !== "") {
                     luaChonCuaHocSinh = userText.value.trim();
                     if (luaChonCuaHocSinh === dapAnDung) {
@@ -184,54 +182,51 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
 
-                // 🌟 [MỚI] Ghi chép lại vào sổ
+                // Ghi chép chi tiết từng câu vào Object
                 chiTietBaiLam[questionName] = {
-                    chon: luaChonCuaHocSinh, // Học sinh chọn gì
-                    dung: dapAnDung,         // Đáp án của hệ thống
-                    ketQua: laCauDung        // Đúng (true) hay Sai (false)
+                    chon: luaChonCuaHocSinh,
+                    dung: dapAnDung,
+                    ketQua: laCauDung
                 };
             }
 
             let diemSo = ((soCauDung / tongSoCau) * 10).toFixed(2);
             diemSo = parseFloat(diemSo);
 
+            // Lưu toàn bộ vào ngăn kéo LocalStorage (Có đầy đủ thẻ tên file)
             localStorage.setItem('diemHocSinh', diemSo);
             localStorage.setItem('soCauDung', soCauDung);
             localStorage.setItem('tongSoCau', tongSoCau);
             localStorage.setItem('tenDeThi', thongTinDeThi.tenDe);
-            
-            // 🌟 [MỚI] ĐÓNG GÓI CUỐN SỔ (ÉP KIỂU JSON) VÀ CẤT VÀO BỘ NHỚ
+            localStorage.setItem('tenFileDeThi', tenFileHienTai); // Dòng quan trọng đã được gài chặt!
             localStorage.setItem('chiTietBaiLam', JSON.stringify(chiTietBaiLam));
 
+            // Chuyển sang trang kết quả công khai
             window.location.href = this.getAttribute('href');
         });
     }
-    // =========================================================================
-    // 6. ĐỌC DỮ LIỆU TỪ BỘ NHỚ VÀ ĐỔ RA TRANG KẾT QUẢ (ketqua.html)
-    // =========================================================================
+
+    // --- PHẦN 6: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
     const diemHienThi = document.getElementById('diem-so');
     const soCauHienThi = document.getElementById('so-cau-dung');
     const tenDeHienThi = document.getElementById('ten-de-thi');
 
     if (diemHienThi && soCauHienThi) {
-        // Mở bộ nhớ trình duyệt lấy thông tin ra, nếu không có dữ liệu cũ thì mặc định hiển thị 0
         const diem = localStorage.getItem('diemHocSinh') || 0;
         const dung = localStorage.getItem('soCauDung') || 0;
         const tong = localStorage.getItem('tongSoCau') || 0;
         const tenDe = localStorage.getItem('tenDeThi') || 'KẾT QUẢ BÀI THI';
 
-        // Ép dữ liệu vào các thẻ HTML tương ứng
-        tenDeHienThi.textContent = tenDe;
+        if (tenDeHienThi) tenDeHienThi.textContent = tenDe;
         diemHienThi.textContent = diem;
         soCauHienThi.textContent = dung + " / " + tong + " Câu";
     }
-// =========================================================================
-    // 7. XỬ LÝ TRANG XEM LẠI BÀI LÀM (Chỉ chạy trên trang xemlaibailam.html)
-    // =========================================================================
+
+    // --- PHẦN 7: TỰ ĐỘNG DỰNG GIAO DIỆN TRANG XEM LẠI BÀI LÀM (xemlaibailam.html) ---
     const khungXemLai = document.getElementById('khung-xem-lai');
 
     if (khungXemLai) {
-        // A. KHO GIẢI THÍCH CHO MỌI ĐỀ THI
+        // Kho lời giải của các câu hỏi
         const khoGiaiThich = {
             'lambai.html': {
                 'q1': 'Tháp Tokyo nằm ở Nhật Bản (châu Á), trong khi Tháp Eiffel, Pisa, Big Ben đều nằm ở châu Âu.',
@@ -244,35 +239,32 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
 
-        // B. LẤY DỮ LIỆU TỪ BỘ NHỚ RA
         const chiTietBaiLam = JSON.parse(localStorage.getItem('chiTietBaiLam'));
-        const tenFileDeThi = localStorage.getItem('tenFileDeThi'); // Lấy tên file (vd: lambai.html)
-        const tenDeThi = localStorage.getItem('tenDeThi'); // Lấy tên hiển thị (vd: Bài thi thử Demo)
+        // Cơ chế phòng hờ: Nếu không thấy tên file cũ, mặc định lấy dữ liệu của 'lambai.html'
+        const tenFileDeThi = localStorage.getItem('tenFileDeThi') || 'lambai.html'; 
+        const tenDeThi = localStorage.getItem('tenDeThi') || 'Bài thi thử thiết kế Demo';
 
-        // Hiển thị tên đề
         const xlTenDe = document.getElementById('xl-ten-de');
         if (xlTenDe) xlTenDe.textContent = tenDeThi;
 
-        // C. TỰ ĐỘNG IN RA MÀN HÌNH
         if (chiTietBaiLam && khoGiaiThich[tenFileDeThi]) {
             const boGiaiThichHienTai = khoGiaiThich[tenFileDeThi];
+            khungXemLai.innerHTML = ''; // Dọn sạch khung chờ trước khi in
 
             for (let cauId in chiTietBaiLam) {
                 let dataCauHoi = chiTietBaiLam[cauId];
                 let loiGiai = boGiaiThichHienTai[cauId] || "Chưa có lời giải cho câu này.";
                 
-                // Định dạng hiển thị thẻ câu hỏi
                 let theCauHoi = document.createElement('div');
                 theCauHoi.style.cssText = "background: var(--white); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: var(--card-shadow); text-align: left;";
 
-                // Đổi màu Đỏ/Xanh dựa vào kết quả làm bài
-                let mauSac = dataCauHoi.ketQua ? "#10B981" : "#E11D48"; // Xanh lá nếu đúng, Đỏ nếu sai
+                let mauSac = dataCauHoi.ketQua ? "#10B981" : "#E11D48"; 
                 let iconKetQua = dataCauHoi.ketQua ? "✅ ĐÚNG" : "❌ SAI";
 
                 theCauHoi.innerHTML = `
-                    <h3 style="color: var(--text-main); margin-bottom: 15px; text-transform: uppercase;">
+                    <h3 style="color: var(--text-main); margin-bottom: 15px; text-transform: uppercase; font-size: 18px;">
                         Câu ${cauId.replace('q', '')} 
-                        <span style="float: right; color: ${mauSac}; font-size: 16px;">${iconKetQua}</span>
+                        <span style="float: right; color: ${mauSac}; font-size: 16px; font-weight: bold;">${iconKetQua}</span>
                     </h3>
                     
                     <div style="display: flex; gap: 20px; margin-bottom: 15px; font-size: 16px; color: var(--text-main);">
@@ -281,14 +273,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
 
                     <div style="background: var(--bg-global); padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary-purple);">
-                        <h5 style="color: var(--primary-hover); margin-bottom: 5px;">Giải thích chi tiết:</h5>
-                        <p style="color: var(--text-main); line-height: 1.6;">${loiGiai}</p>
+                        <h5 style="color: var(--primary-hover); margin-bottom: 5px; font-size: 15px;">Giải thích chi tiết:</h5>
+                        <p style="color: var(--text-main); line-height: 1.6; font-size: 14px;">${loiGiai}</p>
                     </div>
                 `;
-
                 khungXemLai.appendChild(theCauHoi);
             }
         } else {
-            khungXemLai.innerHTML = "<p>Không tìm thấy dữ liệu bài làm. Vui lòng thi lại!</p>";
+            khungXemLai.innerHTML = "<div style='text-align: center; padding: 40px; color: var(--text-muted);'>Không tìm thấy dữ liệu bài làm hợp lệ trong bộ nhớ. Vui lòng quay lại làm bài từ đầu!</div>";
         }
     }
