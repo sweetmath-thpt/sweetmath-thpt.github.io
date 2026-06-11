@@ -118,17 +118,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ==========================================
-    // 5. HIỆU ỨNG "BẢNG TRƯỢT TIKTOK" (MOBILE)
-    // ==========================================
+    // =========================================================================
+    // 5. [SỬA LỖI] TÍNH NĂNG "BẢNG TRƯỢT TIKTOK" ĐỘC QUYỀN CHO MOBILE
+    // =========================================================================
     const btnMobile = document.getElementById('btn-mobile-palette');
-    const paletteBox = document.querySelector('.palette');
+    
+    // Cơ chế tìm kiếm bọc thép: Tìm theo ID trước, nếu không thấy thì tìm theo Class .palette
+    const paletteBox = document.getElementById('palette') || document.querySelector('.palette');
 
     if (btnMobile && paletteBox) {
         
-        // Bấm nút để đóng/mở bảng
+        // Kịch bản A: Bấm nút nổi để đóng/mở bảng
         btnMobile.addEventListener('click', function(event) {
-            event.stopPropagation();
+            event.stopPropagation(); // Ngăn chặn sự kiện click bị lan ra ngoài document
             paletteBox.classList.toggle('show-mobile');
             
             if (paletteBox.classList.contains('show-mobile')) {
@@ -140,30 +142,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Bấm chọn câu hỏi trong bảng -> Tự đóng bảng xuống
+        // Kịch bản B: Bấm chọn câu hỏi bên trong bảng -> Tự đóng bảng xuống (Sử dụng .closest để sửa lỗi kẹt thẻ con)
         paletteBox.addEventListener('click', function(event) {
-            const clickedElement = event.target;
-            const isQuestionButton = clickedElement.tagName.toLowerCase() === 'a' || 
-                                     clickedElement.tagName.toLowerCase() === 'button' ||
-                                     clickedElement.classList.contains('shiba-o-vuong');
+            const mucDuocChon = event.target.closest('a') || event.target.closest('button') || event.target.closest('.shiba-o-vuong');
 
-            if (isQuestionButton) {
+            if (mucDuocChon) {
                 paletteBox.classList.remove('show-mobile');
                 btnMobile.innerHTML = '📋 Bảng câu hỏi';
                 btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)';
             }
         });
 
-        // Chạm ra ngoài vùng trắng để tự động đóng bảng
+        // Kịch bản C: Chạm ngón tay ra vùng trống bên ngoài bảng đề thi để tự thu bảng xuống
         document.addEventListener('click', function(event) {
-            const isPaletteOpen = paletteBox.classList.contains('show-mobile');
-            const isClickInsidePalette = paletteBox.contains(event.target);
-            const isClickOnButton = event.target === btnMobile;
+            if (paletteBox.classList.contains('show-mobile')) {
+                const clickTrongBang = paletteBox.contains(event.target);
+                const clickVaoNutNoi = btnMobile.contains(event.target);
 
-            if (isPaletteOpen && !isClickInsidePalette && !isClickOnButton) {
-                paletteBox.classList.remove('show-mobile');
-                btnMobile.innerHTML = '📋 Bảng câu hỏi';
-                btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)';
+                if (!clickTrongBang && !clickVaoNutNoi) {
+                    paletteBox.classList.remove('show-mobile');
+                    btnMobile.innerHTML = '📋 Bảng câu hỏi';
+                    btnMobile.style.backgroundColor = 'var(--primary-purple, #A78BFA)';
+                }
             }
         });
     }
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- PHẦN 7: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
     const diemHienThi = document.getElementById('diem-so');
-    const soCauHienThi = document.getElementById('so-cau-dung');
+    const "soCauHienThi" = document.getElementById('so-cau-dung');
     const tenDeHienThi = document.getElementById('ten-de-thi');
 
     if (diemHienThi && soCauHienThi) {
