@@ -688,7 +688,7 @@ input[type="radio"] {
 }
 
 /* ==========================================================================
-   8. CẬP NHẬT: BẢNG TRƯỢT TIKTOK ĐỘC QUYỀN CHO MOBILE (DƯỚI 600PX)
+   8. CẬP NHẬT CHUẨN HÓA: BẢNG TRƯỢT TIKTOK ĐỘC QUYỀN MOBILE (FIX BUGS)
    ========================================================================== */
 @media (max-width: 600px) {
     /* Nút nổi bật để mở bảng chọn trên Mobile */
@@ -709,40 +709,43 @@ input[type="radio"] {
         cursor: pointer !important;
     }
 
-    /* Ép bảng chọn giấu dưới đáy màn hình */
+    /* Đưa bảng chọn về đúng đáy và ẩn đi bằng Transform gia tốc phần cứng */
     html body .palette, html body #palette {
         position: fixed !important;
-        top: unset !important;       /* Hủy thuộc tính top của bản PC */
-        bottom: -100% !important;    /* Giấu kín dưới đáy */
+        top: auto !important;        /* Triệt tiêu hoàn toàn top: 20px của PC để tránh bị kéo lên đỉnh */
+        bottom: 0 !important;        /* Đóng đinh cố định ở đáy màn hình */
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
-        height: 60vh !important;     /* Chiếm 60% chiều cao màn hình */
-        background-color: var(--white) !important; /* Nền trắng */
+        height: 60vh !important;     /* Chiếm đúng 60% chiều cao màn hình */
+        background-color: var(--white) !important; 
         z-index: 9999 !important;
-        border-radius: 24px 24px 0 0 !important; /* Bo góc trên màn hình */
+        border-radius: 24px 24px 0 0 !important; /* Bo góc trên xinh xắn */
         padding: 20px !important;
         box-sizing: border-box !important;
-        transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        
+        /* CƠ CHẾ SIÊU MƯỢT: Giấu bảng bằng cách đẩy tụt xuống dưới 100% chiều cao */
+        transform: translateY(100%) !important;
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        
         overflow-y: auto !important; 
-        box-shadow: 0 -10px 30px rgba(167, 139, 250, 0.15) !important;
+        box-shadow: 0 -10px 30px rgba(167, 139, 250, 0.2) !important;
         display: block !important;
         margin: 0 !important;
         max-height: none !important;
     }
 
-    /* Khi học sinh bấm nút, bảng sẽ trượt lên */
+    /* KHI JS KÍCH HOẠT: Bảng trượt vút từ dưới lên chuẩn chỉ */
     html body .palette.show-mobile, html body #palette.show-mobile {
-        bottom: 0 !important;
-        top: unset !important;
+        transform: translateY(0) !important;
     }
 
-    /* Đảm bảo chữ/số câu hỏi nổi bật trên nền trắng (Không bị tàng hình) */
+    /* Chữ tối rõ ràng trên nền trắng */
     html body .palette *, html body #palette * {
-        color: var(--text-main); 
+        color: var(--text-main) !important; 
     }
     
-    /* Giữ nguyên màu chữ trắng khi câu hỏi ở trạng thái Đã trả lời hoặc Đánh dấu */
+    /* Ép giữ màu trắng tinh cho chữ/số khi ở trạng thái Đã trả lời hoặc Đánh dấu */
     html body .palette ul li.is-answered, 
     html body .palette ul li.is-answered a {
         color: var(--white) !important;
@@ -753,9 +756,4 @@ input[type="radio"] {
     }
 }
 
-/* Ẩn nút mobile hoàn toàn khi học sinh xem trên máy tính */
-@media (min-width: 601px) {
-    html body #btn-mobile-palette {
-        display: none !important;
-    }
-}
+/* Ẩn nút
