@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const nganHangDapAn = {
                 'lambai.html': {
-                    'tenDe': 'Bài thi thử thiết kế Demo',
+                    'tenDe': 'ĐỀ THI THỬ NGHIỆM',
                     'dapAn': { 'q1': 'D', 'q2': 'S', 'q3': '2' }
                 },
                 'de-01.html': {
