@@ -5,175 +5,508 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Làm bài</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="format.css">
     
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <style>
+        /* --- HỆ THỐNG BIẾN MÀU KẸO NGỌT (GIỮ NGUYÊN BẢN CUTE) --- */
+        :root {
+            --primary-purple: #8B5CF6;
+            --primary-hover: #7C3AED;
+            --secondary-pink: #FDE6F1;
+            --accent-candy: #EC4899;
+            --bg-global: #FAF5FF;
+            --white: #ffffff;
+            --text-main: #4C3A56;
+            --text-muted: #8A7A95;
+            --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-global);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-main);
+            padding-bottom: 60px;
+        }
+
+        /* Thanh điều hướng Navbar */
+        .navbar {
+            background-color: var(--white);
+            padding: 15px 30px;
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-purple);
+            text-decoration: none;
+        }
+
+        .logo-area .slogan {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-left: 10px;
+        }
+
+        /* --- BỐ CỤC CHÍNH (KHÔNG PHÁ VỠ CÁI ĐÃ XONG) --- */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Vùng làm bài thi bên trái */
+        .baithi {
+            flex: 2;
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .exam-header {
+            border-bottom: 2px dashed var(--secondary-pink);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timer {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-candy);
+            background-color: var(--secondary-pink);
+            padding: 8px 16px;
+            border-radius: 15px;
+        }
+
+        /* Khung câu hỏi */
+        .question-block {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #F3E8FF;
+            scroll-margin-top: 30px; /* Tiện ích khi nhảy câu không bị che khuất */
+        }
+
+        .question-title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Các phương án trắc nghiệm */
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            border: 2px solid #F3E8FF;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 17px;
+        }
+
+        .option-item:hover {
+            background-color: #FDF9FF;
+            border-color: var(--secondary-pink);
+        }
+
+        .option-item input[type="radio"] {
+            accent-color: var(--primary-purple);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Ô trả lời ngắn điền số */
+        .short-answer-input {
+            width: 180px;
+            padding: 12px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            border: 2px solid var(--primary-purple);
+            border-radius: 12px;
+            color: var(--primary-purple);
+            text-align: center;
+            background-color: #FAF5FF;
+            outline: none;
+        }
+
+        /* Bảng câu hỏi bên phải (Giao diện Desktop mượt mà cũ) */
+        .palette {
+            flex: 1;
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+
+        .palette-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .shiba-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 15fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        /* Ô vuông Shiba siêu cute đã hoàn thiện */
+        .shiba-o-vuong {
+            aspect-ratio: 1;
+            background-color: #FAF5FF;
+            border: 2px solid #E9D5FF;
+            color: var(--text-main);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .shiba-o-vuong:hover {
+            transform: scale(1.08);
+            border-color: var(--primary-purple);
+            background-color: var(--secondary-pink);
+        }
+
+        /* Trạng thái câu hỏi đã được tích đáp án */
+        .shiba-o-vuong.is-done {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            border-color: var(--primary-purple);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-candy);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 16px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #D81B60;
+            transform: translateY(-2px);
+        }
+
+        /* Nút ẩn hiện trên Mobile mặc định ẩn trên PC */
+        #btn-mobile-palette {
+            display: none;
+        }
+
+        /* --- 📱 BỘ CODE MA THUẬT: RESPONSIVE CHO DI ĐỘNG (CHỐNG MỎI TAY) --- */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .baithi {
+                width: 100%;
+                padding: 20px;
+            }
+
+            /* BIẾN HÌNH: Bảng câu hỏi bọc trong hộp trượt Slide-up kiểu TikTok/Shopee */
+            .palette {
+                position: fixed;
+                bottom: -100%; /* Giấu tịt dưới đáy màn hình */
+                left: 0;
+                width: 100%;
+                max-height: 60vh; /* Giới hạn chiều cao chiếm tối đa 60% màn hình */
+                z-index: 9999; /* Ưu tiên hiển thị đè lên tất cả */
+                border-radius: 28px 28px 0 0; /* Bo góc trên đỉnh siêu dễ thương */
+                box-shadow: 0 -10px 40px rgba(139, 92, 246, 0.25);
+                transition: bottom 0.35s cubic-bezier(0.25, 1, 0.5, 1); /* Hiệu ứng kéo mượt mà */
+                overflow-y: auto; /* Tự động cuộn bên trong nếu quá nhiều câu */
+                padding: 30px 20px 20px 20px;
+            }
+
+            /* Thêm thanh gờ ngang trang trí phía trên để nhận diện kéo đóng */
+            .palette::before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 5px;
+                background-color: #E9D5FF;
+                border-radius: 10px;
+            }
+
+            /* Class kích hoạt trượt bảng lên */
+            .palette.show-mobile {
+                bottom: 0;
+            }
+
+            .shiba-grid {
+                grid-template-columns: repeat(5, 1fr); /* Giữ nguyên lưới ô vuông đều đặn */
+                gap: 10px;
+            }
+
+            /* Hiện nút nổi xinh xắn điều khiển mở bảng câu hỏi */
+            #btn-mobile-palette {
+                display: block;
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                z-index: 10000; /* Luôn đứng trên đầu bảng trượt */
+                background-color: var(--primary-purple);
+                color: var(--white);
+                padding: 14px 20px;
+                border-radius: 30px;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 700;
+                font-size: 15px;
+                border: none;
+                box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
+
     <header class="navbar">
         <div class="logo-area">
             <a href="index.html" class="logo">SweetMath</a>
-            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+            <span class="slogan">Phòng Thi Thử Đạt Chuẩn GDPT 2018</span>
         </div>
     </header>
-    
+
     <div class="container">
-        
-        <div class="baithi">
-            <div class="content-wrapper">
-            <form>
-    <p id="cau-1">
-        <button type="button" class="btn-mark" data-target="nav-cau-1"><b>CÂU 1</b></button>
-        Công trình nào sau đây không nằm ở châu Âu?
-    </p>
-    <div class="cau-hoi-group">
-        <label class="dapan">
-            <input type="radio" name="q1" value="A" data-target="nav-cau-1"> 
-            <span class="nut-chucai">A</span> 
-            Tháp Eiffel
-        </label>
-        <label class="dapan">
-            <input type="radio" name="q1" value="B" data-target="nav-cau-1"> 
-            <span class="nut-chucai">B</span> 
-            Tháp Pisa
-        </label>
-        <label class="dapan">
-            <input type="radio" name="q1" value="C" data-target="nav-cau-1"> 
-            <span class="nut-chucai">C</span> 
-            Tháp Big Ben   
-        </label>
-        <label class="dapan">
-            <input type="radio" name="q1" value="D" data-target="nav-cau-1"> 
-            <span class="nut-chucai">D</span> 
-            Tháp Tokyo
-        </label>
+        <main class="baithi">
+            <div class="exam-header">
+                <h2>📝 Bài kiểm tra Khảo sát Toán 12</h2>
+                <div class="timer" id="countdown-timer">60:00</div>
+            </div>
+
+            <form id="sweetmath-exam-form">
+                <div class="question-block" id="cau1">
+                    <div class="question-title">Câu 1. Tìm tập xác định $D$ của hàm số $y = \log_3(x - 2)$.</div>
+                    <ul class="options-list">
+                        <li><label class="option-item"><input type="radio" name="q1" value="A" onchange="markAsDone(1)"> $D = (-\infty; 2)$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q1" value="B" onchange="markAsDone(1)"> $D = [2; +\infty)$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q1" value="C" onchange="markAsDone(1)"> $D = (2; +\infty)$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q1" value="D" onchange="markAsDone(1)"> $D = \mathbb{R} \setminus \{2\}$</label></li>
+                    </ul>
+                </div>
+
+                <div class="question-block" id="cau2">
+                    <div class="question-title">Câu 2. Tính đạo hàm của hàm số $y = e^{2x}$.</div>
+                    <ul class="options-list">
+                        <li><label class="option-item"><input type="radio" name="q2" value="A" onchange="markAsDone(2)"> $y' = e^{2x}$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q2" value="B" onchange="markAsDone(2)"> $y' = 2e^{2x}$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q2" value="C" onchange="markAsDone(2)"> $y' = \frac{1}{2}e^{2x}$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q2" value="D" onchange="markAsDone(2)"> $y' = 2x \cdot e^{2x-1}$</label></li>
+                    </ul>
+                </div>
+
+                <div class="question-block" id="cau3">
+                    <div class="question-title">Câu 3 [Trả lời ngắn]. Tìm giá trị lớn nhất của hàm số $y = -x^3 + 3x - 1$ trên đoạn $[0; 2]$.</div>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-weight: 600;">Đáp số của cậu:</span>
+                        <input type="text" class="short-answer-input" placeholder="Điền số..." oninput="checkShortAnswer(this, 3)">
+                    </div>
+                </div>
+                
+                 <div class="question-block" id="cau4">
+                    <div class="question-title">Câu 4 [Trả lời ngắn]. Cho hàm số bậc ba có đồ thị như hình vẽ... Tính tổng các giá trị nguyên của tham số $m$.</div>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-weight: 600;">Đáp số của cậu:</span>
+                        <input type="text" class="short-answer-input" placeholder="Điền số..." oninput="checkShortAnswer(this, 4)">
+                    </div>
+                </div>
+
+                <div class="question-block" id="cau5">
+                    <div class="question-title">Câu 5. Cho khối chóp $S.ABC$ có thể tích bằng $12\text{ cm}^3$. Tính thể tích khối chóp $S.A'B'C'$...</div>
+                    <ul class="options-list">
+                        <li><label class="option-item"><input type="radio" name="q5" value="A" onchange="markAsDone(5)"> $4\text{ cm}^3$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q5" value="B" onchange="markAsDone(5)"> $6\text{ cm}^3$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q5" value="C" onchange="markAsDone(5)"> $3\text{ cm}^3$</label></li>
+                        <li><label class="option-item"><input type="radio" name="q5" value="D" onchange="markAsDone(5)"> $2\text{ cm}^3$</label></li>
+                    </ul>
+                </div>
+            </form>
+        </main>
+
+        <aside class="palette">
+            <div class="palette-title">🐾 Danh sách câu hỏi</div>
+            <div class="shiba-grid">
+                <a href="#cau1" class="shiba-o-vuong" id="nav-q1">1</a>
+                <a href="#cau2" class="shiba-o-vuong" id="nav-q2">2</a>
+                <a href="#cau3" class="shiba-o-vuong" id="nav-q3">3</a>
+                <a href="#cau4" class="shiba-o-vuong" id="nav-q4">4</a>
+                <a href="#cau5" class="shiba-o-vuong" id="nav-q5">5</a>
+            </div>
+            <button type="button" class="btn-submit" onclick="submitExam()">Nộp bài thi</button>
+        </aside>
     </div>
 
-    <p id="cau-2">
-        <button type="button" class="btn-mark" data-target="nav-cau-2"><b>CÂU 2</b></button>
-        Georg Cantor là nhà toán học người Pháp.
-    </p>
-    <div class="cau-hoi-group nhom-ngang">
-        <label class="dapan">
-            <input type="radio" name="q2" value="D" data-target="nav-cau-2"> 
-            <span class="nut-chucai nut-chu-dai">ĐÚNG</span> 
-        </label>
-        <label class="dapan">
-            <input type="radio" name="q2" value="S" data-target="nav-cau-2">
-            <span class="nut-chucai nut-chu-dai">SAI</span>
-        </label>
-    </div>
+    <button type="button" id="btn-mobile-palette">📋 Bảng câu hỏi</button>
 
-    <p id="cau-3">
-        <button type="button" class="btn-mark" data-target="nav-cau-3"><b>CÂU 3</b></button>
-        Điền đáp án phép tính sau: 1+1=?
-    </p>
-    <div class="short-answer-container">
-        <span class="answer-label">Đáp án:</span>
-        <div class="input-wrapper">
-            <input 
-                type="text" 
-                name="q3"
-                class="input-short-answer moe-format" 
-                placeholder="Ví dụ: -1,5" 
-                maxlength="4" 
-                data-target="nav-cau-3" >
-            <span class="moe-note">Tối đa 4 ký tự (gồm chữ số, dấu "-" và dấu ",")</span>
-        </div>
-    </div>
-</form>
-        </div></div>
-
-        <div class="palette">
-            <div class="content-wrapper">
-        <div class="timer box">
-        <span>Thời gian còn lại:</span>
-        <span id="countdown">90:00</span>
-    </div>
-            <h3 align="center">CÂU HỎI</h3>
-                <h5>PHẦN I</h5>
-            <ul>
-<li class="btn-secondary" id="nav-cau-1"><a href="#cau-1">1</a></li>
-<li class="btn-secondary" id="nav-cau-2"><a href="#cau-2">2</a></li>
-<li class="btn-secondary" id="nav-cau-3"><a href="#cau-3">3</a></li>
-<li class="btn-secondary">4</li>
-<li class="btn-secondary">5</li>
-<li class="btn-secondary">6</li>
-<li class="btn-secondary">7</li>
-<li class="btn-secondary">8</li>
-<li class="btn-secondary">9</li>
-<li class="btn-secondary">10</li>
-<li class="btn-secondary">11</li>
-<li class="btn-secondary">12</li></ul>
-                <h5>PHẦN II</h5>
-                <ul>
-<li class="btn-secondary">1a</li>
-<li class="btn-secondary">1b</li>
-<li class="btn-secondary">1c</li>
-<li class="btn-secondary">1d</li>
-
-<li class="btn-secondary">2a</li>
-<li class="btn-secondary">2b</li>
-<li class="btn-secondary">2c</li>
-<li class="btn-secondary">2d</li>
-
-<li class="btn-secondary">3a</li>
-<li class="btn-secondary">3b</li>
-<li class="btn-secondary">3c</li>
-<li class="btn-secondary">3d</li>
-
-<li class="btn-secondary">4a</li>
-<li class="btn-secondary">4b</li>
-<li class="btn-secondary">4c</li>
-<li class="btn-secondary">4d</li></ul>
-                <h5>PHẦN III</h5>
-                <ul>
-<li class="btn-secondary">1</li>
-<li class="btn-secondary">2</li>
-<li class="btn-secondary">3</li>
-<li class="btn-secondary">4</li>
-<li class="btn-secondary">5</li>
-<li class="btn-secondary">6</li>
-            </ul>
-    
-            <div class="thi-buttons">
-                <h5>Tổng số câu hỏi: 34 câu hỏi</h5>
-                <div class="box-can-giua">
-    <a href="#" id="trigger-nopbai" class="btn-nopbai btn-cute">Nộp bài</a></div>
-                <div class="box-can-giua">
-    <a href="#" id="trigger-thoat" class="btn-thoat btn-cute">Thoát ra</a></div>
-</div></div>
-
-<div class="popup-overlay" id="overlay-nopbai">
-    <div class="popup-content">
-        <h4>Nộp bài thi?</h4>
-        <p>Bạn có chắc chắn muốn nộp bài để hệ thống chấm điểm không?</p>
-        <div class="popup-actions">
-            <div class="box-can-giua">
-            <a href="ketqua.html" class="btn-confirm btn-cute">Xác nhận nộp bài</a>
-            <button type="button" class="btn-close btn-cute">Tiếp tục làm bài</button>
-        </div></div>
-    </div>
-    </div>
-
-    <div class="popup-overlay" id="overlay-thoat">
-        <div class="popup-content">
-            <h4>Rời phòng thi?</h4>
-            <p>Tiến độ làm bài sẽ bị xóa sạch nếu bạn thoát ra lúc này!</p>
-            <div class="popup-actions">
-                <div class="box-can-giua">
-                <a href="dethithudemo.html" class="btn-confirm-danger btn-cute">Xác nhận thoát ra</a>
-                <button type="button" class="btn-close btn-cute">Tiếp tục làm bài</button>
-            </div></div>
-        </div>
-    </div>
-</div>
-</div>
-        
     <footer>
-        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>SweetMath - Hãy học Toán bằng niềm vui ngọt ngào kẹo candy 🍬</p>
         <p>Bản quyền © 2026 SweetMath.</p>
     </footer>
 
-<script src="java.js"></script>
+    <script>
+        // 1. LOGIC ẨN/HIỆN BẢNG TRƯỢT THÔNG MINH TRÊN MOBILE (CHỐNG MỎI TAY)
+        document.addEventListener("DOMContentLoaded", function () {
+            const btnMobile = document.getElementById('btn-mobile-palette');
+            const paletteBox = document.querySelector('.palette');
+
+            if (btnMobile && paletteBox) {
+                // Khi bấm nút nổi: Toggle bật/tắt bảng trượt từ dưới lên
+                btnMobile.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Ngăn sự kiện lan rộng
+                    paletteBox.classList.toggle('show-mobile');
+                    
+                    if (paletteBox.classList.contains('show-mobile')) {
+                        btnMobile.textContent = '❌ Đóng bảng';
+                        btnMobile.style.backgroundColor = 'var(--accent-candy)';
+                    } else {
+                        btnMobile.textContent = '📋 Bảng câu hỏi';
+                        btnMobile.style.backgroundColor = 'var(--primary-purple)';
+                    }
+                });
+
+                // Tự động đóng bảng trượt khi học sinh click chọn số câu để nhảy câu
+                const shibaButtons = paletteBox.querySelectorAll('.shiba-o-vuong');
+                shibaButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        paletteBox.classList.remove('show-mobile');
+                        btnMobile.textContent = '📋 Bảng câu hỏi';
+                        btnMobile.style.backgroundColor = 'var(--primary-purple)';
+                    });
+                });
+
+                // Bấm ra ngoài vùng bảng trượt cũng tự động đóng lại cho tự nhiên
+                document.addEventListener('click', function(e) {
+                    if (!paletteBox.contains(e.target) && e.target !== btnMobile) {
+                        paletteBox.classList.remove('show-mobile');
+                        btnMobile.textContent = '📋 Bảng câu hỏi';
+                        btnMobile.style.backgroundColor = 'var(--primary-purple)';
+                    }
+                });
+            }
+
+            // 2. LOGIC ĐỒNG HỒ ĐẾM NGƯỢC THI THỬ
+            let timeInMinutes = 60;
+            let timeInSeconds = timeInMinutes * 60;
+            const timerElement = document.getElementById('countdown-timer');
+
+            const countdownInterval = setInterval(() => {
+                let minutes = Math.floor(timeInSeconds / 60);
+                let seconds = timeInSeconds % 60;
+
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                timerElement.textContent = `${minutes}:${seconds}`;
+
+                if (timeInSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    alert("Hết giờ làm bài rồi cậu ơi! Hệ thống tự động thu bài nhé!");
+                    submitExam();
+                }
+                timeInSeconds--;
+            }, 1000);
+        });
+
+        // 3. ĐỔI MÀU Ô SỐ KHI ĐÃ ĐIỀN ĐÁP ÁN (DÀNH CHO TRẮC NGHIỆM)
+        function markAsDone(questionNumber) {
+            const navButton = document.getElementById(`nav-q${questionNumber}`);
+            if (navButton) {
+                navButton.classList.add('is-active', 'is-done');
+            }
+        }
+
+        // 4. THUẬT TOÁN ĐỘC QUYỀN: CHUẨN HÓA LỖI NHẬP DẤU TRỪ TRONG CÂU TRẢ LỜI NGẮN
+        function checkShortAnswer(inputElement, questionNumber) {
+            let value = inputElement.value.trim();
+            const navButton = document.getElementById(`nav-q${questionNumber}`);
+
+            // Nếu học sinh vô tình nhập số trước rồi gõ dấu trừ sau (Ví dụ: "1-")
+            if (/^\d+-$/.test(value)) {
+                // Thuật toán đảo dấu trừ lên đầu ngay lập tức
+                value = '-' + value.slice(0, -1);
+                inputElement.value = value; // Cập nhật lại giao diện ô nhập
+            }
+
+            // Thắp sáng ô Shiba tương ứng nếu có nội dung đáp án hợp lệ
+            if (value !== "") {
+                if (navButton) navButton.classList.add('is-done');
+            } else {
+                if (navButton) navButton.classList.remove('is-done');
+            }
+        }
+
+        // 5. SỰ KIỆN NỘP BÀI THI
+        function submitExam() {
+            alert("Chúc mừng cậu đã hoàn thành bài thi thử xuất sắc! Hệ thống SweetMath đang phân tích kết quả nha! 🎉");
+        }
+    </script>
 </body>
 </html>
