@@ -119,18 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // =========================================================================
-    // 5. [SỬA LỖI] TÍNH NĂNG "BẢNG TRƯỢT TIKTOK" ĐỘC QUYỀN CHO MOBILE
+    // 5. TÍNH NĂNG "BẢNG TRƯỢT TIKTOK" ĐỘC QUYỀN CHO MOBILE
     // =========================================================================
     const btnMobile = document.getElementById('btn-mobile-palette');
-    
-    // Cơ chế tìm kiếm bọc thép: Tìm theo ID trước, nếu không thấy thì tìm theo Class .palette
     const paletteBox = document.getElementById('palette') || document.querySelector('.palette');
 
     if (btnMobile && paletteBox) {
         
         // Kịch bản A: Bấm nút nổi để đóng/mở bảng
         btnMobile.addEventListener('click', function(event) {
-            event.stopPropagation(); // Ngăn chặn sự kiện click bị lan ra ngoài document
+            event.stopPropagation(); 
             paletteBox.classList.toggle('show-mobile');
             
             if (paletteBox.classList.contains('show-mobile')) {
@@ -142,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Kịch bản B: Bấm chọn câu hỏi bên trong bảng -> Tự đóng bảng xuống (Sử dụng .closest để sửa lỗi kẹt thẻ con)
+        // Kịch bản B: Bấm chọn câu hỏi bên trong bảng -> Tự đóng bảng xuống
         paletteBox.addEventListener('click', function(event) {
             const mucDuocChon = event.target.closest('a') || event.target.closest('button') || event.target.closest('.shiba-o-vuong');
 
@@ -177,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btnXacNhanNop) {
         btnXacNhanNop.addEventListener('click', function(event) {
-            event.preventDefault(); // Giữ lại một nhịp để xử lý dữ liệu
+            event.preventDefault(); 
 
             const nganHangDapAn = {
                 'lambai.html': {
@@ -194,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             };
 
-            // Lấy tên file HTML hiện tại (ví dụ: lambai.html)
             const tenFileHienTai = window.location.pathname.split('/').pop() || 'lambai.html';
 
             if (!nganHangDapAn[tenFileHienTai]) {
@@ -209,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const tongSoCau = Object.keys(boDapAnDung).length;
             let chiTietBaiLam = {}; 
 
-            // Vòng lặp quét đáp án học sinh chọn
             for (let questionName in boDapAnDung) {
                 const dapAnDung = boDapAnDung[questionName];
                 const userRadio = document.querySelector(`input[name="${questionName}"]:checked`);
@@ -233,7 +229,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
 
-                // Ghi chép chi tiết từng câu vào Object
                 chiTietBaiLam[questionName] = {
                     chon: luaChonCuaHocSinh,
                     dung: dapAnDung,
@@ -244,7 +239,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let diemSo = ((soCauDung / tongSoCau) * 10).toFixed(2);
             diemSo = parseFloat(diemSo);
 
-            // Lưu toàn bộ vào ngăn kéo LocalStorage
             localStorage.setItem('diemHocSinh', diemSo);
             localStorage.setItem('soCauDung', soCauDung);
             localStorage.setItem('tongSoCau', tongSoCau);
@@ -252,14 +246,14 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('tenFileDeThi', tenFileHienTai); 
             localStorage.setItem('chiTietBaiLam', JSON.stringify(chiTietBaiLam));
 
-            // Chuyển sang trang kết quả công khai
-            window.location.href = this.getAttribute('href');
+            // Tự động chuyển trang một cách an toàn
+            window.location.href = this.getAttribute('href') || "ketqua.html";
         });
     }
 
     // --- PHẦN 7: HIỂN THỊ TRÊN TRANG KẾT QUẢ (ketqua.html) ---
     const diemHienThi = document.getElementById('diem-so');
-    const "soCauHienThi" = document.getElementById('so-cau-dung');
+    const soCauHienThi = document.getElementById('so-cau-dung'); // Tớ đã tháo cái ngoặc kép vô duyên ở đây rồi!
     const tenDeHienThi = document.getElementById('ten-de-thi');
 
     if (diemHienThi && soCauHienThi) {
@@ -277,7 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const khungXemLai = document.getElementById('khung-xem-lai');
 
     if (khungXemLai) {
-        // Kho lời giải của các câu hỏi
         const khoGiaiThich = {
             'lambai.html': {
                 'q1': 'Tháp Tokyo nằm ở Nhật Bản (châu Á), trong khi Tháp Eiffel, Pisa, Big Ben đều nằm ở châu Âu.',
@@ -299,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (chiTietBaiLam && khoGiaiThich[tenFileDeThi]) {
             const boGiaiThichHienTai = khoGiaiThich[tenFileDeThi];
-            khungXemLai.innerHTML = ''; // Dọn sạch khung chờ trước khi in
+            khungXemLai.innerHTML = ''; 
 
             for (let cauId in chiTietBaiLam) {
                 let dataCauHoi = chiTietBaiLam[cauId];
