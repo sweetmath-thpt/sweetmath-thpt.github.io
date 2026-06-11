@@ -66,19 +66,22 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener('click', function(event) {
             event.preventDefault(); 
             this.classList.toggle('is-marked');
-            const targetId = this.getAttribute('data-target');
-            const paletteElement = document.getElementById(targetId);
             
-            if (paletteElement) {
-                paletteElement.classList.toggle('is-marked');
+            const targetId = this.getAttribute('data-target');
+            if(targetId) {
+                const paletteElement = document.getElementById(targetId);
+                if (paletteElement) {
+                    paletteElement.classList.toggle('is-marked');
+                }
             }
         });
     });
 
-    // --- Khi học sinh CHỌN ĐÁP ÁN ---
+    // --- Khi học sinh CHỌN ĐÁP ÁN (RADIO HOẶC ĐIỀN TỪ) ---
     answerInputs.forEach(input => {
-        // Dùng 'change' để hỗ trợ cảm ứng mượt hơn trên điện thoại
-        input.addEventListener('change', function() {
+        // Hàm xử lý đổi màu chung, bao trọn mọi trường hợp
+        const capNhatMauBang = function() {
+            // Xử lý bộ lọc định dạng số cho câu trả lời ngắn
             if (this.classList.contains('moe-format')) {
                 let val = this.value;
                 val = val.replace(/\./g, ',');
@@ -95,12 +98,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.value = val;
             }
 
+            // Đồng bộ trạng thái "Đã làm bài" (is-answered)
             const targetId = this.getAttribute('data-target');
+            if(!targetId) return; // Nếu HTML quên gắn data-target thì bỏ qua để không báo lỗi
+
             const paletteElement = document.getElementById(targetId);
-            
             if (paletteElement) {
                 if (this.type === 'radio') {
-                    paletteElement.classList.add('is-answered');
+                    if (this.checked) {
+                        paletteElement.classList.add('is-answered');
+                    }
                 } else {
                     if (this.value.trim() !== "") {
                         paletteElement.classList.add('is-answered');
@@ -109,21 +116,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
-        });
+        };
 
-        // Hỗ trợ gõ trực tiếp cho ô văn bản ngắn
-        if (input.type === 'text') {
-            input.addEventListener('input', function() {
-                const targetId = this.getAttribute('data-target');
-                const paletteElement = document.getElementById(targetId);
-                if (paletteElement) {
-                    if (this.value.trim() !== "") {
-                        paletteElement.classList.add('is-answered');
-                    } else {
-                        paletteElement.classList.remove('is-answered');
-                    }
-                }
-            });
+        // Gắn lưới cảm biến 3 lớp để bắt dính mọi thao tác trên điện thoại
+        input.addEventListener('change', capNhatMauBang);
+        if(input.type === 'radio') {
+            input.addEventListener('click', capNhatMauBang); // Phụ trợ thêm cho Radio
+        }
+        if(input.type === 'text') {
+            input.addEventListener('input', capNhatMauBang); // Gõ tới đâu nhận tới đó cho Text
         }
     });
 
@@ -134,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const paletteBox = document.getElementById('palette');
 
     if (btnMobile && paletteBox) {
-        // Kịch bản A: Bấm nút nổi để đóng/mở bảng
+        // A: Bấm nút nổi để đóng/mở bảng
         btnMobile.addEventListener('click', function(event) {
             event.stopPropagation(); 
             paletteBox.classList.toggle('show-mobile');
@@ -148,9 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Kịch bản B: Bấm chọn câu hỏi bên trong bảng -> Tự đóng bảng xuống
+        // B: Bấm chọn câu hỏi bên trong bảng -> Tự động thụt bảng xuống
         paletteBox.addEventListener('click', function(event) {
-            // Tìm bao quát cả thẻ li, thẻ a, hoặc class shiba
             const mucDuocChon = event.target.closest('li') || event.target.closest('a') || event.target.closest('button');
 
             if (mucDuocChon) {
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Kịch bản C: Chạm ngón tay ra vùng trống bên ngoài bảng để thu bảng xuống
+        // C: Chạm ngón tay ra vùng trống bên ngoài bảng đề thi để tự thu bảng xuống
         document.addEventListener('click', function(event) {
             if (paletteBox.classList.contains('show-mobile')) {
                 const clickTrongBang = paletteBox.contains(event.target);
