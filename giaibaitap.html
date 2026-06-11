@@ -6,6 +6,21 @@
     <title>Giải phẫu Bài toán - SweetMath</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="format.css">
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']], // Công thức nằm trên cùng một dòng
+            displayMath: [['$$', '$$'], ['\\[', '\\]']] // Công thức xuống dòng, căn giữa
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
     <style>
         /* CSS viết thêm riêng cho trang giải thích để không làm ảnh hưởng các file cũ */
         .anatomy-container {
@@ -46,7 +61,7 @@
             padding: 14px;
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 20px;
             border: 2px solid var(--secondary-pink);
             background-color: var(--white);
             color: var(--text-main);
@@ -99,7 +114,7 @@
         }
 
         .step-text {
-            font-size: 16px;
+            font-size: 20px;
             line-height: 1.6;
             flex: 1;
         }
@@ -113,7 +128,7 @@
             border-radius: 8px;
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
@@ -130,7 +145,7 @@
             border-radius: 10px;
             padding: 12px 15px;
             margin-top: 10px;
-            font-size: 14.5px;
+            font-size: 20px;
             color: #6B5277;
             border-left: 3px dashed var(--primary-purple);
             display: none; /* Ban đầu ẩn, bấm nút mới hiện */
@@ -219,11 +234,15 @@
 
             <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 10px; border-radius: 8px;">
                 <p>➔ So sánh các giá trị trên, ta thấy giá trị lớn nhất là <strong>1</strong> (đạt được khi $x = 1$).</p>
-                <p style="margin-top: 5px; color: var(--accent-candy); font-size: 13px;"><strong>*Đáp số điền ô trả lời ngắn: 1</strong></p>
+                <p style="margin-top: 5px; color: var(--accent-candy); font-size: 20px;"><strong>*Đáp số điền ô trả lời ngắn: 1</strong></p>
             </div>
 
         </div>
     </div>
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
 
     <script>
         // --- LOGIC XỬ LÝ 2 TAB KHÔNG MỞ SẴN ---
