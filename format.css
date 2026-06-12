@@ -156,7 +156,7 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 #countdown { display: block; font-size: 48px; font-weight: 900; color: #E11D48; line-height: 1; text-shadow: 2px 2px 5px rgba(225, 29, 72, 0.2); }
 
 /* =========================================================
-   CÁC TRẠNG THÁI BẢNG PALETTE
+   CÁC TRẠNG THÁI BẢNG PALETTE (MÁY TÍNH)
    ========================================================= */
 .palette ul li.is-answered { background-color: var(--primary-purple) !important; color: var(--white) !important; border-color: var(--primary-purple) !important; box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4) !important; }
 .palette ul li.is-marked { background-color: #E11D48 !important; color: var(--white) !important; border-color: #E11D48 !important; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important; }
@@ -272,7 +272,7 @@ input[type="radio"] { display: none; }
         border-radius: 24px 24px 0 0 !important; 
         padding: 20px !important;
         box-sizing: border-box !important;
-        transform: translateY(100%) !important; /* Tuyệt chiêu giấu bảng */
+        transform: translateY(100%) !important;
         transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         overflow-y: auto !important; 
         box-shadow: 0 -10px 30px rgba(167, 139, 250, 0.2) !important;
@@ -301,10 +301,39 @@ input[type="radio"] { display: none; }
         display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; height: 100% !important;
     }
 
-    /* Đảm bảo màu chữ hiển thị */
-    html body .palette *, html body #palette * { color: var(--text-main) !important; }
-    html body .palette ul li.is-answered, html body .palette ul li.is-answered a,
-    html body .palette ul li.is-marked, html body .palette ul li.is-marked a {
+    /* ====================================================
+       KHU VỰC FIX LỖI MÀU CHỮ TRÊN DI ĐỘNG (RẤT QUAN TRỌNG)
+       ==================================================== */
+    
+    /* 1. Đảm bảo chữ mặc định (Tiêu đề, số ô chưa làm) màu tối rõ nét */
+    html body .palette, html body #palette,
+    html body .palette h3, html body .palette h5,
+    html body .palette span:not(.btn-cute),
+    html body .palette ul li.btn-secondary, 
+    html body .palette ul li.btn-secondary a { 
+        color: var(--text-main) !important; 
+    }
+
+    /* 2. Ép cứng chữ trắng tinh khôi cho nút Nộp bài / Thoát ra */
+    html body .palette .btn-cute, html body #palette .btn-cute {
+        color: var(--white) !important;
+    }
+
+    /* 3. Ép cứng nền TÍM, chữ TRẮNG cho ô ĐÃ TRẢ LỜI */
+    html body .palette ul li.is-answered, 
+    html body .palette ul li.is-answered a,
+    html body .palette ul li.is-answered * {
+        background-color: var(--primary-purple) !important;
+        border-color: var(--primary-purple) !important;
+        color: var(--white) !important;
+    }
+
+    /* 4. Ép cứng nền ĐỎ, chữ TRẮNG cho ô ĐÁNH DẤU */
+    html body .palette ul li.is-marked, 
+    html body .palette ul li.is-marked a,
+    html body .palette ul li.is-marked * {
+        background-color: #E11D48 !important;
+        border-color: #E11D48 !important;
         color: var(--white) !important;
     }
 }
