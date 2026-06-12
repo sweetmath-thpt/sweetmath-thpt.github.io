@@ -1,23 +1,29 @@
 /* ==========================================================================
-   1. ĐỊNH NGHĨA BIẾN MÀU (TONE TÍM PASTEL NGỌT NGÀO)
+   1. ĐỊNH NGHĨA BIẾN MÀU (TONE TÍM PASTEL NGỌT NGÀO CỦA SWEETMATH)
    ========================================================================== */
 :root {
-    --bg-global: #F6F0FA;       
-    --primary-purple: #A78BFA;  
-    --primary-hover: #8B5CF6;   
-    --secondary-pink: #FBCFE8;  
-    --accent-candy: #FDA4AF;    
-    --text-main: #4C3A51;       
-    --text-muted: #9E8AA5;      
+    --bg-global: #F6F0FA;       /* Màu nền toàn trang: Tím sữa siêu nhạt, dịu mắt */
+    --primary-purple: #A78BFA;  /* Tím Lavender chủ đạo (cho Header, Button chính) */
+    --primary-hover: #8B5CF6;   /* Tím đậm hơn chút khi hover */
+    --secondary-pink: #FBCFE8;  /* Hồng phấn pastel ngọt ngào */
+    --accent-candy: #FDA4AF;    /* Hồng kẹo dâu (cho nút bấm Cute) */
+    --text-main: #4C3A51;       /* Màu chữ: Mận chín đậm */
+    --text-muted: #9E8AA5;      /* Màu chữ phụ: Tím xám nhạt */
     --white: #FFFFFF;
-    --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15); 
+    --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15); /* Đổ bóng mịn màu tím */
 }
 
 /* ==========================================================================
    2. RESET CSS & CẤU TRÚC CHỐNG HỞ FOOTER
    ========================================================================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html { height: 100%; }
+
 body {
     min-height: 100vh; 
     display: flex;
@@ -27,13 +33,19 @@ body {
     color: var(--text-main);
     scroll-behavior: smooth;
     font-size: 20px;
-    text-align: justify;
+    text-align: justify; /* Mặc định trên PC là justify dàn đều cho đẹp */
 }
 
 .container {
-    display: flex; gap: 24px; align-items: flex-start; flex: 1; 
-    width: 90%; max-width: 1400px; margin: 30px auto;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex: 1; 
+    width: 90%;
+    max-width: 1400px;
+    margin: 30px auto;
 }
+
 .content-wrapper { padding: 10px; }
 
 /* ==========================================================================
@@ -44,6 +56,7 @@ body {
     padding: 15px 5%; background-color: var(--white);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
+
 .brand-box, .logo-area { display: flex; flex-direction: column; }
 .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: var(--primary-purple); }
 .slogan { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
@@ -52,60 +65,60 @@ body {
 .navbar ul li a:hover { color: var(--primary-purple); }
 
 /* ==========================================================================
-   4. THÀNH PHẦN GIAO DIỆN (CARDS, INPUTS, TABLES, BUTTONS)
+   4. THÀNH PHẦN GIAO DIỆN CHUNG (CARDS, INPUTS, NÚT BẤM)
    ========================================================================== */
 .card-cute {
     background-color: var(--white); border-radius: 16px; padding: 25px;
     margin-bottom: 25px; box-shadow: var(--card-shadow); border: 1px solid rgba(255, 255, 255, 0.6);
 }
+
 h2, h3 { color: var(--text-main); margin-bottom: 15px; font-weight: 700; }
 
 input[type="text"], input[type="number"], textarea, select {
     width: 100%; padding: 12px 15px; border: 2px solid #E5DEEB; border-radius: 10px;
-    background-color: #FAFAFD; color: var(--text-main); font-family: inherit; font-size: 14px;
-    outline: none; transition: all 0.3s;
+    background-color: #FAFAFD; color: var(--text-main); font-family: inherit; font-size: 14px; outline: none; transition: all 0.3s;
 }
+
 input:focus, textarea:focus, select:focus {
     border-color: var(--primary-purple); background-color: var(--white); box-shadow: 0 0 8px rgba(167, 139, 250, 0.2);
 }
 
+/* Nút bấm dâu tây siêu dễ thương */
 .btn-cute {
     text-decoration: none; font-family: inherit; display: inline-block; border: none;
     background-color: #E11D48; color: var(--white); padding: 12px 30px; border-radius: 50px; 
     font-weight: bold; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); 
     transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s; 
 }
+
 .btn-cute:hover { background-color: #BE123C; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5); }
 .btn-cute:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); }
 
+/* Ô số câu hỏi mặc định */
 .btn-secondary {
     text-decoration: none; font-family: inherit; display: inline-block;
     background-color: var(--white) !important; color: var(--text-main) !important; 
     border: 2px solid #E5DEEB !important; box-shadow: 0 4px 10px rgba(167, 139, 250, 0.1);
     aspect-ratio: 1; transition: all 0.2s;
 }
+
 .btn-secondary:hover { background-color: var(--secondary-pink) !important; }
 
 /* ==========================================================================
-   5. CHÂN TRANG (FOOTER)
-   ========================================================================== */
-footer {
-    background-color: var(--primary-purple); color: var(--white); padding: 20px 0;
-    text-align: center; width: 100%; margin-top: auto; box-shadow: 0 -4px 15px rgba(167, 139, 250, 0.1);
-}
-footer p { font-size: 16px; font-weight: 500; }
-
-/* ==========================================================================
-   CẤU TRÚC CHIA ĐÔI MÀN HÌNH MÁY TÍNH
+   5. BỐ CỤC LÀM BÀI TRÊN MÁY TÍNH (DESKTOP) - KHÔNG ĐƯỢC ĐỤNG VÀO!
    ========================================================================== */
 .baithi { flex: 3; min-width: 0; }
+
 .palette {
-    flex: 1; position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y: auto; padding-right: 5px;      
+    flex: 1; position: sticky; top: 20px; max-height: calc(100vh - 40px); 
+    overflow-y: auto; padding-right: 5px;      
 }
+
 .palette ul {
     display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; gap: 10px;
     text-align: center; background-color: var(--bg-global);
 }
+
 .palette ul li { padding: 0; border-radius: 12px; cursor: pointer; }
 .palette ul li a {
     display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;
@@ -115,55 +128,17 @@ footer p { font-size: 16px; font-weight: 500; }
     display: flex; justify-content: center; align-items: center; font-weight: bold; padding: 0;              
 }
 
+/* Các trạng thái màu của Bảng Palette trên Desktop */
+.palette ul li.is-answered { background-color: var(--primary-purple) !important; color: var(--white) !important; border-color: var(--primary-purple) !important; box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4) !important; }
+.palette ul li.is-marked { background-color: #E11D48 !important; color: var(--white) !important; border-color: #E11D48 !important; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important; }
+
 /* ==========================================================================
-   CÁC PHẦN DÀNH CHO TRANG CHỦ / BANNER 
+   6. CHI TIẾT ĐỀ THI (CÂU HỎI, ĐỒNG HỒ, NÚT ĐÁNH DẤU, ĐÁP ÁN)
    ========================================================================== */
-.hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Anhbiatoanhoc.png");
-    height: 375px; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;
-}
-.hero-text {
-    text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; width: 90%;
-}
-.hero-text h1 { margin-bottom: 25px; line-height: 1.4; }
-h1 { color: var(--white); font-size: 44px; }
-button { font-family: inherit; }
-h6 { color: var(--white); font-size: 24px; text-align: justify; }
-h5 { color: var(--text-main); font-size: 20px; margin-top: 25px; margin-bottom: 25px; }
-h2 { color: var(--text-main); font-size: 40px; margin-top: 40px; margin-bottom: 25px; text-align: center; }
-h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom: 25px; }
-.box-can-giua { display: flex; justify-content: center; align-items: center; width: 100%; padding: 15px 0; flex-wrap: wrap; gap: 15px; }
-
-.exam-card {
-    display: flex; align-items: center; gap: 20px; background-color: var(--white); padding: 15px;
-    border-radius: 16px; box-shadow: var(--card-shadow); border: 1px solid rgba(255, 255, 255, 0.6);
-    text-decoration: none; margin-bottom: 20px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-.exam-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(167, 139, 250, 0.25); border-color: var(--primary-purple); }
-.exam-img {
-    flex: 0 0 120px; height: 120px; background-color: #FAFAFD; border-radius: 12px; border: 1px solid #E5DEEB;
-    display: flex; justify-content: center; align-items: center; overflow: hidden;          
-}
-.exam-img img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
-.exam-info { display: flex; flex-direction: column; justify-content: center; gap: 8px; flex: 1; }
-.exam-info .exam-title { margin: 0; color: var(--text-main); font-size: 20px; line-height: 1.4; transition: color 0.3s; }
-.exam-card:hover .exam-title { color: var(--primary-hover); }
-.exam-info .exam-meta { margin: 0; color: var(--text-muted); font-size: 15px; }
-.exam-info .exam-meta strong { color: var(--text-main); font-weight: 600; }
-
 .timer.box { margin-bottom: 25px; text-align: center; padding: 15px; border-radius: 12px; }
 .timer.box span:first-child { display: block; font-weight: bold; color: var(--text-main); margin-bottom: 5px; font-size: 20px; }
 #countdown { display: block; font-size: 48px; font-weight: 900; color: #E11D48; line-height: 1; text-shadow: 2px 2px 5px rgba(225, 29, 72, 0.2); }
 
-/* =========================================================
-   CÁC TRẠNG THÁI BẢNG PALETTE
-   ========================================================= */
-.palette ul li.is-answered { background-color: var(--primary-purple) !important; color: var(--white) !important; border-color: var(--primary-purple) !important; box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4) !important; }
-.palette ul li.is-marked { background-color: #E11D48 !important; color: var(--white) !important; border-color: #E11D48 !important; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important; }
-
-/* =========================================================
-   GIAO DIỆN CÂU HỎI & NÚT BẤM
-   ========================================================= */
 .btn-mark {
     background-color: #E11D48; border: none; color: var(--white); padding: 4px 12px; border-radius: 6px;
     font-size: 20px; cursor: pointer; margin-right: 12px; font-family: inherit; display: inline-block;
@@ -187,7 +162,6 @@ input[type="radio"] { display: none; }
 .nhom-ngang { display: flex; flex-wrap: wrap; gap: 30px; }
 .nhom-ngang .dapan { margin-bottom: 0; }
 
-/* TRẢ LỜI NGẮN CHUẨN BỘ GD-ĐT */
 .short-answer-container {
     display: flex; align-items: center; gap: 15px; margin: 20px 0; max-width: 550px; 
     background: rgba(255, 255, 255, 0.6); padding: 12px 20px; border-radius: 16px; border: 1px dashed var(--primary-purple); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
@@ -203,7 +177,9 @@ input[type="radio"] { display: none; }
 .input-short-answer::placeholder { font-size: 16px; font-weight: 500; color: #cbd5e1; font-style: italic; letter-spacing: 0px; }
 .moe-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-style: italic; font-weight: 500; text-align: center; }
 
-/* POPUP OVERLAY */
+/* ==========================================================================
+   7. POPUP & FOOTER & LINH TINH KHÁC
+   ========================================================================== */
 .popup-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
     background-color: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center;
@@ -214,33 +190,37 @@ input[type="radio"] { display: none; }
 }
 .popup-overlay.open { display: flex; }
 
+.box-can-giua { display: flex; justify-content: center; align-items: center; width: 100%; padding: 15px 0; flex-wrap: wrap; gap: 15px; }
+
+footer {
+    background-color: var(--primary-purple); color: var(--white); padding: 20px 0;
+    text-align: center; width: 100%; margin-top: auto; box-shadow: 0 -4px 15px rgba(167, 139, 250, 0.1);
+}
+footer p { font-size: 16px; font-weight: 500; }
 
 /* ==========================================================================
-   6. RESPONSIVE HOÀN HẢO & BẢNG TRƯỢT TIKTOK ĐỘC QUYỀN
+   8. RESPONSIVE HOÀN HẢO (THÍCH ỨNG ĐA MÀN HÌNH)
    ========================================================================== */
 
 /* --- TABLET (Dưới 768px) --- */
 @media (max-width: 768px) {
-    body { text-align: left !important; } /* Sửa lỗi justify trên màn hình hẹp */
+    /* Ép văn bản căn trái trên màn hình hẹp để không bị giãn chữ đè tag hồng */
+    body { text-align: left !important; } 
     
     .slogan { display: none; }
     .navbar { flex-direction: column; gap: 15px; text-align: center; }
     .navbar ul { gap: 15px; padding: 0; flex-wrap: wrap; justify-content: center; }
     .content-wrapper { padding: 15px 3%; }
     
-    .hero-text h1 { font-size: 26px; margin-bottom: 12px; }
-    .hero-text h6 { font-size: 15px; text-align: center; line-height: 1.5; }
-    
-    .exam-card { flex-direction: column; text-align: center; gap: 15px; }
-    .exam-img { flex: 0 0 auto; width: 100px; height: 100px; }
-    
+    /* Ép khung chứa dọc xuống */
     .container { flex-direction: column; width: 95%; padding: 0; margin: 15px auto; }
     .baithi { width: 100% !important; flex: none; }
 }
 
-/* --- MOBILE & BOTTOM SHEET (Dưới 600px) --- */
+/* --- ĐIỆN THOẠI & BẢNG TRƯỢT TIKTOK (Dưới 600px) --- */
 @media (max-width: 600px) {
-    /* Nút kích hoạt bảng trên di động */
+    
+    /* 1. HIỆN NÚT MỞ BẢNG Ở GÓC DƯỚI */
     html body #btn-mobile-palette {
         display: block !important;
         position: fixed !important;
@@ -258,10 +238,10 @@ input[type="radio"] { display: none; }
         cursor: pointer !important;
     }
 
-    /* Đóng đinh Bảng xuống đáy, ẩn bằng transform */
+    /* 2. BIẾN BẢNG CÂU HỎI THÀNH BOTTOM SHEET (GIẤU XUỐNG ĐÁY) */
     html body .palette, html body #palette {
         position: fixed !important;
-        top: auto !important;        
+        top: auto !important; /* Xóa sổ lệnh top: 20px của Desktop */
         bottom: 0 !important;        
         left: 0 !important;
         right: 0 !important;
@@ -272,7 +252,7 @@ input[type="radio"] { display: none; }
         border-radius: 24px 24px 0 0 !important; 
         padding: 20px !important;
         box-sizing: border-box !important;
-        transform: translateY(100%) !important; /* Tuyệt chiêu giấu bảng */
+        transform: translateY(100%) !important; /* Đẩy xuống giấu kín dưới đất */
         transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         overflow-y: auto !important; 
         box-shadow: 0 -10px 30px rgba(167, 139, 250, 0.2) !important;
@@ -281,75 +261,61 @@ input[type="radio"] { display: none; }
         max-height: none !important;
     }
 
-    /* Kéo lên bằng JS */
+    /* Khi JS gọi class show-mobile thì trượt lên */
     html body .palette.show-mobile, html body #palette.show-mobile {
         transform: translateY(0) !important;
     }
 
-    /* Căn chỉnh lại grid câu hỏi trên điện thoại */
+    /* 3. LƯỚI 5 CỘT XINH XẮN TRÊN ĐIỆN THOẠI */
     html body .palette ul {
         display: grid !important;
         grid-template-columns: repeat(5, 1fr) !important; 
         gap: 10px !important;
         padding: 10px 0 !important;
+        background-color: transparent !important;
     }
-    
     html body .palette ul li {
         width: 100% !important; aspect-ratio: 1 !important; height: auto !important; margin: 0 !important;
     }
     html body .palette ul li a {
-        display: flex !important; justify-content: center !important; align-items: center !important; width: 100% !important; height: 100% !important;
+        display: flex !important; justify-content: center !important; align-items: center !important; 
+        width: 100% !important; height: 100% !important;
     }
 
-    /* Đảm bảo màu chữ hiển thị */
-    html body .palette *, html body #palette * { color: var(--text-main) !important; }
-    html body .palette ul li.is-answered, html body .palette ul li.is-answered a,
-    html body .palette ul li.is-marked, html body .palette ul li.is-marked a {
+    /* 4. SỬA LỖI MÀU CHỮ: Ép chữ trong bảng về màu đen để không tàng hình */
+    html body .palette *, html body #palette * { 
+        color: var(--text-main) !important; 
+    }
+    
+    /* FIX LỖI "KHÓ NHÌN": Ép 2 nút Nộp bài / Thoát ra có chữ trắng tinh */
+    html body .palette .btn-cute, html body #palette .btn-cute {
+        color: var(--white) !important;
+    }
+
+    /* FIX LỖI BẢNG: Ép giữ màu trắng tinh cho chữ/số khi ở trạng thái Đã trả lời hoặc Đánh dấu */
+    html body .palette ul li.is-answered, 
+    html body .palette ul li.is-answered a {
+        background-color: var(--primary-purple) !important;
+        border-color: var(--primary-purple) !important;
+        color: var(--white) !important;
+    }
+
+    html body .palette ul li.is-marked, 
+    html body .palette ul li.is-marked a {
+        background-color: #E11D48 !important;
+        border-color: #E11D48 !important;
         color: var(--white) !important;
     }
 }
 
-/* --- ĐIỆN THOẠI NHỎ (Dưới 480px) --- */
+/* --- ĐIỆN THOẠI CỰC NHỎ (Dưới 480px) --- */
 @media (max-width: 480px) {
     .short-answer-container { flex-direction: column; align-items: flex-start; gap: 10px; padding: 15px; }
     .answer-label { font-size: 16px; }
     .input-short-answer { font-size: 20px; width: 100%; }
 }
 
-/* --- ẨN NÚT MOBILE TRÊN MÁY TÍNH --- */
+/* --- ẨN NÚT MOBILE KHI XEM TRÊN MÁY TÍNH --- */
 @media (min-width: 601px) {
     html body #btn-mobile-palette { display: none !important; }
 }
-
-/* =========================================================
-   FIX LỖI MÀU CHỮ VÀ MÀU BẢNG (ĐỂ DƯỚI CÙNG FILE)
-   ========================================================= */
-
-/* 1. Ép màu chữ trắng tinh cho 2 nút Nộp Bài, Thoát Ra */
-html body .palette .btn-cute, 
-html body #palette .btn-cute {
-    color: var(--white) !important;
-}
-
-/* 2. Ép chắc nịch màu Tím và chữ Trắng cho ô ĐÃ LÀM */
-html body .palette ul li.is-answered,
-html body .palette ul li.btn-secondary.is-answered {
-    background-color: var(--primary-purple) !important;
-    border-color: var(--primary-purple) !important;
-    color: var(--white) !important;
-}
-html body .palette ul li.is-answered a {
-    color: var(--white) !important;
-}
-
-/* 3. Ép chắc nịch màu Đỏ và chữ Trắng cho ô ĐÁNH DẤU */
-html body .palette ul li.is-marked,
-html body .palette ul li.btn-secondary.is-marked {
-    background-color: #E11D48 !important;
-    border-color: #E11D48 !important;
-    color: var(--white) !important;
-}
-html body .palette ul li.is-marked a {
-    color: var(--white) !important;
-}
-
