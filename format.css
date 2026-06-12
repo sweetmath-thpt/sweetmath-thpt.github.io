@@ -229,7 +229,7 @@ input[type="radio"] { display: none; }
     .content-wrapper { padding: 15px 3%; }
     
     .hero-text h1 { font-size: 26px; margin-bottom: 12px; }
-    .hero-text h6 { font-size: 15px; text-align: center; line-height: 1.5; }
+    .hero-text h6 { font-size: 16px; text-align: justify; line-height: 1.5; }
     
     .exam-card { flex-direction: column; text-align: center; gap: 15px; }
     .exam-img { flex: 0 0 auto; width: 100px; height: 100px; }
