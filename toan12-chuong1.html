@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tóm tắt Chương I - SweetMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .summary-card {
+            background-color: var(--white, #ffffff);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.1);
+            border-left: 8px solid var(--primary-purple, #A78BFA);
+            transition: transform 0.3s ease;
+        }
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-title {
+            color: var(--primary-purple, #A78BFA);
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .math-content {
+            font-size: 18px;
+            color: var(--text-main, #333);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .action-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .hidden-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 16px;
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .explain-box {
+            background-color: #F0FDF4;
+            border: 2px dashed #4ADE80;
+            color: #166534;
+        }
+        .think-box {
+            background-color: #FFFBEB;
+            border: 2px dashed #FBBF24;
+            color: #92400E;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cute-tag {
+            background: var(--accent-candy, #FF9A9E);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-area">
+            <a href="index.html" class="logo">SweetMath</a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+    </header>
+    
+    <div class="container" style="flex-direction: column; max-width: 900px; padding: 40px 20px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="color: var(--text-main); font-size: 32px; margin-bottom: 10px;">TÓM TẮT KIẾN THỨC CỐT LÕI</h2>
+            <h3 style="color: var(--primary-hover, #8B5CF6); font-weight: 500;">Chương I: Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số</h3>
+            <p style="color: var(--text-muted, #666); margin-top: 10px;">Toán 12 - Kết nối tri thức với cuộc sống 📚</p>
+        </div>
+
+        <div class="summary-card" style="border-left-color: #FF9A9E;">
+            <h3 class="card-title" style="color: #FF9A9E;">1. Tính đơn điệu của hàm số</h3>
+            <div class="math-content">
+                Giả sử hàm số $y = f(x)$ có đạo hàm trên khoảng $K$:
+                <ul>
+                    <li>Nếu $f'(x) > 0$ với mọi $x \in K$ thì hàm số <strong>đồng biến</strong> trên $K$.</li>
+                    <li>Nếu $f'(x) < 0$ với mọi $x \in K$ thì hàm số <strong>nghịch biến</strong> trên $K$.</li>
+                </ul>
+            </div>
+            <div class="action-group">
+                <button class="btn-cute btn-toggle" data-target="expl-1" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-secondary btn-toggle" data-target="thnk-1" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-1" class="hidden-box explain-box">
+                <strong>Giải thích:</strong> Đạo hàm $f'(x)$ thể hiện "tốc độ thay đổi" của hàm số. Đạo hàm dương nghĩa là đồ thị đang "leo dốc" (đi lên từ trái sang phải), còn đạo hàm âm là đồ thị đang "tuột dốc" (đi xuống). Nhớ nha: Dương thì Lên, Âm thì Xuống! 🚀
+            </div>
+            <div id="thnk-1" class="hidden-box think-box">
+                <strong>Gợi mở:</strong> Nếu $f'(x) = 0$ tại một vài điểm hữu hạn trên $K$ thì tính đơn điệu của hàm số có bị ảnh hưởng không? Thử tưởng tượng bạn đang chạy lên dốc, tự nhiên có một hòn đá bằng phẳng để bạn dừng lại thở 1 giây rồi lại chạy lên tiếp thì quỹ đạo chung của bạn vẫn là đi lên chứ?
+            </div>
+        </div>
+
+        <div class="summary-card" style="border-left-color: #60A5FA;">
+            <h3 class="card-title" style="color: #60A5FA;">2. Cực trị của hàm số</h3>
+            <div class="math-content">
+                Cho hàm số $y = f(x)$ liên tục trên khoảng $(a; b)$ chứa điểm $x_0$ và có đạo hàm trên các khoảng $(a; x_0)$ và $(x_0; b)$.
+                <ul>
+                    <li>Nếu $f'(x)$ đổi dấu từ <strong>âm sang dương</strong> khi qua $x_0$ thì $x_0$ là điểm <strong>cực tiểu</strong>.</li>
+                    <li>Nếu $f'(x)$ đổi dấu từ <strong>dương sang âm</strong> khi qua $x_0$ thì $x_0$ là điểm <strong>cực đại</strong>.</li>
+                </ul>
+            </div>
+            <div class="action-group">
+                <button class="btn-cute btn-toggle" data-target="expl-2" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-secondary btn-toggle" data-target="thnk-2" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-2" class="hidden-box explain-box">
+                <strong>Giải thích:</strong> Hãy vẽ một chữ <strong>V</strong>. Đang đi xuống (âm) rồi rẽ lên (dương) sẽ tạo ra "đáy" (Cực tiểu). Ngược lại, vẽ một chữ <strong>A</strong> (hoặc $\Lambda$), đang đi lên (dương) rồi đi xuống (âm) sẽ tạo ra "đỉnh" (Cực đại). Nhìn bảng biến thiên là thấy ngay hình dáng này! 🏔️
+            </div>
+            <div id="thnk-2" class="hidden-box think-box">
+                <strong>Gợi mở:</strong> Điểm cực đại có bắt buộc phải là giá trị lớn nhất (GTLN) của hàm số không? Một ngọn đồi có thể là "đỉnh" so với khu vực xung quanh nó, nhưng có chắc nó cao hơn ngọn núi ở tít đằng xa không?
+            </div>
+        </div>
+
+        <div class="summary-card" style="border-left-color: #A78BFA;">
+            <h3 class="card-title">3. Giá trị lớn nhất & Giá trị nhỏ nhất <span class="cute-tag">GTLN - GTNN</span></h3>
+            <div class="math-content">
+                Phương pháp tìm GTLN, GTNN của $f(x)$ trên đoạn $[a; b]$:
+                <ol>
+                    <li>Tìm các điểm $x_i \in (a; b)$ mà tại đó $f'(x_i) = 0$ hoặc $f'(x_i)$ không tồn tại.</li>
+                    <li>Tính các giá trị $f(a), f(b), f(x_i)$.</li>
+                    <li>So sánh các giá trị vừa tính:
+                        <br> $$ M = \max_{[a; b]} f(x) $$
+                        <br> $$ m = \min_{[a; b]} f(x) $$
+                    </li>
+                </ol>
+            </div>
+            <div class="action-group">
+                <button class="btn-cute btn-toggle" data-target="expl-3" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-secondary btn-toggle" data-target="thnk-3" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-3" class="hidden-box explain-box">
+                <strong>Giải thích:</strong> Trên một đoạn giới hạn có "tường chặn" ở 2 đầu (là $a$ và $b$), kẻ chiến thắng (GTLN) và kẻ thua cuộc (GTNN) chỉ có thể lẩn trốn ở 2 vị trí: Một là nằm ngay bức tường ($f(a)$ hoặc $f(b)$), hai là nằm ở các đỉnh đồi/đáy thung lũng ở giữa ($f(x_i)$). Cứ túm hết lại rồi đọ chiều cao với nhau là ra! 📏
+            </div>
+            <div id="thnk-3" class="hidden-box think-box">
+                <strong>Gợi mở:</strong> Tại sao định lý lại chỉ áp dụng cho đoạn $[a; b]$ mà không phải là khoảng $(a; b)$? Nếu không có dấu "=" ở hai đầu mút, liệu hàm số có kịp chạm tới giá trị lớn nhất trước khi "rơi ra ngoài" khoảng đó không?
+            </div>
+        </div>
+
+        <div class="summary-card" style="border-left-color: #F472B6;">
+            <h3 class="card-title" style="color: #F472B6;">4. Đường tiệm cận</h3>
+            <div class="math-content">
+                <ul>
+                    <li><strong>Tiệm cận ngang (TCN):</strong> Đường thẳng $y = y_0$ là TCN nếu $\lim_{x \to +\infty} f(x) = y_0$ hoặc $\lim_{x \to -\infty} f(x) = y_0$.</li>
+                    <li><strong>Tiệm cận đứng (TCĐ):</strong> Đường thẳng $x = x_0$ là TCĐ nếu $\lim_{x \to x_0^+} f(x) = \pm\infty$ hoặc $\lim_{x \to x_0^-} f(x) = \pm\infty$.</li>
+                    <li><strong>Tiệm cận xiên (TCX):</strong> Đường thẳng $y = ax + b \ (a \neq 0)$ là TCX nếu $\lim_{x \to +\infty} [f(x) - (ax + b)] = 0$.</li>
+                </ul>
+            </div>
+            <div class="action-group">
+                <button class="btn-cute btn-toggle" data-target="expl-4" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-secondary btn-toggle" data-target="thnk-4" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-4" class="hidden-box explain-box">
+                <strong>Giải thích:</strong> "Tiệm cận" nghĩa là "tiến lại gần". Đồ thị hàm số như một con tàu vũ trụ bay trong không gian, còn đường tiệm cận là tia laser dẫn đường. Con tàu sẽ bay sát sàn sạt vào tia laser ở vô tận nhưng (thường) không bao giờ chạm vào nó. 🛸
+            </div>
+            <div id="thnk-4" class="hidden-box think-box">
+                <strong>Gợi mở:</strong> Hàm phân thức bậc nhất trên bậc nhất $y = \frac{ax+b}{cx+d}$ luôn có một TCĐ và một TCN. Vậy theo bạn, hàm số nào mới có Tiệm cận xiên? Hãy để ý bậc của tử số và mẫu số nhé!
+            </div>
+        </div>
+
+        <div class="box-can-giua" style="margin-top: 40px;">
+            <a href="index.html" class="btn-secondary">🏠 Về trang chủ</a>
+            <a href="thithu.html" class="btn-cute">Luyện tập ngay 🚀</a>
+        </div>
+    </div>
+        
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
+
+    <script>
+        // JS để xử lý nút bấm mở rộng Giải thích / Gợi mở
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButtons = document.querySelectorAll('.btn-toggle');
+            
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetBox = document.getElementById(targetId);
+                    
+                    // Nếu box đang mở thì đóng lại, và ngược lại
+                    if (targetBox.style.display === 'block') {
+                        targetBox.style.display = 'none';
+                    } else {
+                        // (Tùy chọn) Ẩn các box khác trong cùng 1 thẻ card để nhìn gọn gàng hơn
+                        const parentCard = this.closest('.summary-card');
+                        const allBoxesInCard = parentCard.querySelectorAll('.hidden-box');
+                        allBoxesInCard.forEach(box => box.style.display = 'none');
+                        
+                        // Mở box được bấm
+                        targetBox.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
