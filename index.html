@@ -6,6 +6,172 @@
     <title>SweetMath: Website học Toán ôn thi Tốt nghiệp THPT</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="format.css">
+
+    <style>
+    /* Bố cục lưới cho các phần của trang chủ */
+    .home-section {
+        margin: 60px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        color: var(--primary-purple, #A78BFA);
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Grid cho 4 tính năng chính */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .feature-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.08);
+        transition: all 0.3s ease;
+        border-top: 5px solid transparent;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(167, 139, 250, 0.2);
+    }
+
+    .feature-card.f-knowledge { border-top-color: #FF9A9E; }
+    .feature-card.f-practice { border-top-color: #60A5FA; }
+    .feature-card.f-exam { border-top-color: #A78BFA; }
+    .feature-card.f-document { border-top-color: #4ADE80; }
+
+    .feature-icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .feature-card h4 {
+        color: var(--text-main, #333);
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .feature-card p {
+        color: var(--text-muted, #666);
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* Grid cho Cam kết 3 KHÔNG */
+    .promises-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .promise-card {
+        background: linear-gradient(135deg, #FFF0F2, #FDE7EB);
+        border-radius: 20px;
+        padding: 25px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: transform 0.3s ease;
+    }
+    
+    .promise-card:hover {
+        transform: scale(1.02);
+    }
+
+    .promise-icon {
+        background: #FF9A9E;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+        font-weight: bold;
+    }
+
+    .promise-content h4 {
+        margin: 0 0 8px 0;
+        color: #D6336C;
+        font-size: 20px;
+    }
+
+    .promise-content p {
+        margin: 0;
+        color: #555;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    /* Grid cho bài viết mới */
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .post-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .post-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .post-image {
+        height: 160px;
+        background: #F3E8FF; /* Màu nền tạm thay cho ảnh thật */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+    }
+
+    .post-info {
+        padding: 20px;
+    }
+
+    .post-tag {
+        display: inline-block;
+        background: #E0F2FE;
+        color: #0284C7;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .post-info h4 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        color: #333;
+    }
+    
+    .post-info a {
+        text-decoration: none;
+        color: var(--primary-purple, #A78BFA);
+        font-weight: bold;
+        font-size: 15px;
+    }
+</style>
 </head>
 <body>
     <header class="navbar">
@@ -32,32 +198,66 @@
 
 <div class="content-wrapper">
 
-    <h4>Kiến thức</h4>
-    <p>Hệ thống lại toàn bộ công thức cốt lõi cấp THPT, giúp bạn nắm vững kiến thức nền tảng.</p>
-    
-    <h4>Các bài toán</h4>
-    <p>Tuyển tập các bài toán điển hình và mẹo giải nhanh Casio, giúp bạn luyện tập hiệu quả.</p>
-    
-    <h4>Thi thử</h4>
-    <p>Phòng luyện đề online tự động chấm điểm, có hướng dẫn giải chi tiết.</p>
-    
-    <h4>Tài liệu</h4>
-    <p>Tổng hợp các tài liệu và bộ đề chất lượng cao, tải về miễn phí để học tập.</p>
-    
-    <h2>Cam kết 3 "KHÔNG"</h2>
-    <h4>KHÔNG quảng cáo</h4>
-    <p>Trải nghiệm học tập không bị gián đoạn bởi các quảng cáo phiền phức, giúp học sinh tập trung hơn vào việc học.</p>
-    
-    <h4>KHÔNG "giấu bài"</h4>
-    <p>100% bài giảng, bài tập và đề thi thử trên SweetMath đều có lời giải chi tiết, rõ ràng từng bước.</p>
-    
-    <h4>KHÔNG lỗi thời</h4>
-    <p>Nội dung ôn tập luôn được cập nhật mới nhất theo xu hướng ra đề của Bộ Giáo dục và Đào tạo.</p>
-    
-    <h2>Những bài viết mới nhất</h2>
+    <div class="home-section">
+        <h2 class="section-title">Học Toán không khó, vì có SweetMath lo! 💖</h2>
+        <div class="features-grid">
+            <div class="feature-card f-knowledge">
+                <div class="feature-icon">🧠</div>
+                <h4>Kiến thức</h4>
+                <p>Hệ thống lại toàn bộ công thức cốt lõi cấp THPT, giúp bạn nắm vững nền tảng dễ dàng.</p>
+            </div>
+            
+            <div class="feature-card f-practice">
+                <div class="feature-icon">✍️</div>
+                <h4>Các bài toán</h4>
+                <p>Tuyển tập bài toán điển hình và các mẹo bấm máy tính Casio thần tốc, tiết kiệm thời gian.</p>
+            </div>
+            
+            <div class="feature-card f-exam">
+                <div class="feature-icon">⏱️</div>
+                <h4>Thi thử</h4>
+                <p>Phòng luyện đề online tự động chấm điểm, tính giờ thực tế, kèm hướng dẫn giải chi tiết.</p>
+            </div>
+            
+            <div class="feature-card f-document">
+                <div class="feature-icon">📚</div>
+                <h4>Tài liệu</h4>
+                <p>Tổng hợp bộ đề và chuyên đề chất lượng cao, chia sẻ miễn phí 100% để bạn tải về.</p>
+            </div>
+        </div>
+    </div>
 
-</div> 
-<footer>
+    <div class="home-section">
+        <h2 class="section-title">Cam kết 3 "KHÔNG" của SweetMath 🛡️</h2>
+        <div class="promises-grid">
+            <div class="promise-card">
+                <div class="promise-icon">1</div>
+                <div class="promise-content">
+                    <h4>KHÔNG quảng cáo</h4>
+                    <p>Trải nghiệm học tập mượt mà, không bị gián đoạn bởi các pop-up quảng cáo phiền phức.</p>
+                </div>
+            </div>
+            
+            <div class="promise-card">
+                <div class="promise-icon">2</div>
+                <div class="promise-content">
+                    <h4>KHÔNG "giấu bài"</h4>
+                    <p>100% bài giảng và đề thi thử đều công khai lời giải chi tiết, rõ ràng từng bước một.</p>
+                </div>
+            </div>
+            
+            <div class="promise-card">
+                <div class="promise-icon">3</div>
+                <div class="promise-content">
+                    <h4>KHÔNG lỗi thời</h4>
+                    <p>Nội dung ôn tập liên tục được cập nhật theo ma trận đề thi mới nhất của Bộ GD&ĐT.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <footer>
     <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
     <p>Bản quyền © 2026 SweetMath.</p>
 </footer>
