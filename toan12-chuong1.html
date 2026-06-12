@@ -3,88 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tóm tắt Chương I - SweetMath</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>Chương I. Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="format.css">
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']], // Công thức trên cùng một dòng
-                displayMath: [['$$', '$$'], ['\\[', '\\]']] // Công thức xuống dòng, căn giữa
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>    
+    
+    <!-- Thư viện MathJax (Bản chuẩn, an toàn tuyệt đối) -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
-        .summary-card {
-            background-color: var(--white, #ffffff);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.1);
-            border-left: 8px solid var(--primary-purple, #A78BFA);
-            transition: transform 0.3s ease;
+        /* CSS Tùy chỉnh riêng cho trang tóm tắt siêu cute */
+        .summary-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
-        .summary-card:hover {
-            transform: translateY(-5px);
-        }
-        .card-title {
-            color: var(--primary-purple, #A78BFA);
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .math-content {
-            font-size: 18px;
-            color: var(--text-main, #333);
-            line-height: 1.8;
+
+        .header-title {
+            text-align: center;
             margin-bottom: 20px;
         }
+
+        .header-title h2 {
+            color: var(--primary-purple, #A78BFA);
+            font-size: 34px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .header-title p {
+            color: var(--text-muted, #9CA3AF);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Thẻ Card Tóm Tắt */
+        .summary-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.15);
+        }
+
+        /* Điểm nhấn viền màu thẻ */
+        .card-pink { border-color: #FFE4E6; }
+        .card-blue { border-color: #E0F2FE; }
+        .card-purple { border-color: #F3E8FF; }
+        .card-green { border-color: #DCFCE7; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #F3F4F6;
+        }
+
+        .card-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-pink .card-number { background: linear-gradient(135deg, #FDA4AF, #F43F5E); }
+        .card-blue .card-number { background: linear-gradient(135deg, #7DD3FC, #0EA5E9); }
+        .card-purple .card-number { background: linear-gradient(135deg, #D8B4FE, #A855F7); }
+        .card-green .card-number { background: linear-gradient(135deg, #6EE7B7, #10B981); }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main, #374151);
+            margin: 0;
+        }
+
+        .cute-tag {
+            background: linear-gradient(135deg, #FDE047, #F59E0B);
+            color: #78350F;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 800;
+            margin-left: auto;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .math-content {
+            font-size: 18px;
+            color: #4B5563;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .math-content ul, .math-content ol {
+            padding-left: 25px;
+            margin-top: 12px;
+        }
+
+        .math-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Nhóm nút bấm tĩnh */
         .action-group {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
         }
+
+        .btn-action {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-explain { background-color: #ECFDF5; color: #059669; }
+        .btn-explain:hover { background-color: #D1FAE5; }
+
+        .btn-think { background-color: #FFF7ED; color: #EA580C; }
+        .btn-think:hover { background-color: #FFEDD5; }
+
+        /* Hộp thoại ẩn (Được làm mềm mại hơn) */
         .hidden-box {
             display: none;
             margin-top: 20px;
-            padding: 20px;
-            border-radius: 16px;
-            font-size: 16px;
+            padding: 20px 25px;
+            border-radius: 20px;
+            font-size: 17px;
             line-height: 1.6;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .explain-box {
             background-color: #F0FDF4;
-            border: 2px dashed #4ADE80;
             color: #166534;
+            border-left: 6px solid #22C55E;
         }
+
         .think-box {
             background-color: #FFFBEB;
-            border: 2px dashed #FBBF24;
             color: #92400E;
+            border-left: 6px solid #F59E0B;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .cute-tag {
-            background: var(--accent-candy, #FF9A9E);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            vertical-align: middle;
-            margin-left: 10px;
-        }
+
+        .text-bold { font-weight: 800; }
     </style>
 </head>
 <body>
@@ -93,68 +194,71 @@
             <a href="index.html" class="logo">SweetMath</a>
             <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Trang chủ</a></li>  
-                <li><a href="kienthuc.html">Kiến thức</a></li> 
-                <li><a href="cacbaitoan.html">Các bài toán</a></li>
-                <li><a href="thithu.html">Thi thử</a></li>
-                <li><a href="tailieu.html">Tài liệu</a></li>
-            </ul>
-        </nav>
     </header>
     
-    <div class="container" style="flex-direction: column; max-width: 900px; padding: 40px 20px;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="color: var(--text-main); font-size: 32px; margin-bottom: 10px;">TÓM TẮT KIẾN THỨC CỐT LÕI</h2>
-            <h3 style="color: var(--primary-hover, #8B5CF6); font-weight: 500;">Chương I: Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số</h3>
-            <p style="color: var(--text-muted, #666); margin-top: 10px;">Toán 12 - Kết nối tri thức với cuộc sống 📚</p>
+    <div class="summary-container">
+        <div class="header-title">
+            <h2>Tóm tắt kiến thức cốt lõi</h2>
+            <p>Chương I: Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số 📚</p>
         </div>
 
-        <div class="summary-card" style="border-left-color: #FF9A9E;">
-            <h3 class="card-title" style="color: #FF9A9E;">1. Tính đơn điệu của hàm số</h3>
+        <!-- BÀI 1 -->
+        <div class="summary-card card-pink">
+            <div class="card-header">
+                <div class="card-number">1</div>
+                <h3 class="card-title">Tính đơn điệu của hàm số</h3>
+            </div>
             <div class="math-content">
                 Giả sử hàm số $y = f(x)$ có đạo hàm trên khoảng $K$:
                 <ul>
-                    <li>Nếu $f'(x) > 0$ với mọi $x \in K$ thì hàm số <strong>đồng biến</strong> trên $K$.</li>
-                    <li>Nếu $f'(x) < 0$ với mọi $x \in K$ thì hàm số <strong>nghịch biến</strong> trên $K$.</li>
+                    <li>Nếu $f'(x) > 0$ với mọi $x \in K$ thì hàm số <span class="text-bold">đồng biến</span> trên $K$.</li>
+                    <li>Nếu $f'(x) < 0$ với mọi $x \in K$ thì hàm số <span class="text-bold">nghịch biến</span> trên $K$.</li>
                 </ul>
             </div>
             <div class="action-group">
-                <button class="btn-cute btn-toggle" data-target="expl-1" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-secondary btn-toggle" data-target="thnk-1" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-1">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-1">🤔 Gợi mở tư duy</button>
             </div>
             <div id="expl-1" class="hidden-box explain-box">
-                <strong>Giải thích:</strong> Đạo hàm $f'(x)$ thể hiện "tốc độ thay đổi" của hàm số. Đạo hàm dương nghĩa là đồ thị đang "leo dốc" (đi lên từ trái sang phải), còn đạo hàm âm là đồ thị đang "tuột dốc" (đi xuống). Nhớ nha: Dương thì Lên, Âm thì Xuống! 🚀
+                <span class="text-bold">Giải thích:</span> Đạo hàm $f'(x)$ thể hiện "tốc độ thay đổi" của hàm số. Đạo hàm dương nghĩa là đồ thị đang "leo dốc" (đi lên từ trái sang phải), còn đạo hàm âm là đồ thị đang "tuột dốc" (đi xuống). Nhớ nha: Dương thì Lên, Âm thì Xuống! 🚀
             </div>
             <div id="thnk-1" class="hidden-box think-box">
-                <strong>Gợi mở:</strong> Nếu $f'(x) = 0$ tại một vài điểm hữu hạn trên $K$ thì tính đơn điệu của hàm số có bị ảnh hưởng không? Thử tưởng tượng bạn đang chạy lên dốc, tự nhiên có một hòn đá bằng phẳng để bạn dừng lại thở 1 giây rồi lại chạy lên tiếp thì quỹ đạo chung của bạn vẫn là đi lên chứ?
+                <span class="text-bold">Gợi mở:</span> Nếu $f'(x) = 0$ tại một vài điểm hữu hạn trên $K$ thì tính đơn điệu của hàm số có bị ảnh hưởng không? Thử tưởng tượng bạn đang chạy lên dốc, tự nhiên có một hòn đá bằng phẳng để bạn dừng lại thở 1 giây rồi lại chạy lên tiếp thì quỹ đạo chung của bạn vẫn là đi lên chứ?
             </div>
         </div>
 
-        <div class="summary-card" style="border-left-color: #60A5FA;">
-            <h3 class="card-title" style="color: #60A5FA;">2. Cực trị của hàm số</h3>
+        <!-- BÀI 2 -->
+        <div class="summary-card card-blue">
+            <div class="card-header">
+                <div class="card-number">2</div>
+                <h3 class="card-title">Cực trị của hàm số</h3>
+            </div>
             <div class="math-content">
                 Cho hàm số $y = f(x)$ liên tục trên khoảng $(a; b)$ chứa điểm $x_0$ và có đạo hàm trên các khoảng $(a; x_0)$ và $(x_0; b)$.
                 <ul>
-                    <li>Nếu $f'(x)$ đổi dấu từ <strong>âm sang dương</strong> khi qua $x_0$ thì $x_0$ là điểm <strong>cực tiểu</strong>.</li>
-                    <li>Nếu $f'(x)$ đổi dấu từ <strong>dương sang âm</strong> khi qua $x_0$ thì $x_0$ là điểm <strong>cực đại</strong>.</li>
+                    <li>Nếu $f'(x)$ đổi dấu từ <span class="text-bold">âm sang dương</span> khi qua $x_0$ thì $x_0$ là điểm <span class="text-bold">cực tiểu</span>.</li>
+                    <li>Nếu $f'(x)$ đổi dấu từ <span class="text-bold">dương sang âm</span> khi qua $x_0$ thì $x_0$ là điểm <span class="text-bold">cực đại</span>.</li>
                 </ul>
             </div>
             <div class="action-group">
-                <button class="btn-cute btn-toggle" data-target="expl-2" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-secondary btn-toggle" data-target="thnk-2" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-2">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-2">🤔 Gợi mở tư duy</button>
             </div>
             <div id="expl-2" class="hidden-box explain-box">
-                <strong>Giải thích:</strong> Hãy vẽ một chữ <strong>V</strong>. Đang đi xuống (âm) rồi rẽ lên (dương) sẽ tạo ra "đáy" (Cực tiểu). Ngược lại, vẽ một chữ <strong>A</strong> (hoặc $\Lambda$), đang đi lên (dương) rồi đi xuống (âm) sẽ tạo ra "đỉnh" (Cực đại). Nhìn bảng biến thiên là thấy ngay hình dáng này! 🏔️
+                <span class="text-bold">Giải thích:</span> Hãy vẽ một chữ <span class="text-bold">V</span>. Đang đi xuống (âm) rồi rẽ lên (dương) sẽ tạo ra "đáy" (Cực tiểu). Ngược lại, vẽ một chữ <span class="text-bold">A</span> (hoặc $\Lambda$), đang đi lên (dương) rồi đi xuống (âm) sẽ tạo ra "đỉnh" (Cực đại). Nhìn bảng biến thiên là thấy ngay hình dáng này! 🏔️
             </div>
             <div id="thnk-2" class="hidden-box think-box">
-                <strong>Gợi mở:</strong> Điểm cực đại có bắt buộc phải là giá trị lớn nhất (GTLN) của hàm số không? Một ngọn đồi có thể là "đỉnh" so với khu vực xung quanh nó, nhưng có chắc nó cao hơn ngọn núi ở tít đằng xa không?
+                <span class="text-bold">Gợi mở:</span> Điểm cực đại có bắt buộc phải là giá trị lớn nhất (GTLN) của hàm số không? Một ngọn đồi có thể là "đỉnh" so với khu vực xung quanh nó, nhưng có chắc nó cao hơn ngọn núi ở tít đằng xa không?
             </div>
         </div>
 
-        <div class="summary-card" style="border-left-color: #A78BFA;">
-            <h3 class="card-title">3. Giá trị lớn nhất & Giá trị nhỏ nhất <span class="cute-tag">GTLN - GTNN</span></h3>
+        <!-- BÀI 3 -->
+        <div class="summary-card card-purple">
+            <div class="card-header">
+                <div class="card-number">3</div>
+                <h3 class="card-title">Giá trị lớn nhất & Nhỏ nhất</h3>
+                <span class="cute-tag">GTLN - GTNN</span>
+            </div>
             <div class="math-content">
                 Phương pháp tìm GTLN, GTNN của $f(x)$ trên đoạn $[a; b]$:
                 <ol>
@@ -167,51 +271,54 @@
                 </ol>
             </div>
             <div class="action-group">
-                <button class="btn-cute btn-toggle" data-target="expl-3" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-secondary btn-toggle" data-target="thnk-3" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-3">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-3">🤔 Gợi mở tư duy</button>
             </div>
             <div id="expl-3" class="hidden-box explain-box">
-                <strong>Giải thích:</strong> Trên một đoạn giới hạn có "tường chặn" ở 2 đầu (là $a$ và $b$), kẻ chiến thắng (GTLN) và kẻ thua cuộc (GTNN) chỉ có thể lẩn trốn ở 2 vị trí: Một là nằm ngay bức tường ($f(a)$ hoặc $f(b)$), hai là nằm ở các đỉnh đồi/đáy thung lũng ở giữa ($f(x_i)$). Cứ túm hết lại rồi đọ chiều cao với nhau là ra! 📏
+                <span class="text-bold">Giải thích:</span> Trên một đoạn giới hạn có "tường chặn" ở 2 đầu (là $a$ và $b$), kẻ chiến thắng (GTLN) và kẻ thua cuộc (GTNN) chỉ có thể lẩn trốn ở 2 vị trí: Một là nằm ngay bức tường ($f(a)$ hoặc $f(b)$), hai là nằm ở các đỉnh đồi/đáy thung lũng ở giữa ($f(x_i)$). Cứ túm hết lại rồi đọ chiều cao với nhau là ra! 📏
             </div>
             <div id="thnk-3" class="hidden-box think-box">
-                <strong>Gợi mở:</strong> Tại sao định lý lại chỉ áp dụng cho đoạn $[a; b]$ mà không phải là khoảng $(a; b)$? Nếu không có dấu "=" ở hai đầu mút, liệu hàm số có kịp chạm tới giá trị lớn nhất trước khi "rơi ra ngoài" khoảng đó không?
+                <span class="text-bold">Gợi mở:</span> Tại sao định lý lại chỉ áp dụng cho đoạn $[a; b]$ mà không phải là khoảng $(a; b)$? Nếu không có dấu "=" ở hai đầu mút, liệu hàm số có kịp chạm tới giá trị lớn nhất trước khi "rơi ra ngoài" khoảng đó không?
             </div>
         </div>
 
-        <div class="summary-card" style="border-left-color: #F472B6;">
-            <h3 class="card-title" style="color: #F472B6;">4. Đường tiệm cận</h3>
+        <!-- BÀI 4 -->
+        <div class="summary-card card-green">
+            <div class="card-header">
+                <div class="card-number">4</div>
+                <h3 class="card-title">Đường tiệm cận</h3>
+            </div>
             <div class="math-content">
                 <ul>
-                    <li><strong>Tiệm cận ngang (TCN):</strong> Đường thẳng $y = y_0$ là TCN nếu $\lim_{x \to +\infty} f(x) = y_0$ hoặc $\lim_{x \to -\infty} f(x) = y_0$.</li>
-                    <li><strong>Tiệm cận đứng (TCĐ):</strong> Đường thẳng $x = x_0$ là TCĐ nếu $\lim_{x \to x_0^+} f(x) = \pm\infty$ hoặc $\lim_{x \to x_0^-} f(x) = \pm\infty$.</li>
-                    <li><strong>Tiệm cận xiên (TCX):</strong> Đường thẳng $y = ax + b \ (a \neq 0)$ là TCX nếu $\lim_{x \to +\infty} [f(x) - (ax + b)] = 0$.</li>
+                    <li><span class="text-bold">Tiệm cận ngang (TCN):</span> Đường thẳng $y = y_0$ là TCN nếu $\lim_{x \to +\infty} f(x) = y_0$ hoặc $\lim_{x \to -\infty} f(x) = y_0$.</li>
+                    <li><span class="text-bold">Tiệm cận đứng (TCĐ):</span> Đường thẳng $x = x_0$ là TCĐ nếu $\lim_{x \to x_0^+} f(x) = \pm\infty$ hoặc $\lim_{x \to x_0^-} f(x) = \pm\infty$.</li>
+                    <li><span class="text-bold">Tiệm cận xiên (TCX):</span> Đường thẳng $y = ax + b \ (a \neq 0)$ là TCX nếu $\lim_{x \to +\infty} [f(x) - (ax + b)] = 0$.</li>
                 </ul>
             </div>
             <div class="action-group">
-                <button class="btn-cute btn-toggle" data-target="expl-4" style="background-color: #4ADE80; margin: 0;">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-secondary btn-toggle" data-target="thnk-4" style="margin: 0; border-color: #FBBF24; color: #D97706;">🤔 Gợi mở tư duy</button>
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-4">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-4">🤔 Gợi mở tư duy</button>
             </div>
             <div id="expl-4" class="hidden-box explain-box">
-                <strong>Giải thích:</strong> "Tiệm cận" nghĩa là "tiến lại gần". Đồ thị hàm số như một con tàu vũ trụ bay trong không gian, còn đường tiệm cận là tia laser dẫn đường. Con tàu sẽ bay sát sàn sạt vào tia laser ở vô tận nhưng (thường) không bao giờ chạm vào nó. 🛸
+                <span class="text-bold">Giải thích:</span> "Tiệm cận" nghĩa là "tiến lại gần". Đồ thị hàm số như một con tàu vũ trụ bay trong không gian, còn đường tiệm cận là tia laser dẫn đường. Con tàu sẽ bay sát sàn sạt vào tia laser ở vô tận nhưng (thường) không bao giờ chạm vào nó. 🛸
             </div>
             <div id="thnk-4" class="hidden-box think-box">
-                <strong>Gợi mở:</strong> Hàm phân thức bậc nhất trên bậc nhất $y = \frac{ax+b}{cx+d}$ luôn có một TCĐ và một TCN. Vậy theo bạn, hàm số nào mới có Tiệm cận xiên? Hãy để ý bậc của tử số và mẫu số nhé!
+                <span class="text-bold">Gợi mở:</span> Hàm phân thức bậc nhất trên bậc nhất $y = \frac{ax+b}{cx+d}$ luôn có một TCĐ và một TCN. Vậy theo bạn, hàm số nào mới có Tiệm cận xiên? Hãy để ý bậc của tử số và mẫu số nhé!
             </div>
         </div>
 
-        <div class="box-can-giua" style="margin-top: 40px;">
-            <a href="index.html" class="btn-secondary">🏠 Về trang chủ</a>
-            <a href="thithu.html" class="btn-cute">Luyện tập ngay 🚀</a>
+        <div class="box-can-giua" style="margin-top: 20px; gap: 15px;">
+            <a href="index.html" class="btn-secondary" style="border-radius: 50px; padding: 12px 30px; text-decoration: none; font-weight: 700;">🏠 Về trang chủ</a>
+            <a href="thithu.html" class="btn-cute" style="margin: 0;">Luyện tập ngay 🚀</a>
         </div>
     </div>
         
-    <footer>
+    <footer style="text-align: center; padding: 30px; color: var(--text-muted); margin-top: 20px;">
         <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
         <p>Bản quyền © 2026 SweetMath.</p>
     </footer>
 
     <script>
-        // JS để xử lý nút bấm mở rộng Giải thích / Gợi mở
         document.addEventListener("DOMContentLoaded", function () {
             const toggleButtons = document.querySelectorAll('.btn-toggle');
             
@@ -220,16 +327,12 @@
                     const targetId = this.getAttribute('data-target');
                     const targetBox = document.getElementById(targetId);
                     
-                    // Nếu box đang mở thì đóng lại, và ngược lại
                     if (targetBox.style.display === 'block') {
                         targetBox.style.display = 'none';
                     } else {
-                        // (Tùy chọn) Ẩn các box khác trong cùng 1 thẻ card để nhìn gọn gàng hơn
                         const parentCard = this.closest('.summary-card');
                         const allBoxesInCard = parentCard.querySelectorAll('.hidden-box');
                         allBoxesInCard.forEach(box => box.style.display = 'none');
-                        
-                        // Mở box được bấm
                         targetBox.style.display = 'block';
                     }
                 });
