@@ -1,16 +1,16 @@
 /* ==========================================================================
-   1. ĐỊNH NGHĨA BIẾN MÀU (TONE TÍM PASTEL NGỌT NGÀO)
+   1. ĐỊNH NGHĨA BIẾN MÀU (TONE TÍM PASTEL NGỌT NGÀO CỦA SWEETMATH)
    ========================================================================== */
 :root {
-    --bg-global: #F6F0FA;       
-    --primary-purple: #A78BFA;  
-    --primary-hover: #8B5CF6;   
-    --secondary-pink: #FBCFE8;  
-    --accent-candy: #FDA4AF;    
-    --text-main: #4C3A51;       
-    --text-muted: #9E8AA5;      
+    --bg-global: #F6F0FA;       /* Màu nền toàn trang: Tím sữa siêu nhạt, dịu mắt */
+    --primary-purple: #A78BFA;  /* Tím Lavender chủ đạo (cho Header, Button chính) */
+    --primary-hover: #8B5CF6;   /* Tím đậm hơn chút khi rê chuột vào */
+    --secondary-pink: #FBCFE8;  /* Hồng phấn pastel ngọt ngào (cho thẻ, điểm nhấn) */
+    --accent-candy: #FDA4AF;    /* Hồng kẹo dâu (cho nút bấm Cute, các thông báo) */
+    --text-main: #4C3A51;       /* Màu chữ: Mận chín đậm (tránh dùng màu đen tuyền) */
+    --text-muted: #9E8AA5;      /* Màu chữ phụ: Tím xám nhạt */
     --white: #FFFFFF;
-    --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15); 
+    --card-shadow: 0 8px 24px rgba(167, 139, 250, 0.15); /* Đổ bóng mịn màu tím */
 }
 
 /* ==========================================================================
@@ -101,7 +101,7 @@ body {
 }
 
 /* ==========================================================================
-   4. THÀNH PHẦN GIAO DIỆN (CARDS, INPUTS, TABLES)
+   4. THÀNH PHẦN GIAO DIỆN (CARDS, INPUTS)
    ========================================================================== */
 .card-cute {
     background-color: var(--white);
@@ -137,16 +137,14 @@ input:focus, textarea:focus, select:focus {
     box-shadow: 0 0 8px rgba(167, 139, 250, 0.2);
 }
 
-/* ==========================================================================
-   NÚT BẤM CUTE KẸO NGỌT 
-   ========================================================================== */
+/* NÚT BẤM CUTE KẸO NGỌT */
 .btn-cute {
     text-decoration: none;  
     font-family: inherit;   
     display: inline-block;
     border: none;
     background-color: #E11D48; 
-    color: var(--white);
+    color: var(--white) !important; /* Ép cứng chữ trắng luôn luôn */
     padding: 12px 30px;
     border-radius: 50px; 
     font-weight: bold;
@@ -167,7 +165,7 @@ input:focus, textarea:focus, select:focus {
     box-shadow: 0 2px 8px rgba(190, 18, 60, 0.4); 
 }
 
-/* Trạng thái MẶC ĐỊNH của ô câu hỏi bên bảng Palette: Nền trắng, viền tím nhạt */
+/* Trạng thái MẶC ĐỊNH của ô câu hỏi bên bảng Palette */
 .btn-secondary {
     text-decoration: none;  
     font-family: inherit;    
@@ -203,7 +201,7 @@ footer p {
 }
 
 /* ==========================================================================
-   CẤU TRÚC CHIA ĐÔI MÀN HÌNH KHÔNG LO BỊ VỠ KHUNG (MÁY TÍNH)
+   BỐ CỤC CHIA ĐÔI MÀN HÌNH KHÔNG LO BỊ VỠ KHUNG (MÁY TÍNH)
    ========================================================================== */
 .baithi {
     flex: 3; 
@@ -253,9 +251,7 @@ footer p {
     padding: 0;              
 }
 
-/* ==========================================================================
-   CÁC PHẦN DÀNH CHO TRANG CHỦ / BANNER 
-   ========================================================================== */
+/* CÁC PHẦN DÀNH CHO TRANG CHỦ / BANNER */
 .hero-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Anhbiatoanhoc.png");
     height: 375px; 
@@ -308,25 +304,25 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 #countdown { display: block; font-size: 48px; font-weight: 900; color: #E11D48; line-height: 1; text-shadow: 2px 2px 5px rgba(225, 29, 72, 0.2); }
 
 /* =========================================================
-   CÁC TRẠNG THÁI BẢNG PALETTE (Gốc của cậu)
+   CÁC TRẠNG THÁI NỀN TỐI CỦA BẢNG PALETTE (MÁY TÍNH)
    ========================================================= */
-.palette ul li.is-answered {
+.palette ul li.is-answered,
+.palette ul li.is-answered a {
     background-color: var(--primary-purple) !important;
-    color: var(--white) !important;
+    color: var(--white) !important; /* Chữ trắng nền tím */
     border-color: var(--primary-purple) !important;
     box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4) !important;
 }
 
-.palette ul li.is-marked {
+.palette ul li.is-marked,
+.palette ul li.is-marked a {
     background-color: #E11D48 !important; 
-    color: var(--white) !important;
+    color: var(--white) !important; /* Chữ trắng nền đỏ */
     border-color: #E11D48 !important;
     box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important;
 }
 
-/* =========================================================
-   NÚT "CÂU X" BẤM ĐƯỢC TRÊN ĐỀ THI
-   ========================================================= */
+/* NÚT "CÂU X" BẤM ĐƯỢC TRÊN ĐỀ THI */
 .btn-mark {
     background-color: #E11D48; border: none; color: var(--white); padding: 4px 12px; border-radius: 6px;
     font-size: 20px; cursor: pointer; margin-right: 12px; font-family: inherit; display: inline-block;
@@ -335,9 +331,7 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 .btn-mark:hover { background-color: var(--primary-hover); border: none; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4); }
 .btn-mark.is-marked { background-color: #BE123C; box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3); border: none; }
 
-/* =========================================================
-   GIAO DIỆN ĐÁP ÁN TRẮC NGHIỆM ĐẸP MẮT
-   ========================================================= */
+/* GIAO DIỆN ĐÁP ÁN TRẮC NGHIỆM ĐẸP MẮT */
 input[type="radio"] { display: none; }
 .dapan { display: flex; align-items: center; cursor: pointer; margin-bottom: 12px; font-family: inherit; font-size: 20px; color: var(--text-main); transition: all 0.2s; }
 .nut-chucai {
@@ -353,9 +347,7 @@ input[type="radio"] { display: none; }
 .nhom-ngang { display: flex; flex-wrap: wrap; gap: 30px; }
 .nhom-ngang .dapan { margin-bottom: 0; }
 
-/* =========================================================
-   GIAO DIỆN Ô TRẢ LỜI NGẮN CHUẨN BỘ GD-ĐT
-   ========================================================= */
+/* GIAO DIỆN Ô TRẢ LỜI NGẮN CHUẨN BỘ GD-ĐT */
 .short-answer-container {
     display: flex; align-items: center; gap: 15px; margin: 20px 0; max-width: 550px; 
     background: rgba(255, 255, 255, 0.6); padding: 12px 20px; border-radius: 16px; border: 1px dashed var(--primary-purple); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
@@ -371,9 +363,7 @@ input[type="radio"] { display: none; }
 .input-short-answer::placeholder { font-size: 16px; font-weight: 500; color: #cbd5e1; font-style: italic; letter-spacing: 0px; }
 .moe-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-style: italic; font-weight: 500; text-align: center; }
 
-/* =========================================================
-   POPUP OVERLAY & CONTENT 
-   ========================================================= */
+/* POPUP OVERLAY & CONTENT */
 .popup-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
     background-color: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center;
@@ -386,11 +376,11 @@ input[type="radio"] { display: none; }
 
 
 /* ==========================================================================
-   6. RESPONSIVE HOÀN HẢO CHO ĐIỆN THOẠI & TABLET 
+   6. RESPONSIVE CHUẨN ĐA MÀN HÌNH (TABLET & MOBILE)
    ========================================================================== */
 
 @media (max-width: 768px) {
-    body { text-align: left; } /* Sửa lỗi chữ đè tag hồng trên mobile */
+    body { text-align: left; } 
     .slogan { display: none; }
     .navbar { flex-direction: column; gap: 15px; text-align: center; }
     .navbar ul { gap: 15px; padding: 0; flex-wrap: wrap; justify-content: center; }
@@ -478,30 +468,32 @@ input[type="radio"] { display: none; }
         height: 100% !important;
     }
 
-    /* Fix chữ đen tàng hình */
+    /* Đổi màu chữ tối rõ ràng trên nền trắng mặc định của mobile */
     html body .palette *, html body #palette * {
         color: var(--text-main) !important;
     }
 
-    /* Giữ màu nút Nộp Bài, Thoát Ra */
+    /* Giữ màu nút Nộp Bài, Thoát Ra luôn có chữ trắng */
     html body .palette .btn-cute, html body #palette .btn-cute {
         color: var(--white) !important;
     }
 
-    /* Giữ màu câu đã làm trên di động */
+    /* CRITICAL FIX: KHÓA CHẾ ĐỘ CHỮ TRẮNG CHO Ô ĐÃ TRẢ LỜI TRÊN DI ĐỘNG */
     html body .palette ul li.is-answered, 
-    html body .palette ul li.is-answered a {
+    html body .palette ul li.is-answered a,
+    html body .palette ul li.is-answered * {
         background-color: var(--primary-purple) !important;
         border-color: var(--primary-purple) !important;
-        color: var(--white) !important;
+        color: var(--white) !important; /* Ép buộc chữ trắng tinh khôi */
     }
 
-    /* Giữ màu câu đánh dấu trên di động */
+    /* CRITICAL FIX: KHÓA CHẾ ĐỘ CHỮ TRẮNG CHO Ô ĐÃ ĐÁNH DẤU TRÊN DI ĐỘNG */
     html body .palette ul li.is-marked, 
-    html body .palette ul li.is-marked a {
+    html body .palette ul li.is-marked a,
+    html body .palette ul li.is-marked * {
         background-color: #E11D48 !important;
         border-color: #E11D48 !important;
-        color: var(--white) !important;
+        color: var(--white) !important; /* Ép buộc chữ trắng tinh khôi */
     }
 }
 
