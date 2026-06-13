@@ -10,8 +10,8 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']], // Công thức trên cùng một dòng
-                displayMath: [['$$', '$$'], ['\\[', '\\]']] // Công thức xuống dòng, căn giữa
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
             },
             svg: {
                 fontCache: 'global'
@@ -23,7 +23,6 @@
     </script>
 
     <style>
-        /* CSS viết thêm riêng cho trang giải thích để không làm ảnh hưởng các file cũ */
         .anatomy-container {
             max-width: 800px;
             margin: 40px auto;
@@ -39,7 +38,6 @@
             gap: 8px;
         }
 
-        /* Khối phân tích mấu chốt (Flow Thinking) */
         .analysis-box {
             background-color: var(--white);
             border-left: 5px solid var(--primary-purple);
@@ -50,7 +48,6 @@
             color: var(--text-main);
         }
 
-        /* Hệ thống 2 Tab đóng/mở linh hoạt */
         .tabs-header {
             display: flex;
             gap: 15px;
@@ -77,14 +74,12 @@
             border-color: var(--primary-purple);
         }
 
-        /* Màu khi Tab được mở */
         .tab-btn.is-active {
             background-color: var(--primary-purple);
             color: var(--white);
             border-color: var(--primary-purple);
         }
 
-        /* Vùng chứa nội dung Tab */
         .tab-panel {
             background-color: var(--white);
             border-radius: 20px;
@@ -92,11 +87,10 @@
             box-shadow: var(--card-shadow);
             margin-bottom: 30px;
             color: var(--text-main);
-            display: none; /* Mặc định ẩn lúc đầu */
+            display: none; 
             animation: fadeIn 0.3s ease;
         }
 
-        /* Thiết kế từng bước giải phẫu bài toán (Ứng dụng Flexbox chống dính) */
         .step-item {
             border-bottom: 1px dashed #e5deeb;
             padding: 20px 0;
@@ -109,28 +103,27 @@
         .step-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* Căn lề hàng chữ và nút từ trên đỉnh */
-            gap: 20px; /* Bức tường tàng hình cách ly 20px, tuyệt đối không bị dính chữ */
+            align-items: flex-start; 
+            gap: 20px; 
         }
 
         .step-text {
             font-size: 20px;
             line-height: 1.6;
-            flex: 1; /* Tự động co giãn chiếm trọn không gian trống */
+            flex: 1; 
         }
 
-        /* Nút giải thích viên kẹo xinh xắn bên phải */
         .btn-explain {
-            flex-shrink: 0; /* Phong ấn: Cấm nút bị bóp méo hoặc co lại khi chữ quá dài */
-            margin-top: 4px; /* Đẩy nhẹ nút xuống chút cho thẳng hàng với dòng chữ đầu tiên */
+            flex-shrink: 0; 
+            margin-top: 4px; 
             background-color: var(--secondary-pink);
             color: var(--text-main);
             border: none;
             padding: 6px 14px;
-            border-radius: 20px; /* Bo tròn kiểu viên kẹo */
+            border-radius: 20px; 
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 14px; /* Thu gọn vừa vặn, tinh tế */
+            font-size: 14px; 
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
@@ -143,7 +136,6 @@
             box-shadow: 0 6px 12px rgba(167, 139, 250, 0.2);
         }
 
-        /* Hộp chứa Flow Thinking ẩn bên dưới bước giải */
         .flow-thinking-box {
             background-color: #FAF5FF;
             border-radius: 10px;
@@ -152,7 +144,7 @@
             font-size: 18px;
             color: #6B5277;
             border-left: 3px dashed var(--primary-purple);
-            display: none; /* Bấm nút mới hiện */
+            display: none; 
             animation: slideDown 0.25s ease;
         }
 
@@ -166,11 +158,10 @@
             to { opacity: 1; max-height: 200px; }
         }
 
-        /* Tối ưu hiển thị mượt mà trên điện thoại di động */
         @media (max-width: 600px) {
             .step-row {
-                flex-direction: column; /* Chuyển thành hàng dọc để không bị chật chội trên mobile */
-                align-items: flex-end; /* Đẩy nút bấm hẳn về phía bên phải cho gọn */
+                flex-direction: column; 
+                align-items: flex-end; 
                 gap: 12px;
             }
             .step-text {
@@ -183,28 +174,23 @@
 
     <header class="navbar">
         <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
-    <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
-        <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
-            <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
-            <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
-            
-            <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
-            <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
-            
-            <circle cx="42" cy="52" r="5" fill="#3D3A45" />
-            <circle cx="58" cy="52" r="5" fill="#3D3A45" />
-            
-            <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-            <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-            
-            <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
-            
-            <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
-        </svg>
-        <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
-    </a>
-    <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
-</div>
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
 
         <nav>
             <ul>
@@ -213,23 +199,22 @@
                 <li><a href="cacbaitoan.html">Các bài toán</a></li>
                 <li><a href="thithu.html">Thi thử</a></li>
                 <li><a href="tailieu.html">Tài liệu</a></li>
-<li><a href="index.html#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
-
+                <li><a href="index.html#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="anatomy-container">
-        <h3 class="section-title">📌 Đề bài mẫu</h3>
+        <h3 class="section-title">📌 Đề bài mẫu (Câu trả lời ngắn)</h3>
         <div class="analysis-box" style="border-left-color: var(--accent-candy); font-weight: 600;">
-            Tìm giá trị lớn nhất của hàm số $y = -x^3 + 3x - 1$ trên đoạn $[0; 2]$.
-            <br><small style="color: var(--text-muted); font-weight: normal;">*Nguồn: Tham khảo cấu trúc định dạng Bộ GD&ĐT</small>
+            Một hộp chứa 1 viên bi đỏ và 5 viên bi xanh (các viên bi đều khác nhau về kích thước). Bạn Bình lấy ngẫu nhiên 1 viên bi, xem màu rồi trả lại vào hộp. Bình lặp lại liên tiếp phép thử trên cho đến khi lấy được viên bi đỏ thì dừng lại. Gọi $A$ là biến cố "Bình thực hiện không quá 3 lần để lấy được bi đỏ". Tính xác suất của biến cố $A$.
+            <br><small style="color: var(--text-muted); font-weight: normal;">*Trích đề thi cuối kì 2, THPT chuyên Lý Tự Trọng, Cần Thơ</small>
         </div>
 
         <h3 class="section-title">🧠 Phân tích mấu chốt (Luồng nghĩ ban đầu)</h3>
         <div class="analysis-box">
-            <p><strong>Điểm cần mổ xẻ:</strong> Đề bài yêu cầu tìm giá trị lớn nhất trên một <strong>đoạn cô lập</strong> $[0; 2]$.</p>
-            <p style="margin-top: 8px;">➔ <strong>Phản xạ tư duy:</strong> Không cần vẽ toàn bộ bảng biến thiên phức tạp! Chỉ cần tìm đạo hàm $y'$, quét các điểm làm $y'=0$ nằm trong đoạn này, tính giá trị tại các đầu mút rồi so sánh xem ai "khỏe" nhất là xong!</p>
+            <p><strong>Điểm cần mổ xẻ:</strong> Từ khóa ở đây là <strong>"không quá 3 lần"</strong> và <strong>"trả lại vào hộp"</strong>.</p>
+            <p style="margin-top: 8px;">➔ <strong>Phản xạ tư duy:</strong> "Trả lại vào hộp" nghĩa là tổng số bi trong hộp luôn là 6 viên ở mỗi lần bốc. Xác suất lấy được bi đỏ ở bất kỳ lần nào cũng cố định là $\frac{1}{6}$! Bài này chỉ cần chia làm 3 trường hợp: lấy được ngay lần 1, lần 2 mới lấy được, hoặc phải đến lần 3 mới lấy được.</p>
         </div>
 
         <div class="tabs-header">
@@ -241,9 +226,9 @@
             <h4 style="color: var(--primary-hover); margin-bottom: 10px;">💡 Gợi ý chiến thuật cho cậu:</h4>
             <div class="content-wrapper">
                 <ul>
-                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Tính $y' = -3x^2 + 3$. Giờ tìm nghiệm của $y'=0$ đi nào.</li>
-                    <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Nhớ lọc nha! Nghiệm nào nằm ngoài đoạn $[0; 2]$ là phải loại ngay kẻo dính bẫy.</li>
-                    <li><strong>Bước 3:</strong> Tính các giá trị $y(0)$, $y(2)$ và $y(\text{nghiệm})$. Ai lớn nhất chính là đáp án cần điền vào ô trả lời ngắn!</li>
+                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Hộp có $1$ đỏ, $5$ xanh $\Rightarrow$ Tổng là $6$. Chốt ngay xác suất bốc $1$ viên đỏ là bao nhiêu? Xanh là bao nhiêu?</li>
+                    <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Chia 3 trường hợp ra tính riêng lẻ: Bốc $1$ hit trúng luôn; Trượt lần $1$, trúng lần $2$; Trượt $2$ lần đầu, trúng ở lần $3$.</li>
+                    <li><strong>Bước 3:</strong> Cộng tổng xác suất của $3$ kịch bản đó lại là ra đáp án chuẩn đét!</li>
                 </ul>
             </div>
         </div>
@@ -253,37 +238,47 @@
             
             <div class="step-item">
                 <div class="step-row">
-                    <div class="step-text"><strong>Bước 1:</strong> Ta có $y' = -3x^2 + 3$. Cho $y' = 0 \Leftrightarrow x = 1$ hoặc $x = -1$.</div>
-                    <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao vậy nhỉ?</button>
+                    <div class="step-text"><strong>Nhận xét chung:</strong> Xác suất lấy được bi đỏ trong $1$ lần bốc là $\frac{1}{6}$, xác suất lấy bi xanh là $\frac{5}{6}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao không thay đổi?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Đạo hàm giúp chúng ta tìm ra các điểm "cực trị" - nơi mà đồ thị thay đổi hướng đi (lên hoặc xuống). Việc tìm nghiệm $y'=0$ là tìm các tọa độ nhạy cảm này đó!
+                    <strong>Flow Thinking:</strong> Đề bảo "lấy ra xem rồi trả lại", nên trước khi bốc ở bất kỳ lượt nào, trong hộp vẫn luôn có $1$ viên đỏ và $5$ viên xanh. Đây chính là phép thử độc lập, tỷ lệ không bao giờ bị biến động!
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-row">
-                    <div class="step-text"><strong>Bước 2:</strong> Vì xét trên đoạn $[0; 2]$ nên ta nhận $x = 1$ và loại $x = -1$.</div>
-                    <button class="btn-explain" onclick="toggleExplanation(this)">Cảnh báo bẫy!</button>
+                    <div class="step-text"><strong>Trường hợp 1:</strong> Lấy được bi đỏ ngay lần thứ $1$. <br>Xác suất: $P_1 = \frac{1}{6}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tuyệt vời quá!</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Chỗ này học sinh hay sai cực kỳ luôn! Đề bài chỉ khoanh vùng từ số $0$ đến số $2$ thôi, số $-1$ nằm ngoài vùng phủ sóng rồi, phải loại thẳng tay kẻo tính nhầm đáp số nha!
+                    <strong>Flow Thinking:</strong> Quá may mắn, $1$ hit ăn ngay. Vì bốc trúng bi đỏ nên trò chơi kết thúc luôn tại lần đầu tiên.
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-row">
-                    <div class="step-text"><strong>Bước 3:</strong> Tính giá trị tại các điểm:<br> $y(0) = -1$;<br> $y(1) = 1$;<br> $y(2) = -3$.</div>
-                    <button class="btn-explain" onclick="toggleExplanation(this)">Tính toán cẩn thận</button>
+                    <div class="step-text"><strong>Trường hợp 2:</strong> Lần $1$ lấy bi xanh, lần $2$ lấy được bi đỏ. <br>Xác suất: $P_2 = \frac{5}{6} \cdot \frac{1}{6} = \frac{5}{36}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao lại nhân?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Cậu cẩn thận khi thế số $2$ vào nhé: $-(2)^3 + 3(2) - 1 = -8 + 6 - 1 = -3$. Chú ý dấu trừ nằm ngoài lũy thừa, rất nhiều bạn ghi nhầm dấu trừ ở đây dẫn đến kết quả sai hoàn toàn.
+                    <strong>Flow Thinking:</strong> Hai hành động bốc bi này diễn ra liên tiếp để cấu thành trường hợp $2$. Theo quy tắc nhân xác suất của các biến cố độc lập, mình cứ lấy xác suất bốc bi xanh nhân với xác suất bốc bi đỏ thôi.
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-row">
+                    <div class="step-text"><strong>Trường hợp 3:</strong> Lần $1$ và $2$ lấy bi xanh, lần $3$ mới lấy được bi đỏ. <br>Xác suất: $P_3 = \frac{5}{6} \cdot \frac{5}{6} \cdot \frac{1}{6} = \frac{25}{216}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Chậm mà chắc</button>
+                </div>
+                <div class="flow-thinking-box">
+                    <strong>Flow Thinking:</strong> Tương tự TH2, nhưng đen đủi hơn một xíu nên phải bốc đến viên thứ ba. Bạn nhớ phải tính đủ xác suất bốc trượt $2$ lần đầu tiên nhé!
                 </div>
             </div>
 
             <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 15px; border-radius: 12px;">
-                <p>➔ So sánh các giá trị trên, ta thấy giá trị lớn nhất là <strong>1</strong> (đạt được khi $x = 1$).</p>
-                <p style="margin-top: 8px; color: var(--accent-candy); font-size: 20px;"><strong>*Đáp số điền ô trả lời ngắn: 1</strong></p>
+                <p>➔ Xác suất của biến cố $A$ là tổng các trường hợp: <br>$$P(A) = P_1 + P_2 + P_3 = \frac{1}{6} + \frac{5}{36} + \frac{25}{216} = \frac{91}{216}$$</p>
+                <p style="margin-top: 8px; color: var(--accent-candy); font-size: 20px;"><strong>*Đáp số điền ô trả lời ngắn: 91/216</strong></p>
             </div>
 
         </div>
@@ -295,7 +290,6 @@
     </footer>
 
     <script>
-        // --- LOGIC XỬ LÝ 2 TAB KHÔNG MỞ SẴN ---
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -317,7 +311,6 @@
             });
         });
 
-        // --- LOGIC ĐÓNG/MỞ NÚT GIẢI THÍCH TRONG BƯỚC GIẢI ---
         function toggleExplanation(button) {
             const stepItem = button.closest('.step-item');
             const explanationBox = stepItem.querySelector('.flow-thinking-box');
