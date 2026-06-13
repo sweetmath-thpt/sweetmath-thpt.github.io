@@ -177,17 +177,31 @@ document.addEventListener("DOMContentLoaded", function () {
         btnXacNhanNop.addEventListener('click', function(event) {
             event.preventDefault(); 
 
-            // CẤU TRÚC ĐÁP ÁN MỚI CHIA THEO 3 PHẦN
+            // CẤU TRÚC ĐÁP ÁN MỚI CHIA THEO 3 PHẦN ĐÃ CẬP NHẬT
             const nganHangDapAn = {
                 'lambai.html': {
-                    'tenDe': 'ĐỀ THI THỬ NGHIỆM',
+                    'tenDe': 'ĐỀ THI THỬ NGHIỆM XÁC SUẤT',
                     'dapAn': {
-                        'phan1': { 'p1_q1': 'D' }, // Phần I: Mỗi câu đúng 0,25 đ
-                        'phan2': { 
-                            // Phần II: 1 câu lớn chứa 4 ý a,b,c,d
-                            'p2_q2': { 'a': 'S', 'b': 'D', 'c': 'D', 'd': 'S' } 
+                        // Phần I: Trắc nghiệm nhiều lựa chọn (6 câu)
+                        'phan1': { 
+                            'p1_q1': 'D', 
+                            'p1_q2': 'A', 
+                            'p1_q3': 'C', 
+                            'p1_q4': 'B', 
+                            'p1_q5': 'D', 
+                            'p1_q6': 'A' 
                         },
-                        'phan3': { 'p3_q3': '2' } // Phần III: Mỗi câu đúng 0,5 đ
+                        // Phần II: Trắc nghiệm đúng/sai (2 câu lớn, mỗi câu 4 ý)
+                        'phan2': { 
+                            'p2_q1': { 'a': 'S', 'b': 'S', 'c': 'D', 'd': 'S' },
+                            'p2_q2': { 'a': 'S', 'b': 'D', 'c': 'D', 'd': 'D' } 
+                        },
+                        // Phần III: Trắc nghiệm trả lời ngắn (3 câu)
+                        'phan3': { 
+                            'p3_q1': '0,88', 
+                            'p3_q2': '0,5', 
+                            'p3_q3': '0,94' 
+                        } 
                     }
                 }
             };
@@ -234,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     for (let y in yDung) {
                         tongSoQuyetDinh++; // Mỗi ý được xem như 1 quyết định độc lập
                         let dapAnDung = yDung[y];
-                        let inputName = `${q}_${y}`; // Cú pháp tìm: p2_q2_a
+                        let inputName = `${q}_${y}`; 
                         let userRadio = document.querySelector(`input[name="${inputName}"]:checked`);
                         let luaChon = userRadio ? userRadio.value : "Chưa làm";
                         let ketQua = (luaChon === dapAnDung);
@@ -307,16 +321,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================================================================
-    // 8. TỰ ĐỘNG DỰNG GIAO DIỆN XEM LẠI BÀI LÀM (CẬP NHẬT CHIA 3 PHẦN)
+    // 8. TỰ ĐỘNG DỰNG GIAO DIỆN XEM LẠI BÀI LÀM (CẬP NHẬT CHIA 3 PHẦN & LỜI GIẢI MỚI)
     // =========================================================================
     const khungXemLai = document.getElementById('khung-xem-lai');
 
     if (khungXemLai) {
         const khoGiaiThich = {
             'lambai.html': {
-                'p1_q1': 'Tháp Tokyo nằm ở Nhật Bản (châu Á), trong khi Tháp Eiffel, Pisa, Big Ben đều nằm ở châu Âu.',
-                'p2_q2': 'Ý a Sai (Georg Cantor là người Đức). Ý b Đúng (Định lý Pythagoras). Ý c Đúng (Alan Turing được xem là cha đẻ KHMT). Ý d Sai (Descartes phát minh hệ tọa độ Descartes).',
-                'p3_q3': 'Vì 1 + 1 = 2 (Phép cộng cơ bản).'
+                // Giải thích Phần 1
+                'p1_q1': 'Vì A và B là hai biến cố xung khắc nên xác suất hợp: P(A ∪ B) = P(A) + P(B) = 0,4 + 0,3 = 0,7.',
+                'p1_q2': 'Vì A và B là hai biến cố độc lập nên xác suất giao: P(A ∩ B) = P(A) × P(B) = 0,3 × 0,4 = 0,12.',
+                'p1_q3': 'Theo định nghĩa, hai biến cố xung khắc là hai biến cố không bao giờ xảy ra đồng thời. Do đó phần giao của chúng bằng tập rỗng (A ∩ B = ∅).',
+                'p1_q4': 'Biến cố A và B là hoàn toàn độc lập với nhau (kết quả gieo lần 1 không ảnh hưởng đến lần 2). Tuy nhiên, chúng có thể cùng xảy ra (gieo ra 2 mặt 6 chấm liên tiếp) nên không thể là hai biến cố xung khắc. Do đó khẳng định B là sai.',
+                'p1_q5': 'Xác suất lấy được viên bi đỏ ở mỗi hộp đều là 1/3. Vì việc chọn bi từ 3 hộp là độc lập nhau nên xác suất để cả 3 bi đều màu đỏ là: (1/3) × (1/3) × (1/3) = 1/27.',
+                'p1_q6': 'Ta có công thức cộng: P(A ∪ B) = P(A) + P(B) - P(A ∩ B) ⇔ 0,8 = 0,5 + 0,6 - P(A ∩ B) ⇒ P(A ∩ B) = 0,3.<br>Mặt khác, P(A) × P(B) = 0,5 × 0,6 = 0,3. Vì P(A ∩ B) = P(A) × P(B) nên A và B là hai biến cố độc lập.',
+                
+                // Giải thích Phần 2
+                'p2_q1': 'Tỉ lệ nhân viên nữ là 0,45; tỉ lệ nhân viên nam là 1 - 0,45 = 0,55.<br>Xác suất chọn nhân viên nữ và mua BHNT là: 0,45 × 0,07 = 0,0315.<br>Xác suất chọn nhân viên nam và mua BHNT là: 0,55 × 0,05 = 0,0275.<br>- <b>Ý a Sai:</b> Xác suất chọn là nam phải bằng 0,55.<br>- <b>Ý b Sai:</b> Xác suất nhân viên có mua BHNT = 0,0315 + 0,0275 = 0,059 (không phải 0,061).<br>- <b>Ý c Đúng:</b> Theo công thức xác suất có điều kiện: P(Nữ | Mua BHNT) = 0,0315 / 0,059 = 315 / 590 = 63 / 118.<br>- <b>Ý d Sai:</b> Vì 0,0275 < 0,0315 nên xác suất nhân viên đó là nam thấp hơn là nữ.',
+                'p2_q2': 'Gọi biến cố H1, H2 là bóng 1 và 2 bị hỏng; S1, S2 là bóng 1 và 2 còn sáng.<br>Theo đề: P(H1) = 0,2 ⇒ P(S1) = 0,8 và P(H2) = 0,5 ⇒ P(S2) = 0,5.<br>- <b>Ý a Sai:</b> P(cả 2 hỏng) = P(H1) × P(H2) = 0,2 × 0,5 = 0,1.<br>- <b>Ý b Đúng:</b> P(cả 2 sáng) = P(S1) × P(S2) = 0,8 × 0,5 = 0,4.<br>- <b>Ý c Đúng:</b> P(chỉ 1 sáng) = P(S1)×P(H2) + P(H1)×P(S2) = (0,8 × 0,5) + (0,2 × 0,5) = 0,4 + 0,1 = 0,5.<br>- <b>Ý d Đúng:</b> Xác suất làm được bài (ít nhất 1 bóng sáng) = 1 - P(cả 2 hỏng) = 1 - 0,1 = 0,9 (tức 90%).',
+                
+                // Giải thích Phần 3
+                'p3_q1': 'Tổng số học sinh là 45. Số học sinh không giỏi môn nào là 12 ⇒ Số học sinh có học lực giỏi ít nhất 1 môn là 45 - 12 = 33.<br>Số học sinh giỏi cả 2 môn (Toán và Văn) là: (30 + 25) - 33 = 22.<br>Xác suất chọn được học sinh giỏi Toán biết rằng em đó giỏi Văn = n(Giỏi cả 2 môn) / n(Giỏi Văn) = 22 / 25 = 0,88.',
+                'p3_q2': 'Trong 45 quả cầu có 23 quả đánh số lẻ và 22 quả đánh số chẵn. Lấy ngẫu nhiên 3 quả, tổng số phần tử không gian mẫu = C(3, 45) = 14190.<br>Tổng 3 số là số lẻ trong 2 trường hợp: (Cả 3 quả đều lẻ) hoặc (1 quả lẻ, 2 quả chẵn).<br>Số cách lấy thuận lợi = C(3, 23) + [C(1, 23) × C(2, 22)] = 1771 + 5313 = 7084.<br>Xác suất = 7084 / 14190 ≈ 0,499... Làm tròn đến hàng phần mười được kết quả là 0,5.',
+                'p3_q3': 'Xác suất bắn trượt của xạ thủ 1 là: 1 - 0,8 = 0,2.<br>Xác suất bắn trượt của xạ thủ 2 là: 1 - 0,7 = 0,3.<br>Xác suất để cả 2 cùng bắn trượt (biến cố đối) là: 0,2 × 0,3 = 0,06.<br>Vậy xác suất có ít nhất một người bắn trúng bia là: 1 - 0,06 = 0,94.'
             }
         };
 
