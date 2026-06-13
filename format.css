@@ -248,7 +248,7 @@ input[type="radio"] { display: none; }
         right: 20px !important;
         z-index: 10000 !important;
         padding: 12px 20px !important;
-        background-color: var(--primary-purple) !important; 
+        background-color: #E11D48 !important; 
         color: var(--white) !important;
         border: none !important;
         border-radius: 50px !important;
