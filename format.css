@@ -162,7 +162,7 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 .palette ul li.is-marked { background-color: #E11D48 !important; color: var(--white) !important; border-color: #E11D48 !important; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4) !important; }
 
 /* =========================================================
-   GIAO DIỆN CÂU HỎI & NÚT BẤM
+   GIAO DIỆN CÂU HỎI & NÚT BẤM (ĐÃ ĐƯỢC FIX LỖI ĐÈ CHỮ)
    ========================================================= */
 .btn-mark {
     background-color: #E11D48; border: none; color: var(--white); padding: 4px 12px; border-radius: 6px;
@@ -173,12 +173,39 @@ h4 { color: var(--text-main); font-size: 36px; text-align: center; margin-bottom
 .btn-mark.is-marked { background-color: #BE123C; box-shadow: 0 2px 5px rgba(225, 29, 72, 0.3); }
 
 input[type="radio"] { display: none; }
-.dapan { display: flex; align-items: center; cursor: pointer; margin-bottom: 12px; font-family: inherit; font-size: 20px; color: var(--text-main); transition: all 0.2s; }
-.nut-chucai {
-    background-color: transparent; color: var(--primary-purple); border: 2px solid var(--primary-purple); 
-    border-radius: 8px; font-weight: bold; margin-right: 15px; display: inline-flex; align-items: center;
-    justify-content: center; transition: all 0.2s; width: 38px; height: 38px;
+
+/* FIX LỖI ĐÈ CHỮ: Bật flex-start, thêm khoảng thở (line-height) và chống tràn (word-break) */
+.dapan { 
+    display: flex; 
+    align-items: flex-start; /* Ép mọi thứ bắt đầu từ mép trên */
+    gap: 15px; /* Dùng gap thay cho margin-right ở nút cái */
+    cursor: pointer; 
+    margin-bottom: 15px; 
+    font-family: inherit; 
+    font-size: 20px; 
+    color: var(--text-main); 
+    transition: all 0.2s; 
+    line-height: 1.6; /* Thêm khoảng thở cho MathJax */
+    word-break: break-word; /* Chống chữ tràn ra ngoài */
 }
+
+/* FIX LỖI MÉO NÚT: Thêm flex-shrink: 0 */
+.nut-chucai {
+    background-color: transparent; 
+    color: var(--primary-purple); 
+    border: 2px solid var(--primary-purple); 
+    border-radius: 8px; 
+    font-weight: bold; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center; 
+    transition: all 0.2s; 
+    width: 38px; 
+    height: 38px;
+    flex-shrink: 0; /* Quan trọng nhất: cấm nút A, B, C bị bóp méo khi màn hình nhỏ */
+    margin-top: -2px; /* Chỉnh xíu để cân đối với dòng chữ đầu tiên */
+}
+
 .dapan:hover .nut-chucai { background-color: var(--primary-purple); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(167, 139, 250, 0.4); }
 .dapan:has(input:checked) .nut-chucai { background-color: var(--primary-hover); color: white; border-color: var(--primary-hover); transform: scale(1.05); }
 .dapan:has(input:checked) { font-weight: bold; color: var(--primary-hover); }
@@ -186,6 +213,12 @@ input[type="radio"] { display: none; }
 .cau-hoi-group { margin-top: 25px; margin-bottom: 25px; }
 .nhom-ngang { display: flex; flex-wrap: wrap; gap: 30px; }
 .nhom-ngang .dapan { margin-bottom: 0; }
+
+/* Ép MathJax nằm ngoan ngoãn trong giao diện thẻ label */
+mjx-container {
+    display: inline-block !important;
+    margin: 0 !important;
+}
 
 /* TRẢ LỜI NGẮN CHUẨN BỘ GD-ĐT */
 .short-answer-container {
