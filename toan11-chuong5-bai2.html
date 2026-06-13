@@ -244,7 +244,7 @@
 
         <div class="summary-card card-blue">
             <div class="card-header">
-                <div class="card-number">28</div>
+                <div class="card-number">2</div>
                 <h3 class="card-title">BIẾN CỐ HỢP, BIẾN CỐ GIAO, BIẾN CỐ ĐỘC LẬP</h3>
             </div>
             <div class="math-content">
@@ -271,14 +271,14 @@
 
         <div class="summary-card card-purple">
             <div class="card-header">
-                <div class="card-number">29</div>
+                <div class="card-number">3</div>
                 <h3 class="card-title">CÔNG THỨC CỘNG XÁC SUẤT</h3>
             </div>
             <div class="math-content">
                 <ul>
-                    <li><b>Biến cố xung khắc:</b> Biến cố $A$ và $B$ được gọi là xung khắc nếu $A$ và $B$ không đồng thời xảy ra. $A$ và $B$ xung khắc $\Leftrightarrow A \cap B = \emptyset$.</li>
+                    <li><b>Biến cố xung khắc:</b> Biến cố $A$ và $B$ được gọi là xung khắc nếu $A$ và $B$ không đồng thời xảy ra. $A$ và $B$ xung khắc $\Leftrightarrow A \cap B = \varnothing$.</li>
                     <li><b>Công thức cộng cho hai biến cố xung khắc:</b> Cho $A$ và $B$ là hai biến cố xung khắc, ta có: $P(A \cup B) = P(A) + P(B)$.</li>
-                    <li><b>Công thức cộng tổng quát:</b> Cho hai biến cố $A$ và $B$ bất kỳ, ta có: $P(A \cup B) = P(A) + P(B) - P(AB)$.</li>
+                    <li><b>Công thức cộng tổng quát:</b> Cho hai biến cố $A$ và $B$ bất kỳ, ta có: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.</li>
                 </ul>
             </div>
             <div class="action-group">
@@ -286,23 +286,23 @@
                 <button class="btn-action btn-think btn-toggle" data-target="thnk-29">🤔 Gợi mở tư duy</button>
             </div>
             <div id="expl-29" class="hidden-box explain-box">
-                <span class="text-bold">Giải thích:</span> Tại sao công thức tổng quát lại phải trừ đi $P(AB)$? Hãy tưởng tượng hai tập hợp giao nhau. Khi cộng diện tích lại với nhau, phần giao nhau ở giữa đã bị tính 2 lần. Vì vậy, ta bắt buộc phải trừ bớt 1 lần $P(AB)$ để kết quả không bị lặp!
+                <span class="text-bold">Giải thích:</span> Tại sao công thức tổng quát lại phải trừ đi $P(A \cap B)$? Hãy tưởng tượng hai tập hợp giao nhau. Khi cộng diện tích lại với nhau, phần giao nhau ở giữa đã bị tính 2 lần. Vì vậy, ta bắt buộc phải trừ bớt 1 lần $P(A \cap B)$ để kết quả không bị lặp!
             </div>
             <div id="thnk-29" class="hidden-box think-box">
-                <span class="text-bold">Gợi mở:</span> Hai biến cố "Xung khắc" và hai biến cố "Đối nhau" có giống nhau hoàn toàn không? (Gợi ý: Biến cố đối thì chắc chắn xung khắc, nhưng xung khắc chưa chắc đã là biến cố đối của nhau).
+                <span class="text-bold">Gợi mở:</span> Hai biến cố "Xung khắc" và hai biến cố "Đối nhau" có giống nhau hoàn toàn không? (<b>Gợi ý:</b> Biến cố đối thì chắc chắn xung khắc, nhưng xung khắc chưa chắc đã là biến cố đối của nhau).
             </div>
         </div>
 
         <div class="summary-card card-green">
             <div class="card-header">
-                <div class="card-number">30</div>
+                <div class="card-number">4</div>
                 <h3 class="card-title">CÔNG THỨC NHÂN XÁC SUẤT CHO HAI BIẾN CỐ ĐỘC LẬP</h3>
             </div>
             <div class="math-content">
                 <ul>
                     <li>Hai biến cố $A$ và $B$ được gọi là độc lập nếu việc xảy ra hay không xảy ra của biến cố này không ảnh hưởng tới xác suất xảy ra của biến cố kia.</li>
                     <li>Nếu cặp biến cố $(A, B)$ độc lập thì các cặp biến cố $(A, \overline{B})$, $(\overline{A}, B)$, $(\overline{A}, \overline{B})$ cũng độc lập.</li>
-                    <li><b>Công thức nhân:</b> Nếu hai biến cố $A$ và $B$ độc lập với nhau thì ta có: $P(AB) = P(A) \cdot P(B)$.</li>
+                    <li><b>Công thức nhân:</b> Nếu hai biến cố $A$ và $B$ độc lập với nhau thì ta có: $P(A \cap B) = P(A) \cdot P(B)$.</li>
                 </ul>
             </div>
             <div class="action-group">
@@ -313,17 +313,17 @@
                 <span class="text-bold">Mẹo làm bài:</span> Thần chú giải toán xác suất: Cứ thấy chữ <b>"HOẶC"</b> thì lập tức dùng phép <b>CỘNG</b>, cứ thấy chữ <b>"VÀ / ĐỒNG THỜI"</b> (hoàn thành nhiều công đoạn liên tiếp) thì lập tức dùng phép <b>NHÂN</b>.
             </div>
             <div id="thnk-30" class="hidden-box think-box">
-                <span class="text-bold">Gợi mở:</span> Nếu trong một bài kiểm tra, bạn nháp ra được $P(AB) \neq P(A) \cdot P(B)$, bạn sẽ kết luận gì về mối quan hệ giữa biến cố $A$ và $B$? Chúng có còn sự "độc lập" nữa không?
+                <span class="text-bold">Gợi mở:</span> Nếu trong một bài kiểm tra, bạn nháp ra được $P(A \cap B) \neq P(A) \cdot P(B)$, bạn sẽ kết luận gì về mối quan hệ giữa biến cố $A$ và $B$? Chúng có còn sự "độc lập" nữa không?
             </div>
         </div>
 
         <div class="box-can-giua" style="margin-top: 20px; gap: 15px; display: flex; justify-content: center;">
-            <a href="index.html" class="btn-action" style="background-color: #F3F4F6; color: #4B5563; text-decoration: none;">🏠 Về trang chủ</a>
-            <a href="thithu.html" class="btn-action" style="background: linear-gradient(135deg, #A78BFA, #C084FC); color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);">Luyện tập ngay 🚀</a>
+            <a href="index.html" class="btn-cute" style="background-color: var(--white); color: var(--text-main);">Về trang chủ</a>
+            <a href="thithu.html" class="btn-cute">Luyện tập ngay</a>
         </div>
     </div>
         
-    <footer style="text-align: center; padding: 30px; margin-top: 20px; color: #6B7280;">
+    <footer>
         <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
         <p>Bản quyền © 2026 SweetMath.</p>
     </footer>
