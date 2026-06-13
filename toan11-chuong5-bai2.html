@@ -22,7 +22,6 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
 
-
     <style>
         /* CSS Tùy chỉnh riêng cho trang tóm tắt siêu cute */
         .summary-container {
@@ -45,6 +44,7 @@
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 10px;
+            line-height: 1.4;
             letter-spacing: 1px;
         }
 
@@ -110,17 +110,7 @@
             font-weight: 700;
             color: var(--text-main, #374151);
             margin: 0;
-        }
-
-        .cute-tag {
-            background: linear-gradient(135deg, #FDE047, #F59E0B);
-            color: #78350F;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 800;
-            margin-left: auto;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+            line-height: 1.4;
         }
 
         .math-content {
@@ -130,13 +120,13 @@
             margin-bottom: 25px;
         }
 
-        .math-content ul, .math-content ol {
+        .math-content ul {
             padding-left: 25px;
             margin-top: 12px;
         }
 
         .math-content li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         /* Nhóm nút bấm tĩnh */
@@ -170,7 +160,7 @@
         .btn-think { background-color: #FFF7ED; color: #EA580C; }
         .btn-think:hover { background-color: #FFEDD5; }
 
-        /* Hộp thoại ẩn (Được làm mềm mại hơn) */
+        /* Hộp thoại ẩn */
         .hidden-box {
             display: none;
             margin-top: 20px;
@@ -198,35 +188,30 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .text-bold { font-weight: 800; }
+        .text-bold { font-weight: 800; display: block; margin-bottom: 5px;}
     </style>
 </head>
 <body>
     <header class="navbar">
         <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
-    <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
-        <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
-            <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
-            <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
-            
-            <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
-            <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
-            
-            <circle cx="42" cy="52" r="5" fill="#3D3A45" />
-            <circle cx="58" cy="52" r="5" fill="#3D3A45" />
-            
-            <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-            <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
-            
-            <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
-            
-            <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
-        </svg>
-        <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
-    </a>
-    <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
-</div>
-<nav>
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+        <nav>
             <ul>
                 <li><a href="index.html">Trang chủ</a></li>  
                 <li><a href="kienthuc.html">Kiến thức</a></li> 
@@ -239,58 +224,106 @@
     
     <div class="summary-container">
         <div class="header-title">
-            <h2>BÀI 2. BIẾN CỐ HỢP VÀ BIẾN CỐ GIAO - BIẾN CỐ ĐỘC LẬP - CÁC QUY TẮC TÍNH XÁC SUẤT</h2>
+            <h2>CHƯƠNG VIII: CÁC QUY TẮC TÍNH XÁC SUẤT</h2>
         </div>
 
-        <!-- BÀI 1 -->
         <div class="summary-card card-pink">
             <div class="card-header">
                 <div class="card-number">1</div>
-                <h3 class="card-title">Add text here</h3>
+                <h3 class="card-title">NHẮC LẠI KHÁI NIỆM CƠ BẢN</h3>
             </div>
             <div class="math-content">
-                Add text here
-            </div>
-            <div class="action-group">
-                <button class="btn-action btn-explain btn-toggle" data-target="expl-1">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-action btn-think btn-toggle" data-target="thnk-1">🤔 Gợi mở tư duy</button>
-            </div>
-            <div id="expl-1" class="hidden-box explain-box">
-                <span class="text-bold">Giải thích:</span> Add text here 
-            </div>
-            <div id="thnk-1" class="hidden-box think-box">
-                <span class="text-bold">Gợi mở:</span> Add text here
+                <ul>
+                    <li><b>Phép thử ngẫu nhiên:</b> Hành động hay thí nghiệm mà ta không đoán trước được kết quả, nhưng biết được tập hợp tất cả các kết quả có thể xảy ra.</li>
+                    <li><b>Không gian mẫu ($\Omega$):</b> Tập hợp tất cả các kết quả có thể xảy ra của phép thử ngẫu nhiên. Số phần tử của không gian mẫu kí hiệu là $n(\Omega)$.</li>
+                    <li><b>Biến cố ($A$):</b> Một tập con của không gian mẫu $\Omega$. Số phần tử thuận lợi cho biến cố $A$ kí hiệu là $n(A)$.</li>
+                    <li><b>Công thức xác suất cổ điển:</b> $P(A)=\dfrac{n(A)}{n(\Omega)}$.</li>
+                </ul>
             </div>
         </div>
 
-        <!-- BÀI 2 -->
         <div class="summary-card card-blue">
             <div class="card-header">
-                <div class="card-number">2</div>
-                <h3 class="card-title">Add text here</h3>
+                <div class="card-number">28</div>
+                <h3 class="card-title">BIẾN CỐ HỢP, BIẾN CỐ GIAO, BIẾN CỐ ĐỘC LẬP</h3>
             </div>
             <div class="math-content">
-                Add text here
+                <ul>
+                    <li><b>Biến cố hợp:</b> Cho $A$ và $B$ là hai biến cố. Biến cố: "$A$ hoặc $B$ xảy ra" được gọi là biến cố hợp, kí hiệu là $A \cup B$. Tập hợp $A \cup B$ là tập con của $\Omega$.</li>
+                    <li><b>Biến cố giao:</b> Biến cố: "$A$ và $B$ đều xảy ra" được gọi là biến cố giao, kí hiệu là $AB$ (hoặc $A \cap B$). Tập hợp $A \cap B$ là tập con của $\Omega$.</li>
+                    <li><b>Biến cố độc lập:</b> Hai biến cố $A$ và $B$ độc lập nếu việc xảy ra hay không xảy ra của biến cố này không ảnh hưởng tới xác suất xảy ra của biến cố kia. Nếu $(A, B)$ độc lập thì các cặp $(A, \overline{B})$, $(\overline{A}, B)$, $(\overline{A}, \overline{B})$ cũng độc lập.</li>
+                </ul>
             </div>
             <div class="action-group">
-                <button class="btn-action btn-explain btn-toggle" data-target="expl-2">💡 Giải thích mẹo nhớ</button>
-                <button class="btn-action btn-think btn-toggle" data-target="thnk-2">🤔 Gợi mở tư duy</button>
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-28">💡 Giải thích mẹo nhớ</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-28">🤔 Gợi mở tư duy</button>
             </div>
-            <div id="expl-2" class="hidden-box explain-box">
-                <span class="text-bold">Giải thích:</span> Add text here
+            <div id="expl-28" class="hidden-box explain-box">
+                <span class="text-bold">Mẹo nhớ:</span> 
+                - Kí hiệu $\cup$ giống như một cái <b>"chén ngửa"</b>, hứng trọn mọi thứ nên đại diện cho chữ HOẶC (có gì gom nấy).<br>
+                - Kí hiệu $\cap$ giống như chiếc <b>"nam châm úp"</b>, chỉ hút những phần chung khắt khe nhất nên đại diện cho chữ VÀ.<br>
+                - Độc lập tức là "đường ai nấy đi", việc người này làm không liên quan gì đến người kia.
             </div>
-            <div id="thnk-2" class="hidden-box think-box">
-                <span class="text-bold">Gợi mở:</span>Add text here
+            <div id="thnk-28" class="hidden-box think-box">
+                <span class="text-bold">Gợi mở:</span> Bạn gieo một con xúc xắc 2 lần. Ở lần 1, bạn lỡ tay làm mẻ một góc của xúc xắc. Điều này có làm mất đi tính "độc lập" của biến cố ở lần gieo thứ 2 không?
             </div>
         </div>
 
-        <div class="box-can-giua" style="margin-top: 20px; gap: 15px;">
-            <a href="index.html" class="btn-cute" style="background-color: var(--white); color: var(--text-main);">🏠 Về trang chủ</a>
-            <a href="thithu.html" class="btn-cute" style="margin: 0;">Luyện tập ngay 🚀</a>
+        <div class="summary-card card-purple">
+            <div class="card-header">
+                <div class="card-number">29</div>
+                <h3 class="card-title">CÔNG THỨC CỘNG XÁC SUẤT</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li><b>Biến cố xung khắc:</b> Biến cố $A$ và $B$ được gọi là xung khắc nếu $A$ và $B$ không đồng thời xảy ra. $A$ và $B$ xung khắc $\Leftrightarrow A \cap B = \emptyset$.</li>
+                    <li><b>Công thức cộng cho hai biến cố xung khắc:</b> Cho $A$ và $B$ là hai biến cố xung khắc, ta có: $P(A \cup B) = P(A) + P(B)$.</li>
+                    <li><b>Công thức cộng tổng quát:</b> Cho hai biến cố $A$ và $B$ bất kỳ, ta có: $P(A \cup B) = P(A) + P(B) - P(AB)$.</li>
+                </ul>
+            </div>
+            <div class="action-group">
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-29">💡 Giải thích công thức</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-29">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-29" class="hidden-box explain-box">
+                <span class="text-bold">Giải thích:</span> Tại sao công thức tổng quát lại phải trừ đi $P(AB)$? Hãy tưởng tượng hai tập hợp giao nhau. Khi cộng diện tích lại với nhau, phần giao nhau ở giữa đã bị tính 2 lần. Vì vậy, ta bắt buộc phải trừ bớt 1 lần $P(AB)$ để kết quả không bị lặp!
+            </div>
+            <div id="thnk-29" class="hidden-box think-box">
+                <span class="text-bold">Gợi mở:</span> Hai biến cố "Xung khắc" và hai biến cố "Đối nhau" có giống nhau hoàn toàn không? (Gợi ý: Biến cố đối thì chắc chắn xung khắc, nhưng xung khắc chưa chắc đã là biến cố đối của nhau).
+            </div>
+        </div>
+
+        <div class="summary-card card-green">
+            <div class="card-header">
+                <div class="card-number">30</div>
+                <h3 class="card-title">CÔNG THỨC NHÂN XÁC SUẤT CHO HAI BIẾN CỐ ĐỘC LẬP</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li>Hai biến cố $A$ và $B$ được gọi là độc lập nếu việc xảy ra hay không xảy ra của biến cố này không ảnh hưởng tới xác suất xảy ra của biến cố kia.</li>
+                    <li>Nếu cặp biến cố $(A, B)$ độc lập thì các cặp biến cố $(A, \overline{B})$, $(\overline{A}, B)$, $(\overline{A}, \overline{B})$ cũng độc lập.</li>
+                    <li><b>Công thức nhân:</b> Nếu hai biến cố $A$ và $B$ độc lập với nhau thì ta có: $P(AB) = P(A) \cdot P(B)$.</li>
+                </ul>
+            </div>
+            <div class="action-group">
+                <button class="btn-action btn-explain btn-toggle" data-target="expl-30">💡 Mẹo làm bài</button>
+                <button class="btn-action btn-think btn-toggle" data-target="thnk-30">🤔 Gợi mở tư duy</button>
+            </div>
+            <div id="expl-30" class="hidden-box explain-box">
+                <span class="text-bold">Mẹo làm bài:</span> Thần chú giải toán xác suất: Cứ thấy chữ <b>"HOẶC"</b> thì lập tức dùng phép <b>CỘNG</b>, cứ thấy chữ <b>"VÀ / ĐỒNG THỜI"</b> (hoàn thành nhiều công đoạn liên tiếp) thì lập tức dùng phép <b>NHÂN</b>.
+            </div>
+            <div id="thnk-30" class="hidden-box think-box">
+                <span class="text-bold">Gợi mở:</span> Nếu trong một bài kiểm tra, bạn nháp ra được $P(AB) \neq P(A) \cdot P(B)$, bạn sẽ kết luận gì về mối quan hệ giữa biến cố $A$ và $B$? Chúng có còn sự "độc lập" nữa không?
+            </div>
+        </div>
+
+        <div class="box-can-giua" style="margin-top: 20px; gap: 15px; display: flex; justify-content: center;">
+            <a href="index.html" class="btn-action" style="background-color: #F3F4F6; color: #4B5563; text-decoration: none;">🏠 Về trang chủ</a>
+            <a href="thithu.html" class="btn-action" style="background: linear-gradient(135deg, #A78BFA, #C084FC); color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);">Luyện tập ngay 🚀</a>
         </div>
     </div>
         
-    <footer>
+    <footer style="text-align: center; padding: 30px; margin-top: 20px; color: #6B7280;">
         <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
         <p>Bản quyền © 2026 SweetMath.</p>
     </footer>
