@@ -23,8 +23,37 @@
     </script>
 
     <style>
+        /* --- VŨ KHÍ TỐI THƯỢNG CHỐNG TRÀN VIỀN TOÀN TRANG --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important; /* Lệnh cấm tuyệt đối trượt ngang */
+            margin: 0;
+            padding: 0;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+        }
+
+        img, svg {
+            max-width: 100%; 
+            height: auto;
+        }
+
+        /* Ép công thức Toán MathJax nếu dài quá thì chỉ cho trượt ngang chỗ công thức, không trượt cả web */
+        mjx-container {
+            max-width: 100%;
+            overflow-x: auto !important;
+            overflow-y: hidden;
+        }
+        /* ----------------------------------------------------- */
+
         /* CSS Tùy chỉnh riêng cho trang tóm tắt siêu cute */
         .summary-container {
+            width: 100%;
             max-width: 850px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -36,6 +65,7 @@
         .header-title {
             text-align: center;
             margin-bottom: 20px;
+            padding: 0 10px;
         }
 
         .header-title h2 {
@@ -64,6 +94,7 @@
             overflow: hidden;
             border: 3px solid transparent;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
         }
 
         .summary-card:hover {
@@ -133,7 +164,7 @@
         .action-group {
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Ép nút rớt dòng nếu màn hình hẹp */
         }
 
         .btn-action {
@@ -147,6 +178,7 @@
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
@@ -189,6 +221,60 @@
         }
 
         .text-bold { font-weight: 800; display: block; margin-bottom: 5px;}
+
+        /* --- XỬ LÝ RESPONSIVE MƯỢT MÀ TRÊN ĐIỆN THOẠI --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column !important;
+                padding: 15px !important;
+                gap: 15px !important;
+                text-align: center;
+            }
+            .brand-box {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .brand-box .slogan {
+                display: block;
+                margin-top: 8px;
+                font-size: 13px !important;
+                white-space: normal !important;
+            }
+            nav ul {
+                display: flex;
+                flex-wrap: wrap !important;
+                justify-content: center;
+                gap: 10px !important;
+                padding: 0 !important;
+            }
+            .header-title h2 {
+                font-size: 24px;
+            }
+            .summary-card {
+                padding: 20px; /* Bóp padding lại */
+            }
+            .card-title {
+                font-size: 18px;
+            }
+            .action-group {
+                flex-direction: column; /* Xếp dọc các nút giải thích trên mobile */
+            }
+            .btn-action {
+                width: 100%; /* Nút kéo dài full ngang cho dễ bấm */
+            }
+            
+            /* Xử lý 2 nút btn-cute cuối trang cho mobile */
+            .box-can-giua {
+                flex-direction: column !important;
+                width: 100%;
+            }
+            .box-can-giua .btn-cute {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0 !important; /* Tạo khoảng cách dọc giữa 2 nút */
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 <body>
