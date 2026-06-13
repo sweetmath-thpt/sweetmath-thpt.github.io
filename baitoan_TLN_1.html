@@ -311,7 +311,7 @@
             <h4 style="color: var(--primary-hover, #9333EA); margin-bottom: 10px;">💡 Gợi ý cách giải:</h4>
             <div class="content-wrapper">
                 <ul>
-                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Hộp có $1$ bi đỏ, $5$ bi xanh $\Rightarrow$ Tổng là $6$. Chốt ngay xác suất bốc $1$ viên bi đỏ là bao nhiêu? Xanh là bao nhiêu?</li>
+                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Hộp có $1$ bi đỏ, $5$ bi xanh $\Rightarrow$ Tổng là $6$. Xác suất bốc $1$ viên bi đỏ là bao nhiêu? Xanh là bao nhiêu?</li>
                     <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Chia 3 trường hợp ra tính riêng lẻ: lấy được viên bi đỏ ngay lần $1$; lần $2$ mới lấy được bi đỏ; hoặc phải đến lần $3$ mới lấy được.</li>
                     <li><strong>Bước 3:</strong> Lấy tổng xác suất của $3$ trường hợp đó, ta có được đáp án của bài toán.</li>
                 </ul>
@@ -327,7 +327,7 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao không thay đổi?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Đề bảo "lấy ra xem rồi trả lại", nên trước khi bốc ở bất kỳ lượt nào, trong hộp vẫn luôn có $1$ viên đỏ và $5$ viên xanh. Đây chính là phép thử độc lập, tỷ lệ không bao giờ bị biến động!
+                    <strong>Flow Thinking:</strong> Điều kiện đề bài là "lấy ra xem rồi trả lại", nên trước khi bốc ở bất kỳ lượt nào, trong hộp vẫn luôn có $1$ viên đỏ và $5$ viên xanh. Do đó, trong bất kỳ lượt nào, số phần tử của không gian mẫu và biến cố vẫn không thay đổi. Đồng thời, việc bốc ra bi màu nào ở lượt này không ảnh hưởng đến kết quả ở lượt sau, do đó các lần bốc bi là phép thử độc lập.
                 </div>
             </div>
 
@@ -337,7 +337,7 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Tuyệt vời quá!</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Quá may mắn, $1$ hit ăn ngay. Vì bốc trúng bi đỏ nên trò chơi kết thúc luôn tại lần đầu tiên.
+                    <strong>Flow Thinking:</strong> Vì bốc trúng bi đỏ ngay từ lần đầu tiên nên phép thử kết thúc tại đó.
                 </div>
             </div>
 
@@ -347,7 +347,7 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao lại nhân?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Hai hành động bốc bi này diễn ra liên tiếp để cấu thành trường hợp $2$. Theo quy tắc nhân xác suất của các biến cố độc lập, mình cứ lấy xác suất bốc bi xanh nhân với xác suất bốc bi đỏ thôi.
+                    <strong>Flow Thinking:</strong> Trong trường hợp này, hai hành động bốc bi này diễn ra liên tiếp. Theo quy tắc nhân xác suất của các biến cố độc lập, ta lấy xác suất bốc bi xanh nhân với xác suất bốc bi đỏ.
                 </div>
             </div>
 
@@ -357,12 +357,12 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Chậm mà chắc</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Tương tự TH2, nhưng đen đủi hơn một xíu nên phải bốc đến viên thứ ba. Bạn nhớ phải tính đủ xác suất bốc trượt $2$ lần đầu tiên nhé!
+                    <strong>Flow Thinking:</strong> Tương tự <b>trường hợp 2</b>, nhưng lần này phải bốc đến viên thứ ba. Do đó, ta lấy xác suất bốc bi xanh hai lần đầu tiên nhân với xác suất bốc bi đỏ.
                 </div>
             </div>
 
             <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 15px; border-radius: 12px;">
-                <p>➔ Xác suất của biến cố $A$ là tổng các trường hợp: <br>$$P(A) = P_1 + P_2 + P_3 = \dfrac{1}{6} + \dfrac{5}{36} + \dfrac{25}{216} = \dfrac{91}{216} \approx 0,42$$</p>
+                <p>➔ Xác suất của biến cố $A$ là: <br>$$P(A) = P_1 + P_2 + P_3 = \dfrac{1}{6} + \dfrac{5}{36} + \dfrac{25}{216} = \dfrac{91}{216} \approx 0,42$$</p>
                 <p style="margin-top: 8px; color: #E11D48; font-size: 20px;"><strong>Đáp số điền ô trả lời ngắn: 0,42</strong></p>
             </div>
 
