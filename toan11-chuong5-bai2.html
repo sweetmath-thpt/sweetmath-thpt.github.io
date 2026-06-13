@@ -23,6 +23,11 @@
     </script>
 
     <style>
+        /* Đảm bảo mọi phần tử không bị phình to hơn kích thước viền */
+        * {
+            box-sizing: border-box;
+        }
+
         /* CSS Tùy chỉnh riêng cho trang tóm tắt siêu cute */
         .summary-container {
             max-width: 850px;
@@ -31,6 +36,7 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+            overflow-x: hidden; /* Khóa chết lỗi tràn viền ngang */
         }
 
         .header-title {
@@ -64,6 +70,7 @@
             overflow: hidden;
             border: 3px solid transparent;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            word-wrap: break-word; /* Ép chữ dài phải xuống dòng */
         }
 
         .summary-card:hover {
@@ -118,6 +125,7 @@
             color: #4B5563;
             line-height: 1.8;
             margin-bottom: 25px;
+            overflow-x: auto; /* Nếu công thức Toán quá dài, chỉ scroll bên trong thẻ này */
         }
 
         .math-content ul {
@@ -133,7 +141,7 @@
         .action-group {
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Bắt buộc bẻ dòng nút trên mobile */
         }
 
         .btn-action {
@@ -148,6 +156,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         .btn-action:hover {
@@ -189,6 +198,52 @@
         }
 
         .text-bold { font-weight: 800; display: block; margin-bottom: 5px;}
+
+        /* --- BỘ CHỮA CHÁY CHỐNG TRÀN GIAO DIỆN TRÊN ĐIỆN THOẠI --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column !important; /* Dọc thay vì ngang */
+                padding: 15px !important;
+                gap: 15px !important;
+            }
+            .brand-box {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .brand-box .slogan {
+                font-size: 13px !important; /* Thu nhỏ slogan */
+                display: block;
+                margin-top: 5px;
+            }
+            nav ul {
+                display: flex;
+                flex-wrap: wrap !important; /* Gập menu nếu hết chỗ */
+                justify-content: center;
+                gap: 10px !important;
+                padding: 0 !important;
+            }
+            nav ul li a {
+                padding: 8px 12px !important;
+                font-size: 14px !important;
+            }
+            .header-title h2 {
+                font-size: 24px; /* Chữ tiêu đề thu nhỏ bớt */
+            }
+            .summary-card {
+                padding: 20px; /* Bóp padding thẻ card lại để không bị phình */
+            }
+            .card-title {
+                font-size: 18px;
+            }
+            .box-can-giua {
+                flex-direction: column; /* Hai nút dưới cùng gập dọc */
+                width: 100%;
+            }
+            .box-can-giua a {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -318,15 +373,15 @@
             </div>
         </div>
 
-        <div class="box-can-giua" style="margin-top: 20px; gap: 15px; display: flex; justify-content: center;">
-            <a href="index.html" class="btn-cute" style="background-color: var(--white); color: var(--text-main);">Về trang chủ</a>
-            <a href="thithu.html" class="btn-cute">Luyện tập ngay</a>
+        <div class="box-can-giua" style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <a href="index.html" class="btn-action" style="background-color: var(--white); color: var(--text-main); text-decoration: none; border: 2px solid #E5E7EB; display: flex; justify-content: center;">🏠 Về trang chủ</a>
+            <a href="thithu.html" class="btn-action" style="background: linear-gradient(135deg, #A78BFA, #C084FC); color: white; text-decoration: none; display: flex; justify-content: center;">Luyện tập ngay 🚀</a>
         </div>
     </div>
         
-    <footer>
-        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
-        <p>Bản quyền © 2026 SweetMath.</p>
+    <footer style="text-align: center; padding: 30px 15px; margin-top: 20px; color: #6B7280; font-size: 14px;">
+        <p style="margin: 0 0 5px 0;">SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p style="margin: 0;">Bản quyền © 2026 SweetMath.</p>
     </footer>
 
     <script>
