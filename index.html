@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetMath: Website học Toán ôn thi Tốt nghiệp THPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+
+    <style>
+    /* Bố cục lưới cho các phần của trang chủ */
+    .home-section {
+        margin: 60px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        color: var(--primary-purple, #A78BFA);
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Grid cho 4 tính năng chính */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .feature-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.08);
+        transition: all 0.3s ease;
+        border-top: 5px solid transparent;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(167, 139, 250, 0.2);
+    }
+
+    .feature-card.f-knowledge { border-top-color: #FF9A9E; }
+    .feature-card.f-practice { border-top-color: #60A5FA; }
+    .feature-card.f-exam { border-top-color: #A78BFA; }
+    .feature-card.f-document { border-top-color: #4ADE80; }
+
+    .feature-icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .feature-card h4 {
+        color: var(--text-main, #333);
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .feature-card p {
+        color: var(--text-muted, #666);
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    /* Grid cho Giới hạn đề tài */
+    .promises-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .promise-card {
+        background: linear-gradient(135deg, #FFF0F2, #FDE7EB);
+        border-radius: 20px;
+        padding: 25px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: transform 0.3s ease;
+    }
+    
+    .promise-card:hover {
+        transform: scale(1.02);
+    }
+
+    .promise-icon {
+        background: #FF9A9E;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+        font-weight: bold;
+    }
+
+    .promise-content h4 {
+        margin: 0 0 8px 0;
+        color: #D6336C;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+    .promise-content p {
+        margin: 0;
+        color: #555;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    /* CSS cho phần Đánh giá & Góp ý */
+    .feedback-section {
+        background: linear-gradient(135deg, #F3E8FF, #E0F2FE);
+        border-radius: 24px;
+        padding: 40px 20px;
+        text-align: center;
+        margin: 60px 0;
+        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.15);
+    }
+    .feedback-title {
+        color: var(--primary-purple, #A78BFA);
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+    .stars {
+        color: #FBBF24;
+        font-size: 45px;
+        margin-bottom: 15px;
+        letter-spacing: 5px;
+        text-shadow: 0 2px 5px rgba(251, 191, 36, 0.4);
+    }
+    .feedback-text {
+        font-size: 20px;
+        color: #4B5563;
+        margin-bottom: 25px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+    .btn-form {
+        background: linear-gradient(135deg, #FF9A9E, #FECFEF);
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4);
+        transition: transform 0.2s;
+    }
+    .btn-form:hover {
+        transform: scale(1.05);
+    }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>  
+                <li><a href="kienthuc.html">Kiến thức</a></li> 
+                <li><a href="cacbaitoan.html">Các bài toán</a></li>
+                <li><a href="thithu.html">Thi thử</a></li>
+                <li><a href="tailieu.html">Tài liệu</a></li>
+                <li><a href="#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="hero-image">
+    <div class="hero-text">
+        <h1>Bứt phá chuyên đề Xác suất lớp 11 theo cấu trúc đề thi Tốt nghiệp THPT mới!</h1>
+        <h6 style="text-align: center; margin-bottom: 25px;">Học thông minh bằng tư duy flow-thinking, nói không với học vẹt công thức.</h6>
+        <a href="#kham-pha" class="btn-cute" style="display: inline-block; text-decoration: none;">KHÁM PHÁ NGAY!</a>
+    </div>
+</div>
+
+<div class="content-wrapper">
+
+    <!-- PHẦN 1: HỆ SINH THÁI TÍNH NĂNG -->
+    <div class="home-section" id="kham-pha">
+        <h2 class="section-title">Hệ sinh thái học tập tương tác thế hệ mới 🌌</h2>
+        <div class="features-grid">
+            <div class="feature-card f-knowledge">
+                <div class="feature-icon">🧠</div>
+                <h4>Lý thuyết trọng tâm</h4>
+                <p>Hệ thống hóa toàn bộ kiến thức cốt lõi về Xác suất một cách trực quan, mạch lạc, giúp học sinh nắm vững bản chất các loại biến cố dễ dàng.</p>
+            </div>
+            
+            <div class="feature-card f-practice">
+                <div class="feature-icon">⚡</div>
+                <h4>Tuyển tập bài toán</h4>
+                <p>Phân loại chi tiết các dạng toán thường gặp từ cơ bản đến vận dụng cao. Cung cấp chức năng giải thích động bật/mở theo từng bước tính cụ thể.</p>
+            </div>
+            
+            <div class="feature-card f-exam">
+                <div class="feature-icon">⏱️</div>
+                <h4>Thi thử chuẩn cấu trúc</h4>
+                <p>Mô phỏng thời gian thực theo cấu trúc 3 phần (nhiều lựa chọn, đúng - sai, trả lời ngắn). Tích hợp palette hỗ trợ kiểm soát tiến độ làm bài tiện lợi.</p>
+            </div>
+            
+            <div class="feature-card f-document">
+                <div class="feature-icon">🎁</div>
+                <h4>Thư viện đề thi thực tế</h4>
+                <p>Tổng hợp đề kiểm tra, khảo sát từ các Sở GD&ĐT và trường THPT để tải về miễn phí.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHẦN 2: BÍ KÍP & TIPS SỬ DỤNG SWEETMATH HIỆU QUẢ -->
+    <div class="home-section">
+        <h2 class="section-title">Bí kíp 3 bước học hiệu quả cùng SweetMath 🚀</h2>
+        <div class="features-grid">
+            <div class="feature-card" style="border-top-color: #A78BFA; text-align: left; padding: 25px;">
+                <div class="feature-icon" style="font-size: 32px;">🔥 Bước 1</div>
+                <h4 style="font-size: 20px;">Nắm chắc bản chất tại "Kiến thức"</h4>
+                <p style="font-size: 18px;">Đừng vội lao vào làm bài tập ngay. Hãy dành 5 phút đọc kỹ tổng quan lý thuyết để định hình phương pháp và phân biệt rõ biến cố độc lập, xung khắc.</p>
+            </div>
+            
+            <div class="feature-card" style="border-top-color: #FF758F; text-align: left; padding: 25px;">
+                <div class="feature-icon" style="font-size: 32px;">🎯 Bước 2</div>
+                <h4 style="font-size: 20px;">Truy cập kho tài liệu và tuyển tập các bài toán</h4>
+                <p style="font-size: 18px;">Tham khảo ngay tuyển tập bài toán và đề thi từ các Sở GD&ĐT và trường THPT để làm quen với đa dạng cách hành văn ra đề của các thầy cô.</p>
+            </div>
+            
+            <div class="feature-card" style="border-top-color: #4ADE80; text-align: left; padding: 25px;">
+                <div class="feature-icon" style="font-size: 32px;">💡 Bước 3</div>
+                <h4 style="font-size: 20px;">Phân tích lỗi sai bằng tư duy flow-thinking</h4>
+                <p style="font-size: 18px;">Khi xem kết quả thi, đừng chỉ nhìn đáp án đúng hay sai. Hãy kích hoạt hộp thoại <b>Giải thích</b> để hiểu cách tư duy đằng sau mỗi bước giải chi tiết.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHẦN 3: ĐỐI TƯỢNG, PHẠM VI NGHIÊN CỨU & KHẲNG ĐỊNH GIÁ TRỊ CỐT LÕI -->
+    <div class="home-section">
+        <h2 class="section-title">Phạm vi nghiên cứu & Cam kết giá trị 🎯</h2>
+        <div class="promises-grid">
+            <div class="promise-card">
+                <div class="promise-icon">🧑‍🎓</div>
+                <div class="promise-content">
+                    <h4>ĐỐI TƯỢNG PHỤC VỤ</h4>
+                    <p>Dự án số hóa chuyên biệt cho học sinh cấp THPT đang gặp khó khăn với chuyên đề Xác suất, đặc biệt là các học sinh đang chuẩn bị cho kỳ thi Tốt nghiệp THPT từ năm 2027 trở đi.</p>
+                </div>
+            </div>
+            
+            <div class="promise-card">
+                <div class="promise-icon">💎</div>
+                <div class="promise-content">
+                    <h4>TƯ DUY TUYẾN TÍNH (FLOW-THINKING) ĐỘT PHÁ</h4>
+                    <p>Flow-thinking thông thường chỉ có qua video bài giảng. Hiểu được rào cản khi một số học sinh không có thiết bị/mạng mạnh để xem video, hệ thống cung cấp giải thích bằng văn bản động dạng module, giúp tự dò lỗi tư duy mọi lúc mọi nơi.</p>
+                </div>
+            </div>
+            
+            <div class="promise-card">
+                <div class="promise-icon">⚡</div>
+                <div class="promise-content">
+                    <h4>MÔI TRƯỜNG HỌC TẬP KHÔNG ÁP LỰC (STRESS-FREE)</h4>
+                    <p>Đảm bảo môi trường học tập tập trung 100% không quảng cáo. Kết hợp cùng giao diện mượt mà, tone màu pastel dịu mắt, ngọt ngào giúp học sinh giảm thiểu căng thẳng tâm lý khi ôn thi.</p>
+                </div>
+            </div>
+
+            <div class="promise-card">
+                <div class="promise-icon">📚</div>
+                <div class="promise-content">
+                    <h4>NGUỒN TÀI LIỆU BÁM SÁT GDPT 2018</h4>
+                    <p>Tập hợp tư liệu chuẩn hóa theo định hướng Chương trình GDPT 2018, bám sát cấu trúc đề thi mới nhất: nhiều lựa chọn, đúng - sai và trả lời ngắn do Bộ Giáo dục và Đào tạo quy định.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHẦN ĐÁNH GIÁ & GÓP Ý TƯƠNG TÁC -->
+    <div class="feedback-section" id="feedback">
+        <h2 class="feedback-title">Bạn nghĩ sao về SweetMath? 💌</h2>
+        <p class="feedback-text">Mọi ý kiến đóng góp mang tính xây dựng của bạn là nguồn động lực to lớn giúp nhóm tác giả tiếp tục nâng cấp thuật toán, hoàn thiện các tính năng cốt lõi và mở rộng kho học liệu thông minh trong tương lai. Mong xác bạn dành 1 phút để đánh giá trải nghiệm nhé!</p>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO94wEbVab8-L-8dJtF3zaQTmh3mFEnruXNhSBv8Wt2nHFzA/viewform?usp=publish-editor" target="_blank" class="btn-form">Chấm điểm & Gửi góp ý ngay 🚀</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+    <p>Bản quyền © 2026 SweetMath.</p>
+</footer>
+
+</body>
+</html>

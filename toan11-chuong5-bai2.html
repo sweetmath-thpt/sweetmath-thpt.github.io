@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương VIII. Các quy tắc tính xác suất</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+    
+    <script>
+        window.MathJax = {
+            tex: { 
+                inlineMath: [['$', '$'], ['\\(', '\\)']], 
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <style>
+        /* --- TỐI ƯU HÓA HIỂN THỊ CHỐNG TRÀN VIỀN TRÊN MOBILE --- */
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body {
+            width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0;
+            word-wrap: break-word; overflow-wrap: break-word; font-family: 'Quicksand', sans-serif;
+        }
+        img, svg { max-width: 100%; height: auto; }
+        
+        /* --- SỬA LỖI CÔNG THỨC TOÁN BỊ LỆCH DÒNG / NHẢY DÒNG --- */
+        mjx-container { 
+            display: inline-block; 
+            vertical-align: middle; 
+            margin: 0 2px;
+        }
+        /* Chỉ áp dụng cuộn ngang cho công thức độc lập đứng riêng dòng */
+        mjx-container[display="true"] { 
+            display: block !important; 
+            max-width: 100% !important; 
+            overflow-x: auto !important; 
+            overflow-y: hidden; 
+            padding: 8px 0; 
+            margin: 12px auto !important;
+        }
+
+        .summary-container {
+            width: 100%; max-width: 950px; margin: 0 auto; padding: 40px 20px;
+            display: flex; flex-direction: column; gap: 40px;
+        }
+
+        .header-title { text-align: center; margin-bottom: 20px; }
+        .header-title h2 {
+            color: #A855F7; font-size: 34px; font-weight: 800;
+            text-transform: uppercase; margin-bottom: 12px; line-height: 1.4;
+        }
+
+        /* --- SƠ ĐỒ TƯ DUY RÚT GỌN --- */
+        .mindmap-box {
+            background: #FFFFFF; border: 2px dashed #D8B4FE; border-radius: 24px;
+            padding: 30px; text-align: center; box-shadow: 0 4px 15px rgba(168,85,247,0.05);
+        }
+        .mindmap-title { font-weight: 800; color: #A855F7; margin-bottom: 20px; font-size: 24px; text-transform: uppercase; }
+        .mindmap-nodes { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .node-item {
+            background: #FAFAFA; padding: 16px 24px; border-radius: 16px; font-size: 20px; font-weight: 700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03); border-left: 6px solid;
+        }
+
+        /* --- THẺ NỘI DUNG TÓM TẮT --- */
+        .summary-card {
+            background: #FFFFFF; border-radius: 24px; padding: 35px;
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.06); position: relative;
+            border-top: 6px solid transparent; transition: 0.3s ease;
+        }
+        .summary-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(167, 139, 250, 0.12); }
+        .card-orange { border-color: #F59E0B; }
+        .card-pink { border-color: #F43F5E; }
+        .card-blue { border-color: #0EA5E9; }
+        .card-purple { border-color: #A855F7; }
+        .card-green { border-color: #10B981; }
+
+        .card-header { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
+        .card-number {
+            width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center;
+            justify-content: center; font-size: 24px; font-weight: 800; color: white; flex-shrink: 0;
+            transform: rotate(-5deg);
+        }
+        .card-orange .card-number { background: #F59E0B; }
+        .card-pink .card-number { background: #F43F5E; }
+        .card-blue .card-number { background: #0EA5E9; }
+        .card-purple .card-number { background: #A855F7; }
+        .card-green .card-number { background: #10B981; }
+
+        .card-title { font-size: 26px; font-weight: 800; color: #1F2937; margin: 0; text-transform: uppercase; }
+
+        /* Khối hướng dẫn tư duy sư phạm mới */
+        .explanation-box {
+            border-radius: 16px; padding: 22px 26px; margin: 25px 0 0 0; 
+            font-size: 20px; line-height: 1.7; font-weight: 500;
+        }
+        .explanation-box span { 
+            font-weight: 800; text-transform: uppercase; font-size: 18px; 
+            letter-spacing: 1px; display: block; margin-bottom: 10px;
+        }
+
+        .math-content { font-size: 20px; color: #374151; line-height: 1.8; }
+        .math-content ul { padding-left: 25px; margin: 15px 0; }
+        .math-content li { margin-bottom: 12px; text-align: justify; }
+        .math-highlight { background: #F3E8FF; color: #7C3AED; padding: 3px 8px; border-radius: 8px; font-weight: 700; }
+        
+        .formula-block { 
+            background: #F9FAFB; padding: 22px; border-radius: 12px; 
+            margin: 20px 0; text-align: center; border: 1px solid #E5E7EB; color: #111827;
+        }
+        .formula-block p {
+            margin: 0 0 12px 0; font-size: 20px; font-weight: 700; color: #374151;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column !important; padding: 15px !important; gap: 12px !important; text-align: center;}
+            .slogan { display: none !important; }
+            nav ul { justify-content: center; gap: 8px !important; padding: 0 !important; flex-wrap: wrap;}
+            .header-title h2 { font-size: 26px; }
+            .summary-card { padding: 25px; }
+            .card-title { font-size: 22px; }
+            .math-content, .explanation-box, .node-item { font-size: 18px; }
+            .formula-block p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>  
+                <li><a href="kienthuc.html">Kiến thức</a></li>
+                <li><a href="cacbaitoan.html">Các bài toán</a></li>
+                <li><a href="thithu.html">Thi thử</a></li>
+                <li><a href="tailieu.html">Tài liệu</a></li>
+                <li><a href="#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="summary-container">
+        <div class="header-title">
+            <h2>CHƯƠNG VIII. CÁC QUY TẮC TÍNH XÁC SUẤT</h2>
+        </div>
+
+        <div class="mindmap-box">
+            <div class="mindmap-title">📌 Bảng từ khóa siêu tốc</div>
+            <div class="mindmap-nodes">
+                <div class="node-item" style="border-color: #F59E0B;">$\Omega$: TẤT CẢ trường hợp</div>
+                <div class="node-item" style="border-color: #F43F5E;">Hợp ($\cup$): Chữ "HOẶC"</div>
+                <div class="node-item" style="border-color: #0EA5E9;">Giao ($\cap$): Chữ "VÀ"</div>
+                <div class="node-item" style="border-color: #A855F7;">Xung khắc: Loại trừ nhau</div>
+                <div class="node-item" style="border-color: #10B981;">Độc lập: Không liên quan</div>
+            </div>
+        </div>
+
+        <div class="summary-card card-orange">
+            <div class="card-header">
+                <div class="card-number">1</div>
+                <h3 class="card-title">CÁC KHÁI NIỆM CƠ BẢN</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li><b>Phép thử ngẫu nhiên:</b> Hành động hay thí nghiệm mà ta không đoán trước được kết quả, nhưng biết được tập hợp tất cả các kết quả có thể xảy ra.</li>
+                    <li><b>Không gian mẫu ($\Omega$):</b> Tập hợp chứa toàn bộ các khả năng có thể xảy ra. Kí hiệu số phần tử: $n(\Omega)$</li>
+                    <li><b>Biến cố ($A$):</b> Tập hợp các kết quả đúng ý mình mong muốn. Kí hiệu số phần tử: $n(A)$.</li>
+                </ul>
+                <div class="formula-block">
+                    <p>Công thức xác suất cổ điển:</p>
+                    $$P(A) = \dfrac{n(A)}{n(\Omega)}$$
+                </div>
+            </div>
+            <div class="explanation-box" style="background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E;">
+                <span style="color: #D97706;">🎯 Chốt nhanh dễ hiểu</span>
+                Xác suất = <b>(Số trường hợp MÌNH CẦN)</b> chia cho <b>(TỔNG số trường hợp)</b>.<br>
+                <i>Ví dụ: 1 lớp có 10 nam, 20 nữ (Tổng = 30). Gọi ngẫu nhiên 1 bạn lên bảng, xác suất gọi trúng bạn nam là $\dfrac{10}{30}$.</i>
+            </div>
+        </div>
+
+        <div class="summary-card card-pink">
+            <div class="card-header">
+                <div class="card-number">2</div>
+                <h3 class="card-title">BIẾN CỐ HỢP VÀ BIẾN CỐ GIAO</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li><b>Biến cố hợp ($A \cup B$):</b> Xảy ra $A$ <b>HOẶC</b> $B$ (Chỉ cần 1 trong 2 cái thành sự thật là được tính).</li>
+                    <li><b>Biến cố giao ($A \cap B$):</b> Xảy ra $A$ <b>VÀ</b> $B$ (Bắt buộc cả 2 phải cùng diễn ra đồng thời).</li>
+                </ul>
+            </div>
+            <div class="explanation-box" style="background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B;">
+                <span style="color: #DC2626;">🧠 Ghi nhớ ký hiệu</span>
+                - Chữ <b>U</b> ngửa lên ($\cup$) giống cái chén chứa được nhiều đồ $\rightarrow$ Lấy tất cả (HỢP).<br>
+                - Chữ <b>U</b> úp xuống ($\cap$) giống cái nón chật hẹp $\rightarrow$ Chỉ lấy phần chung (GIAO).
+            </div>
+        </div>
+
+        <div class="summary-card card-purple">
+            <div class="card-header">
+                <div class="card-number">3</div>
+                <h3 class="card-title">BIẾN CỐ XUNG KHẮC VÀ QUY TẮC CỘNG XÁC SUẤT</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li><b>Biến cố xung khắc:</b> Hai sự kiện không bao giờ xảy ra cùng lúc (Ví dụ: Tung đồng xu ra mặt sấp thì thôi mặt ngửa).</li>
+                </ul>
+                <div class="formula-block">
+                    <p>Nếu xung khắc (Không đụng chạm):</p>
+                    $$P(A \cup B) = P(A) + P(B)$$
+                    <p style="margin-top: 15px;">Nếu bất kỳ (Có phần tử chung):</p>
+                    $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+                </div>
+            </div>
+            <div class="explanation-box" style="background: #F5F3FF; border: 1px solid #DDD6FE; color: #5B21B6;">
+                <span style="color: #7C3AED;">⚠️ Tại sao phải trừ?</span>
+                Nếu $A$ và $B$ có phần chung, khi bạn lấy $A + B$, phần chung đó vô tình bị cộng 2 lần. Phải <b>trừ đi 1 lần giao nhau</b> $P(A \cap B)$ để trả lại kết quả đúng!
+            </div>
+        </div>
+
+        <div class="summary-card card-green">
+            <div class="card-header">
+                <div class="card-number">4</div>
+                <h3 class="card-title">BIẾN CỐ ĐỘC LẬP VÀ PHÉP NHÂN XÁC SUẤT</h3>
+            </div>
+            <div class="math-content">
+                <ul>
+                    <li><b>Biến cố độc lập:</b> Việc của người này không ảnh hưởng đến người kia (Ví dụ: Bạn tung đồng xu, bạn kia gieo xúc xắc).</li>
+                </ul>
+                <div class="formula-block">
+                    <p>Công thức tính xác suất của biến cố giao (khi độc lập):</p>
+                    $$P(A \cap B) = P(A) \cdot P(B)$$
+                    <p>Hai biến cố không độc lập nếu:</p>
+                    $$P(A \cap B) \neq P(A) \cdot P(B)$$
+                </div>
+            </div>
+            <div class="explanation-box" style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;">
+                <span style="color: #059669;">🔥 Mẹo làm trắc nghiệm 3 giây</span>
+                - Đọc đề thấy chia thành các <b>trường hợp</b> (từ khóa: HOẶC) $\rightarrow$ Dùng phép <b>CỘNG</b>.<br>
+                - Đọc đề thấy các <b>giai đoạn, bước làm liên tiếp</b> (từ khóa: VÀ) $\rightarrow$ Dùng phép <b>NHÂN</b>.
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="index.html" style="background: white; color: #374151; text-decoration: none; padding: 15px 30px; border-radius: 50px; font-weight: 700; font-size: 20px; border: 2px solid #E5E7EB;">🏠 Về trang chủ</a>
+            <a href="thithu.html" style="background: #A855F7; color: white; text-decoration: none; padding: 15px 30px; border-radius: 50px; font-weight: 700; font-size: 20px; box-shadow: 0 4px 15px rgba(168,85,247,0.3);">🔥 Luyện tập ngay</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
+</body>
+</html>

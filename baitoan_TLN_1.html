@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài giải thử nghiệm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <style>
+        /* CSS Reset cơ bản để padding/border không làm phình kích thước phần tử */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* --- STYLES DÀNH CHO MENU BỔ SUNG ĐỂ TRÁNH TRÀN TRÊN MOBILE --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap; /* Cho phép rớt dòng */
+            gap: 15px;
+        }
+
+        .brand-box {
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main, #333);
+            font-weight: 600;
+        }
+        /* ------------------------------------------------------------- */
+
+        .anatomy-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            color: var(--text-main);
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap; /* Tránh tràn tiêu đề */
+        }
+
+        .analysis-box {
+            background-color: var(--white);
+            border-left: 5px solid var(--primary-purple);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            color: var(--text-main);
+            overflow-x: auto; /* Cho phép cuộn ngang nếu công thức bên trong quá dài */
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            border: 2px solid var(--secondary-pink);
+            background-color: var(--white);
+            color: var(--text-main);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-purple);
+        }
+
+        .tab-btn.is-active {
+            background-color: var(--primary-purple);
+            color: var(--white);
+            border-color: var(--primary-purple);
+        }
+
+        .tab-panel {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            color: var(--text-main);
+            display: none; 
+            animation: fadeIn 0.3s ease;
+            overflow-x: auto; /* Tránh tràn khung bảng phụ */
+        }
+
+        .step-item {
+            border-bottom: 1px dashed #e5deeb;
+            padding: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+            gap: 20px; 
+        }
+
+        .step-text {
+            font-size: 20px;
+            line-height: 1.6;
+            flex: 1; 
+        }
+
+        .btn-explain {
+            flex-shrink: 0; 
+            margin-top: 4px; 
+            background-color: var(--secondary-pink);
+            color: var(--text-main);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px; 
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 14px; 
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(167, 139, 250, 0.1);
+        }
+
+        .btn-explain:hover {
+            background-color: var(--accent-candy);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(167, 139, 250, 0.2);
+        }
+
+        .flow-thinking-box {
+            background-color: #FAF5FF;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #6B5277;
+            border-left: 3px dashed var(--primary-purple);
+            display: none; 
+            animation: slideDown 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 200px; }
+        }
+
+        /* --- RESPONSIVE CHO ĐIỆN THOẠI (DƯỚI 600PX) --- */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 10px;
+            }
+
+            .brand-box {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 5px;
+            }
+            
+            .slogan {
+                font-size: 14px; /* Thu nhỏ slogan đôi chút trên điện thoại */
+            }
+
+            .tabs-header {
+                flex-direction: column; /* Biến 2 nút tab ngang thành dọc */
+                gap: 10px;
+            }
+
+            .tab-btn {
+                font-size: 16px; /* Giảm font-size nút Tab cho cân đối */
+                padding: 12px;
+            }
+
+            .step-row {
+                flex-direction: column; 
+                align-items: flex-start; /* Để sát lề trái thuận mắt hơn là góc phải */
+                gap: 12px;
+            }
+            
+            .step-text {
+                width: 100%;
+                font-size: 16px; /* Thu nhỏ font text toán học trên mobile */
+            }
+
+            .btn-explain {
+                width: 100%; /* Kéo dài nút nhấn giải thích để dễ bấm trên điện thoại */
+                padding: 10px 14px;
+                white-space: normal;
+            }
+
+            .tab-panel {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-global, #FDF8FF); font-family: 'Quicksand', sans-serif; margin: 0;">
+
+    <header class="navbar">
+        <div class="brand-box">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan" style="color: var(--text-muted, #888);">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>  
+                <li><a href="kienthuc.html">Kiến thức</a></li> 
+                <li><a href="cacbaitoan.html">Các bài toán</a></li>
+                <li><a href="thithu.html">Thi thử</a></li>
+                <li><a href="tailieu.html">Tài liệu</a></li>
+                <li><a href="index.html#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="anatomy-container">
+        <h3 class="section-title">📌 Đề bài</h3>
+        <div class="analysis-box" style="border-left-color: var(--accent-candy, #FF9A9E); font-weight: 600;">
+            Một hộp chứa 1 viên bi đỏ và 5 viên bi xanh (các viên bi đều khác nhau về kích thước). Bạn Bình lấy ngẫu nhiên 1 viên bi, xem màu rồi trả lại vào hộp. Bình lặp lại liên tiếp phép thử trên cho đến khi lấy được viên bi đỏ thì dừng lại. Gọi $A$ là biến cố "Bình thực hiện không quá 3 lần để lấy được bi đỏ". Tính xác suất của biến cố $A$ <i>(làm tròn kết quả đến hàng phần trăm)</i>.
+            <br><small style="color: var(--text-muted, #888); font-weight: normal;">Trích đề thi cuối kì 2 năm học 2025-2026, Trường THPT chuyên Lý Tự Trọng, Cần Thơ</small>
+        </div>
+
+        <h3 class="section-title">🧠 Phân tích đề bài</h3>
+        <div class="analysis-box">
+            <p><strong>Từ khóa trọng tâm:</strong> Từ khóa ở đây là <strong>"không quá 3 lần"</strong> và <strong>"trả lại vào hộp"</strong>.</p>
+            <p style="margin-top: 8px;">➔ <strong>Phân tích vấn đề:</strong> "Trả lại vào hộp" nghĩa là tổng số bi trong hộp luôn là 6 viên ở mỗi lần bốc. Xác suất lấy được bi đỏ ở bất kỳ lần nào cũng cố định là $\dfrac{1}{6}$. Bài này chỉ cần chia làm 3 trường hợp: lấy được ngay lần 1, lần 2 mới lấy được, hoặc phải đến lần 3 mới lấy được.</p>
+        </div>
+
+        <div class="tabs-header">
+            <button class="tab-btn" data-target="panel-goiy">💡 XEM GỢI Ý</button>
+            <button class="tab-btn" data-target="panel-loigiaichitiet">✨ XEM LỜI GIẢI</button>
+        </div>
+
+        <div id="panel-goiy" class="tab-panel">
+            <h4 style="color: var(--primary-hover, #9333EA); margin-bottom: 10px;">💡 Gợi ý cách giải:</h4>
+            <div class="content-wrapper">
+                <ul>
+                    <li style="margin-bottom: 8px;"><strong>Bước 1:</strong> Hộp có $1$ bi đỏ, $5$ bi xanh $\Rightarrow$ Tổng là $6$. Xác suất bốc $1$ viên bi đỏ là bao nhiêu? Xanh là bao nhiêu?</li>
+                    <li style="margin-bottom: 8px;"><strong>Bước 2:</strong> Chia 3 trường hợp ra tính riêng lẻ: lấy được viên bi đỏ ngay lần $1$; lần $2$ mới lấy được bi đỏ; hoặc phải đến lần $3$ mới lấy được.</li>
+                    <li><strong>Bước 3:</strong> Lấy tổng xác suất của $3$ trường hợp đó, ta có được đáp án của bài toán.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="panel-loigiaichitiet" class="tab-panel">
+            <h4 style="color: var(--primary-hover, #9333EA); margin-bottom: 15px;">✨ Hướng dẫn giải chi tiết:</h4>
+            
+            <div class="step-item">
+                <div class="step-row">
+                    <div class="step-text"><strong>Nhận xét chung:</strong> Xác suất lấy được bi đỏ trong $1$ lần bốc là $\dfrac{1}{6}$, xác suất lấy bi xanh là $\dfrac{5}{6}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao không thay đổi?</button>
+                </div>
+                <div class="flow-thinking-box">
+                    <strong>Flow Thinking:</strong> Điều kiện đề bài là "lấy ra xem rồi trả lại", nên trước khi bốc ở bất kỳ lượt nào, trong hộp vẫn luôn có $1$ viên đỏ và $5$ viên xanh. Do đó, trong bất kỳ lượt nào, số phần tử của không gian mẫu và biến cố vẫn không thay đổi. Đồng thời, việc bốc ra bi màu nào ở lượt này không ảnh hưởng đến kết quả ở lượt sau, do đó các lần bốc bi là phép thử độc lập.
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-row">
+                    <div class="step-text"><strong>Trường hợp 1:</strong> Lấy được bi đỏ ngay lần thứ $1$. <br>Xác suất: $P_1 = \dfrac{1}{6}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tuyệt vời quá!</button>
+                </div>
+                <div class="flow-thinking-box">
+                    <strong>Flow Thinking:</strong> Vì bốc trúng bi đỏ ngay từ lần đầu tiên nên phép thử kết thúc tại đó.
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-row">
+                    <div class="step-text"><strong>Trường hợp 2:</strong> Lần $1$ lấy bi xanh, lần $2$ lấy được bi đỏ. <br>Xác suất: $P_2 = \dfrac{5}{6} \cdot \dfrac{1}{6} = \dfrac{5}{36}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao lại nhân?</button>
+                </div>
+                <div class="flow-thinking-box">
+                    <strong>Flow Thinking:</strong> Trong trường hợp này, hai hành động bốc bi này diễn ra liên tiếp. Theo quy tắc nhân xác suất của các biến cố độc lập, ta lấy xác suất bốc bi xanh nhân với xác suất bốc bi đỏ.
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-row">
+                    <div class="step-text"><strong>Trường hợp 3:</strong> Lần $1$ và $2$ lấy bi xanh, lần $3$ mới lấy được bi đỏ. <br>Xác suất: $P_3 = \dfrac{5}{6} \cdot \dfrac{5}{6} \cdot \dfrac{1}{6} = \dfrac{25}{216}$.</div>
+                    <button class="btn-explain" onclick="toggleExplanation(this)">Chậm mà chắc</button>
+                </div>
+                <div class="flow-thinking-box">
+                    <strong>Flow Thinking:</strong> Tương tự <b>trường hợp 2</b>, nhưng lần này phải bốc đến viên thứ ba. Do đó, ta lấy xác suất bốc bi xanh hai lần đầu tiên nhân với xác suất bốc bi đỏ.
+                </div>
+            </div>
+
+            <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 15px; border-radius: 12px;">
+                <p>➔ Xác suất của biến cố $A$ là: <br>$$P(A) = P_1 + P_2 + P_3 = \dfrac{1}{6} + \dfrac{5}{36} + \dfrac{25}{216} = \dfrac{91}{216} \approx 0,42$$</p>
+                <p style="margin-top: 8px; color: #E11D48; font-size: 20px;"><strong>Đáp số điền ô trả lời ngắn: 0,42</strong></p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+
+                if (this.classList.contains('is-active')) {
+                    this.classList.remove('is-active');
+                    targetPanel.style.display = 'none';
+                } else {
+                    tabButtons.forEach(btn => btn.classList.remove('is-active'));
+                    tabPanels.forEach(panel => panel.style.display = 'none');
+
+                    this.classList.add('is-active');
+                    targetPanel.style.display = 'block';
+                }
+            });
+        });
+
+        function toggleExplanation(button) {
+            const stepItem = button.closest('.step-item');
+            const explanationBox = stepItem.querySelector('.flow-thinking-box');
+
+            if (explanationBox.style.display === 'block') {
+                explanationBox.style.display = 'none';
+                button.style.backgroundColor = 'var(--secondary-pink)';
+            } else {
+                explanationBox.style.display = 'block';
+                button.style.backgroundColor = 'var(--accent-candy, #FF9A9E)'; 
+            }
+        }
+    </script>
+</body>
+            </html>
+        

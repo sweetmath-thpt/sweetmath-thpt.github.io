@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề thi thử nghiệm - SweetMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="format.css">
+    
+    <style>
+        /* Vũ khí chống tràn viền lặp lại cho trang này để an toàn 100% trên mobile */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+            word-wrap: break-word;
+        }
+        img, svg { max-width: 100%; height: auto; }
+        
+        /* Chỉnh lại Header cho mobile gọn gàng (ẩn slogan) */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column !important; padding: 15px !important; gap: 15px !important; text-align: center; }
+            .brand-box { flex-direction: column !important; text-align: center; }
+            .slogan { display: none !important; }
+            nav ul { display: flex; flex-wrap: wrap !important; justify-content: center; gap: 10px !important; padding: 0 !important; }
+        }
+    </style>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']], 
+                displayMath: [['$$', '$$'], ['\\[', '\\]']] 
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+</head>
+<body style="background-color: var(--bg-global, #FAFAFA);">
+    <header class="navbar">
+        <div class="brand-box" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.2s ease;">
+                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 6px rgba(255, 117, 143, 0.2));">
+                    <rect x="10" y="10" width="80" height="80" rx="24" fill="#FFC6FF" />
+                    <rect x="15" y="15" width="70" height="70" rx="18" fill="#FFB7B2" />
+                    
+                    <circle cx="30" cy="30" r="7" fill="#FFFFFF" />
+                    <circle cx="70" cy="70" r="7" fill="#FFFFFF" />
+                    
+                    <circle cx="42" cy="52" r="5" fill="#3D3A45" />
+                    <circle cx="58" cy="52" r="5" fill="#3D3A45" />
+                    
+                    <circle cx="33" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    <circle cx="67" cy="60" r="6" fill="#FF85A1" opacity="0.7" />
+                    
+                    <path d="M 46 60 Q 50 66 54 60" stroke="#3D3A45" stroke-width="4" stroke-linecap="round" fill="none" />
+                    
+                    <path d="M 75 22 L 77 26 L 81 27 L 77 28 L 75 32 L 73 28 L 69 27 L 73 26 Z" fill="#FFFFFF" />
+                </svg>
+                <span style="font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 28px; color: #A855F7; letter-spacing: -0.5px;">Sweet<span style="color: #FF758F;">Math</span></span>
+            </a>
+            <span class="slogan">Sản phẩm dự thi Sáng tạo Thanh Thiếu niên Nhi đồng 2026</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>  
+                <li><a href="kienthuc.html">Kiến thức</a></li> 
+                <li><a href="cacbaitoan.html">Các bài toán</a></li>
+                <li><a href="thithu.html">Thi thử</a></li>
+                <li><a href="tailieu.html">Tài liệu</a></li>
+                <li><a href="index.html#feedback" style="background: #FF9A9E; color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,154,158,0.3);">Góp ý 💌</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-wrapper" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        
+        <h2 style="text-align: center; color: var(--primary-purple, #A78BFA); font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; text-shadow: 2px 2px 0px #FFF, 4px 4px 0px rgba(167, 139, 250, 0.15);">
+            📝 ĐỀ THI THỬ NGHIỆM 🎯
+        </h2>
+        
+        <div style="background: linear-gradient(135deg, #FFF0F2, #FDE7EB); border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(255, 154, 158, 0.15); border-left: 8px solid #FF9A9E; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <span style="font-size: 26px;">💡</span>
+                <h3 style="color: #D6336C; margin: 0; font-size: 22px; font-weight: 700;">Lưu ý: Phiên bản rút gọn</h3>
+            </div>
+            
+            <p style="color: #555; font-size: 20px; line-height: 1.6; margin: 0 0 10px 0;">
+                Đây là đề thi rút gọn, <b>giảm một nửa số câu mỗi phần</b> để test hệ thống chấm điểm tự động. Vì vậy, <b>điểm tối đa của đề này là 5/5</b>. 
+            </p>
+            <p style="color: #555; font-size: 20px; line-height: 1.6; margin: 0 0 15px 0;">
+                Các bạn làm đúng hết là đạt điểm tuyệt đối cho phiên bản này rồi nhé, đây hoàn toàn không phải đề lỗi đâu nha! 😉
+            </p>
+            
+            <div style="background-color: #FFF; padding: 12px 20px; border-radius: 12px; display: inline-block; border: 1px dashed #FF9A9E;">
+                <p style="color: #FF758F; font-size: 20px; font-weight: bold; margin: 0;">
+                    ✨ Chúng mình sẽ sớm cập nhật đầy đủ các đề thi gần đây nhất để các bạn bám sát theo xu hướng ra đề mới nhé!
+                </p>
+            </div>
+        </div>
+            
+        <div class="box-can-giua" style="text-align: center; margin-top: 20px;">
+            <a href="lambai.html" style="text-decoration: none;">
+                <button class="btn-cute" style="font-size: 20px; padding: 14px 40px; box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);">
+                    VÀO THI NGAY
+                </button>
+            </a>
+        </div>
+
+    </div>
+    
+    <footer>
+        <p>SweetMath - Website học Toán ôn thi Tốt nghiệp THPT</p>
+        <p>Bản quyền © 2026 SweetMath.</p>
+    </footer>
+</body>
+</html>
