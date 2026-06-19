@@ -262,6 +262,25 @@ mjx-container { display: inline-block !important; margin: 0 !important; }
 
 /* --- ĐIỆN THOẠI NHỎ & BOTTOM SHEET (Dưới 600px) --- */
 @media (max-width: 600px) {
+    /* ==========================================================================
+       BỔ SUNG: CẤU TRÚC FONT CHỮ CHO ĐIỆN THOẠI DƯỚI 600PX
+       ========================================================================== */
+    p { 
+        font-size: 20px !important; /* Giữ nguyên p là 20px theo đúng yêu cầu */
+        line-height: 1.5 !important;
+    }
+    
+    /* Hạ font chữ các thẻ h xuống một chút nữa cho vừa khít màn hình nhỏ */
+    h1 { font-size: 24px !important; } /* Tiêu đề lớn banner */
+    h2 { font-size: 20px !important; } /* Bằng cỡ p nhưng h2 có bold sẵn nên vẫn nổi bật */
+    h3 { font-size: 19px !important; } /* Bắt đầu nhỏ hơn p */
+    h4 { font-size: 17px !important; } /* Nhỏ hơn p */
+    h5 { font-size: 15px !important; } /* Nhỏ hơn p */
+    h6 { font-size: 14px !important; } /* Nhỏ hơn p */
+
+    /* ==========================================================================
+       CÁC THÀNH PHẦN KHÁC (GIỮ NGUYÊN)
+       ========================================================================== */
     html body #btn-mobile-palette {
         display: block !important;
         position: fixed !important;
@@ -302,11 +321,12 @@ mjx-container { display: inline-block !important; margin: 0 !important; }
     html body .palette.show-mobile, html body #palette.show-mobile { transform: translateY(0) !important; }
     html body .palette ul { display: grid !important; grid-template-columns: repeat(5, 1fr) !important; gap: 8px !important; padding: 10px 0 !important; }
     html body .palette ul li { width: 100% !important; aspect-ratio: 1 !important; height: auto !important; }
-    html body .palette *, html body #palette * { color: var(--text-main); }
+
+html body .palette *, html body #palette * { color: var(--text-main); }
     html body .palette .btn-cute { color: var(--white) !important; }
     html body .palette ul li.is-answered * { background-color: var(--primary-purple) !important; color: var(--white) !important; }
     html body .palette ul li.is-marked * { background-color: #E11D48 !important; color: var(--white) !important; }
     
     .short-answer-container { flex-direction: column; align-items: flex-start; gap: 10px; padding: 15px; }
-    .input-short-answer { font-size: 20px; } /* Đã tăng lên 20px */
+    .input-short-answer { font-size: 20px; } 
 }
