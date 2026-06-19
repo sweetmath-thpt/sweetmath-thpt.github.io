@@ -298,8 +298,8 @@
 
         <h3 class="section-title">🧠 Phân tích đề bài</h3>
         <div class="analysis-box">
-            <p><strong>Từ khóa trọng tâm:</strong> Từ khóa ở đây là <strong>"không quá 3 lần"</strong> và <strong>"trả lại vào hộp"</strong>.</p>
-            <p style="margin-top: 8px;">➔ <strong>Phân tích vấn đề:</strong> "Trả lại vào hộp" nghĩa là tổng số bi trong hộp luôn là 6 viên ở mỗi lần bốc. Xác suất lấy được bi đỏ ở bất kỳ lần nào cũng cố định là $\dfrac{1}{6}$. Bài này chỉ cần chia làm 3 trường hợp: lấy được ngay lần 1, lần 2 mới lấy được, hoặc phải đến lần 3 mới lấy được.</p>
+            <p><strong>Từ khóa trọng tâm:</strong> "không quá 3 lần" và "trả lại vào hộp".</p>
+            <p style="margin-top: 8px;">➔ <strong>Phân tích vấn đề:</strong> "Không quá 3 lần" nghĩa là phép thử có thể kết thúc ở lần 1, lần 2, hoặc tối đa là lần 3. Chữ "trả lại" cực kỳ quan trọng, nó cho thấy tổng số bi không giảm đi sau mỗi lần bốc.</p>
         </div>
 
         <div class="tabs-header">
@@ -327,7 +327,7 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao không thay đổi?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Điều kiện đề bài là "lấy ra xem rồi trả lại", nên trước khi bốc ở bất kỳ lượt nào, trong hộp vẫn luôn có $1$ viên đỏ và $5$ viên xanh. Do đó, trong bất kỳ lượt nào, số phần tử của không gian mẫu và biến cố vẫn không thay đổi. Đồng thời, việc bốc ra bi màu nào ở lượt này không ảnh hưởng đến kết quả ở lượt sau, do đó các lần bốc bi là phép thử độc lập.
+                    <strong>Flow Thinking:</strong> Chìa khóa nằm ở chữ "trả lại". Nó giống như bạn chơi game và bấm nút <i>reset</i> vậy. Hộp bi trở về trạng thái ban đầu (1 đỏ, 5 xanh), nên xác suất bốc trúng bi đỏ ở lượt nào cũng cố định là $\dfrac{1}{6}$. Việc bốc lần này không làm ảnh hưởng đến lần sau, nên ta gọi đây là <b>phép thử độc lập</b>.
                 </div>
             </div>
 
@@ -347,7 +347,7 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Tại sao lại nhân?</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Trong trường hợp này, hai hành động bốc bi này diễn ra liên tiếp. Theo quy tắc nhân xác suất của các biến cố độc lập, ta lấy xác suất bốc bi xanh nhân với xác suất bốc bi đỏ.
+                    <strong>Flow Thinking:</strong> Bạn nhớ quy tắc <b>VÀ $\rightarrow$ NHÂN</b> ở bài học trước không? Ở trường hợp này, Bình bốc ra bi xanh ở lần 1 <b>VÀ</b> bốc trúng bi đỏ ở lần 2. Hai hành động này phải diễn ra liên tiếp nhau, nên ta dùng phép tính <b>NHÂN</b>.
                 </div>
             </div>
 
@@ -357,12 +357,13 @@
                     <button class="btn-explain" onclick="toggleExplanation(this)">Chậm mà chắc</button>
                 </div>
                 <div class="flow-thinking-box">
-                    <strong>Flow Thinking:</strong> Tương tự <b>trường hợp 2</b>, nhưng lần này phải bốc đến viên thứ ba. Do đó, ta lấy xác suất bốc bi xanh hai lần đầu tiên nhân với xác suất bốc bi đỏ.
+                    <strong>Flow Thinking:</strong> Tương tự <b>trường hợp 2</b>, nhưng: lần 1 bốc ra bi xanh <b>VÀ</b> lần 2 bốc ra bi xanh <b>VÀ</b> lần 3 bốc ra bi đỏ. Cứ thấy chuỗi hành động liên tiếp thì ta lấy các xác suất nhân lại với nhau.
                 </div>
             </div>
 
             <div class="step-item" style="margin-top: 15px; background-color: #FFF5F5; padding: 15px; border-radius: 12px;">
-                <p>➔ Xác suất của biến cố $A$ là: <br>$$P(A) = P_1 + P_2 + P_3 = \dfrac{1}{6} + \dfrac{5}{36} + \dfrac{25}{216} = \dfrac{91}{216} \approx 0,42$$</p>
+                <p>➔ <i>Áp dụng quy tắc chia trường hợp <b>HOẶC $\rightarrow$ CỘNG</b>:</i></p>
+                <p>Xác suất của biến cố $A$ là: <br>$$P(A) = P_1 + P_2 + P_3 = \dfrac{1}{6} + \dfrac{5}{36} + \dfrac{25}{216} = \dfrac{91}{216} \approx 0,42$$</p>
                 <p style="margin-top: 8px; color: #E11D48; font-size: 20px;"><strong>Đáp số điền ô trả lời ngắn: 0,42</strong></p>
             </div>
 
