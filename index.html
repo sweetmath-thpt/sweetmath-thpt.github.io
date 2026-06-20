@@ -68,17 +68,26 @@
         line-height: 1.6;
     }
 
-    /* CSS RIÊNG BIỆT CHO PHẦN 4 TÍNH MỚI ĐỘT PHÁ (MÁY TÍNH HIỆN 4 Ô HOẶC BẢNG 2X2) */
+    /* --- BẮT ĐẦU CSS CHO 4 TÍNH MỚI --- */
     .innovations-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(calc(50% - 20px), 1fr));
+        /* Mặc định trên điện thoại (màn hình nhỏ): Xếp dọc 1 cột từ trên xuống dưới */
+        grid-template-columns: 1fr;
         gap: 25px;
         margin-top: 30px;
     }
 
-    @media (min-width: 1025px) {
+    /* Trên Tablet (màn hình vừa): Xếp thành bảng 2x2 */
+    @media (min-width: 768px) {
         .innovations-grid {
-            grid-template-columns: repeat(4, 1fr); /* Trên màn hình máy tính lớn sẽ trải đều 4 ô trên 1 hàng cực đẹp */
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Trên Máy tính (màn hình lớn): Xếp thành 1 hàng ngang 4 ô */
+    @media (min-width: 1024px) {
+        .innovations-grid {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 
@@ -131,17 +140,7 @@
         line-height: 1.6;
         margin: 0;
     }
-
-    .innovation-card ul {
-        margin: 8px 0 0 0;
-        padding-left: 20px;
-        font-size: 17px;
-        color: #6B7280;
-    }
-
-    .innovation-card ul li {
-        margin-bottom: 4px;
-    }
+    /* --- KẾT THÚC CSS CHO 4 TÍNH MỚI --- */
 
     /* Grid cho Giới hạn đề tài */
     .promises-grid {
@@ -284,6 +283,7 @@
 
 <div class="content-wrapper">
 
+    <!-- PHẦN 1: HỆ SINH THÁI TÍNH NĂNG -->
     <div class="home-section" id="kham-pha">
         <h2 class="section-title">Hệ sinh thái học tập tương tác thế hệ mới 🌌</h2>
         <div class="features-grid">
@@ -313,31 +313,33 @@
         </div>
     </div>
 
+    <!-- PHẦN MỚI CẬP NHẬT: 4 TÍNH MỚI ĐỘT PHÁ -->
     <div class="home-section">
-        <h2 class="section-title">4 ĐIỂM SÁNG TẠO CỦA SWEETMATH ✨</h2>
+        <h2 class="section-title">4 Giá Trị Sáng Tạo Đột Phá ✨</h2>
         <div class="innovations-grid">
             <div class="innovation-card inno-1">
                 <h3><span>📱</span> Trải nghiệm Microlearning</h3>
-                <p>Kiến thức được phân mảnh thành các <b>thẻ tóm tắt (summary cards)</b> pastel bo tròn, thân thiện, giúp giảm bớt nỗi sợ Toán và tăng cường sự tập trung.</p>
+                <p>Kiến thức được phân mảnh thành các <b>thẻ tóm tắt</b> pastel bo tròn, thân thiện, giúp giảm bớt nỗi sợ Toán và tăng cường sự tập trung.</p>
             </div>
             
             <div class="innovation-card inno-2">
                 <h3><span>💬</span> Ngôn ngữ "Gen Z hóa"</h3>
-                <p>Đơn giản hóa định nghĩa hàn lâm bằng hình ảnh liên tưởng thực chiến độc đáo. <i>Ví dụ: Hợp <span style="font-size:20px;">∪</span> là "chén chứa đồ", Giao <span style="font-size:20px;">∩</span> là "chiếc nón chật hẹp".</i></p>
+                <p>Đơn giản hóa định nghĩa hàn lâm bằng hình ảnh liên tưởng thực chiến. <i>Ví dụ: Hợp ∪ là "chén chứa đồ", Giao ∩ là "chiếc nón chật hẹp".</i></p>
             </div>
             
             <div class="innovation-card inno-3">
                 <h3><span>🧭</span> Scaffolding & Coaching</h3>
-                <p>Ứng dụng tư duy <b>flow-thinking</b> qua hệ thống tabs ẩn/hiện và nút <i>"Tại sao?"</i>. Đóng vai trò gia sư 1-1 giúp học sinh hiểu sâu bản chất ("Why") thay vì chép vẹt công thức ("How").</p>
+                <p>Ứng dụng tư duy <b>flow-thinking</b> qua hệ thống tabs ẩn/hiện. Đóng vai trò gia sư 1-1 giúp học sinh hiểu bản chất ("Why") thay vì chép vẹt ("How").</p>
             </div>
             
             <div class="innovation-card inno-4">
                 <h3><span>🎯</span> Bám sát cấu trúc thi mới</h3>
-                <p>Nhắm thẳng định hướng format trắc nghiệm Đúng/Sai và Trả lời ngắn; chủ động sửa các lỗi điền đáp án phổ biến như: làm tròn sai, lỗi viết dấu, viết nhầm dấu phẩy...</p>
+                <p>Nhắm thẳng định hướng format trắc nghiệm mới; chủ động sửa các lỗi điền đáp án phổ biến như: làm tròn sai, lỗi viết dấu, viết nhầm dấu phẩy...</p>
             </div>
         </div>
     </div>
 
+    <!-- PHẦN 2: BÍ KÍP & TIPS -->
     <div class="home-section">
         <h2 class="section-title">Bí kíp 3 bước học hiệu quả cùng SweetMath 🚀</h2>
         <div class="features-grid">
@@ -349,18 +351,19 @@
             
             <div class="feature-card" style="border-top-color: #FF758F; text-align: left; padding: 25px;">
                 <div class="feature-icon" style="font-size: 32px;">🎯 Bước 2</div>
-                <h4 style="font-size: 20px;">Truy cập kho tài liệu và tuyển tập các bài toán</h4>
+                <h4 style="font-size: 20px;">Truy cập kho tài liệu và bài toán</h4>
                 <p style="font-size: 18px;">Tham khảo ngay tuyển tập bài toán và đề thi từ các Sở GD&ĐT và trường THPT để làm quen với đa dạng cách hành văn ra đề của các thầy cô.</p>
             </div>
             
             <div class="feature-card" style="border-top-color: #4ADE80; text-align: left; padding: 25px;">
                 <div class="feature-icon" style="font-size: 32px;">💡 Bước 3</div>
-                <h4 style="font-size: 20px;">Phân tích lỗi sai bằng tư duy flow-thinking</h4>
+                <h4 style="font-size: 20px;">Phân tích lỗi sai qua giải thích</h4>
                 <p style="font-size: 18px;">Khi xem kết quả thi, đừng chỉ nhìn đáp án đúng hay sai. Hãy kích hoạt hộp thoại <b>Giải thích</b> để hiểu cách tư duy đằng sau mỗi bước giải chi tiết.</p>
             </div>
         </div>
     </div>
 
+    <!-- PHẦN 3: ĐỐI TƯỢNG, PHẠM VI NGHIÊN CỨU -->
     <div class="home-section">
         <h2 class="section-title">Phạm vi nghiên cứu & Cam kết giá trị 🎯</h2>
         <div class="promises-grid">
@@ -368,39 +371,40 @@
                 <div class="promise-icon">🧑‍🎓</div>
                 <div class="promise-content">
                     <h4>ĐỐI TƯỢNG PHỤC VỤ</h4>
-                    <p>Dự án số hóa chuyên biệt cho học sinh cấp THPT đang gặp khó khăn với chuyên đề Xác suất, đặc biệt là các học sinh đang chuẩn bị cho kỳ thi Tốt nghiệp THPT từ năm 2027 trở đi.</p>
+                    <p>Dự án số hóa chuyên biệt cho học sinh cấp THPT đang gặp khó khăn với chuyên đề Xác suất, chuẩn bị cho kỳ thi Tốt nghiệp THPT từ 2027.</p>
                 </div>
             </div>
             
             <div class="promise-card">
                 <div class="promise-icon">💎</div>
                 <div class="promise-content">
-                    <h4>TƯ DUY TUYẾN TÍNH (FLOW-THINKING) ĐỘT PHÁ</h4>
-                    <p>Flow-thinking thông thường chỉ có qua video bài giảng. Hiểu được rào cản khi một số học sinh không có thiết bị/mạng mạnh để xem video, hệ thống cung cấp giải thích bằng văn bản động dạng module, giúp tự dò lỗi tư duy mọi lúc mọi nơi.</p>
+                    <h4>TƯ DUY TUYẾN TÍNH ĐỘT PHÁ</h4>
+                    <p>Cung cấp giải thích bằng văn bản động dạng module, giúp tự dò lỗi tư duy mọi lúc mọi nơi mà không yêu cầu mạng mạnh để xem video.</p>
                 </div>
             </div>
             
             <div class="promise-card">
                 <div class="promise-icon">⚡</div>
                 <div class="promise-content">
-                    <h4>MÔI TRƯỜNG HỌC TẬP KHÔNG ÁP LỰC (STRESS-FREE)</h4>
-                    <p>Đảm bảo môi trường học tập tập trung 100% không quảng cáo. Kết hợp cùng giao diện mượt mà, tone màu pastel dịu mắt, ngọt ngào giúp học sinh giảm thiểu căng thẳng tâm lý khi ôn thi.</p>
+                    <h4>HỌC TẬP KHÔNG ÁP LỰC</h4>
+                    <p>Môi trường học tập 100% không quảng cáo. Giao diện mượt mà, tone màu pastel dịu mắt giúp giảm thiểu căng thẳng tâm lý khi ôn thi.</p>
                 </div>
             </div>
 
             <div class="promise-card">
                 <div class="promise-icon">📚</div>
                 <div class="promise-content">
-                    <h4>NGUỒN TÀI LIỆU BÁM SÁT GDPT 2018</h4>
-                    <p>Tập hợp tư liệu chuẩn hóa theo định hướng Chương trình GDPT 2018, bám sát cấu trúc đề thi mới nhất: nhiều lựa chọn, đúng - sai và trả lời ngắn do Bộ Giáo dục và Đào tạo quy định.</p>
+                    <h4>BÁM SÁT GDPT 2018</h4>
+                    <p>Tư liệu chuẩn hóa bám sát cấu trúc đề thi mới nhất: nhiều lựa chọn, đúng - sai và trả lời ngắn do Bộ Giáo dục và Đào tạo quy định.</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- PHẦN ĐÁNH GIÁ & GÓP Ý TƯƠNG TÁC -->
     <div class="feedback-section" id="feedback">
         <h2 class="feedback-title">Bạn nghĩ sao về SweetMath? 💌</h2>
-        <p class="feedback-text">Mọi ý kiến đóng góp mang tính xây dựng của bạn là nguồn động lực to lớn giúp nhóm tác giả tiếp tục nâng cấp thuật toán, hoàn thiện các tính năng cốt lõi và mở rộng kho học liệu thông minh trong tương lai. Mong xác bạn dành 1 phút để đánh giá trải nghiệm nhé!</p>
+        <p class="feedback-text">Mọi ý kiến đóng góp mang tính xây dựng của bạn là nguồn động lực to lớn giúp nhóm tác giả tiếp tục nâng cấp thuật toán và mở rộng kho học liệu. Mong bạn dành 1 phút để đánh giá trải nghiệm nhé!</p>
         
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO94wEbVab8-L-8dJtF3zaQTmh3mFEnruXNhSBv8Wt2nHFzA/viewform?usp=publish-editor" target="_blank" class="btn-form">Chấm điểm & Gửi góp ý ngay 🚀</a>
     </div>
@@ -413,5 +417,4 @@
 </footer>
 
 </body>
-    </html>
-                
+</html>
