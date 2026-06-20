@@ -68,6 +68,81 @@
         line-height: 1.6;
     }
 
+    /* CSS RIÊNG BIỆT CHO PHẦN 4 TÍNH MỚI ĐỘT PHÁ (MÁY TÍNH HIỆN 4 Ô HOẶC BẢNG 2X2) */
+    .innovations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(calc(50% - 20px), 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    @media (min-width: 1025px) {
+        .innovations-grid {
+            grid-template-columns: repeat(4, 1fr); /* Trên màn hình máy tính lớn sẽ trải đều 4 ô trên 1 hàng cực đẹp */
+        }
+    }
+
+    .innovation-card {
+        background: #ffffff;
+        border: 2px dashed #E0F2FE;
+        border-radius: 24px;
+        padding: 30px 25px;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .innovation-card:hover {
+        transform: translateY(-8px);
+        border-style: solid;
+        box-shadow: 0 15px 30px rgba(96, 165, 250, 0.15);
+    }
+
+    .innovation-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 6px; height: 100%;
+    }
+
+    .inno-1::before { background: #FF9A9E; }
+    .inno-2::before { background: #A78BFA; }
+    .inno-3::before { background: #4ADE80; }
+    .inno-4::before { background: #60A5FA; }
+
+    .innovation-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .inno-1 h3 { color: #FF6B6B; }
+    .inno-2 h3 { color: #7C3AED; }
+    .inno-3 h3 { color: #059669; }
+    .inno-4 h3 { color: #2563EB; }
+
+    .innovation-card p {
+        font-size: 18px;
+        color: #4B5563;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .innovation-card ul {
+        margin: 8px 0 0 0;
+        padding-left: 20px;
+        font-size: 17px;
+        color: #6B7280;
+    }
+
+    .innovation-card ul li {
+        margin-bottom: 4px;
+    }
+
     /* Grid cho Giới hạn đề tài */
     .promises-grid {
         display: grid;
@@ -209,7 +284,6 @@
 
 <div class="content-wrapper">
 
-    <!-- PHẦN 1: HỆ SINH THÁI TÍNH NĂNG -->
     <div class="home-section" id="kham-pha">
         <h2 class="section-title">Hệ sinh thái học tập tương tác thế hệ mới 🌌</h2>
         <div class="features-grid">
@@ -239,7 +313,31 @@
         </div>
     </div>
 
-    <!-- PHẦN 2: BÍ KÍP & TIPS SỬ DỤNG SWEETMATH HIỆU QUẢ -->
+    <div class="home-section">
+        <h2 class="section-title">4 ĐIỂM SÁNG TẠO CỦA SWEETMATH ✨</h2>
+        <div class="innovations-grid">
+            <div class="innovation-card inno-1">
+                <h3><span>📱</span> Trải nghiệm Microlearning</h3>
+                <p>Kiến thức được phân mảnh thành các <b>thẻ tóm tắt (summary cards)</b> pastel bo tròn, thân thiện, giúp giảm bớt nỗi sợ Toán và tăng cường sự tập trung.</p>
+            </div>
+            
+            <div class="innovation-card inno-2">
+                <h3><span>💬</span> Ngôn ngữ "Gen Z hóa"</h3>
+                <p>Đơn giản hóa định nghĩa hàn lâm bằng hình ảnh liên tưởng thực chiến độc đáo. <i>Ví dụ: Hợp <span style="font-size:20px;">∪</span> là "chén chứa đồ", Giao <span style="font-size:20px;">∩</span> là "chiếc nón chật hẹp".</i></p>
+            </div>
+            
+            <div class="innovation-card inno-3">
+                <h3><span>🧭</span> Scaffolding & Coaching</h3>
+                <p>Ứng dụng tư duy <b>flow-thinking</b> qua hệ thống tabs ẩn/hiện và nút <i>"Tại sao?"</i>. Đóng vai trò gia sư 1-1 giúp học sinh hiểu sâu bản chất ("Why") thay vì chép vẹt công thức ("How").</p>
+            </div>
+            
+            <div class="innovation-card inno-4">
+                <h3><span>🎯</span> Bám sát cấu trúc thi mới</h3>
+                <p>Nhắm thẳng định hướng format trắc nghiệm Đúng/Sai và Trả lời ngắn; chủ động sửa các lỗi điền đáp án phổ biến như: làm tròn sai, lỗi viết dấu, viết nhầm dấu phẩy...</p>
+            </div>
+        </div>
+    </div>
+
     <div class="home-section">
         <h2 class="section-title">Bí kíp 3 bước học hiệu quả cùng SweetMath 🚀</h2>
         <div class="features-grid">
@@ -263,7 +361,6 @@
         </div>
     </div>
 
-    <!-- PHẦN 3: ĐỐI TƯỢNG, PHẠM VI NGHIÊN CỨU & KHẲNG ĐỊNH GIÁ TRỊ CỐT LÕI -->
     <div class="home-section">
         <h2 class="section-title">Phạm vi nghiên cứu & Cam kết giá trị 🎯</h2>
         <div class="promises-grid">
@@ -301,7 +398,6 @@
         </div>
     </div>
 
-    <!-- PHẦN ĐÁNH GIÁ & GÓP Ý TƯƠNG TÁC -->
     <div class="feedback-section" id="feedback">
         <h2 class="feedback-title">Bạn nghĩ sao về SweetMath? 💌</h2>
         <p class="feedback-text">Mọi ý kiến đóng góp mang tính xây dựng của bạn là nguồn động lực to lớn giúp nhóm tác giả tiếp tục nâng cấp thuật toán, hoàn thiện các tính năng cốt lõi và mở rộng kho học liệu thông minh trong tương lai. Mong xác bạn dành 1 phút để đánh giá trải nghiệm nhé!</p>
@@ -317,4 +413,5 @@
 </footer>
 
 </body>
-</html>
+    </html>
+                
